@@ -39,7 +39,7 @@ Space has a number of useful features that make it a developer friendly theme to
 2. Clone this repo
 3. Replace `space-theme-dev.myshopify.com` in `package.json` with your Shopify store URL
 4. Run `npm install` to install dependencies
-5. Run `npm run pull` to download the your theme (be sure to select the theme that has Paper installed)
+5. Run `npm run pull` to download the your theme (be sure to select the theme that has Space installed)
 6. Run `npm run dev` to create a development preview
 7. Run `npm run build` to build production ready assets
 
