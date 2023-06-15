@@ -1,0 +1,4112 @@
+<!-- sections/styleguide.liquid -->
+
+<section>
+
+  {% comment %} Intro {% endcomment %}
+  <div class="border--b-width color__border-divider-1 p-4">
+    <h2 class="type__body type--bigger mb-0 font-bold">
+      Styleguide
+    </h2>
+  </div>
+  <div class="md:w-2/5 w-full p-4">
+    <p class="m-0">
+      Built from the ground up for developers in mind. Our themes work seamlessly with Tailwind, Online Store 2.0, and Shopify CLI. 
+    </p>
+  </div>
+
+  <div class="flex flex-wrap gap-4 p-4">
+
+    {% comment %} Sidebar {% endcomment %}
+    <div class="md:w-auto grow w-full">
+      <ul class="sticky top-0 max-h-screen p-0 pt-12 overflow-y-auto list-none">
+        <li class="border--b-width color__border-divider-1 pb-1 mb-4">Utility classes</li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#font-family">Font family</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#font-size">Font size</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#background-color">Background color</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#text-color">Text color</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#border-color">Border color</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#border-width">Border width</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#border-radius">Border radius</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#spacing">Spacing</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#animation">Animation</a>
+        </li>
+
+        <li class="border--b-width color__border-divider-1 pt-8 pb-1 mb-4">Core components</li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#forms">Forms</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#grids">Grids</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#images">Images</a>
+        </li>
+      
+        <li class="border--b-width color__border-divider-1 pt-8 pb-1 mb-4">Content components</li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#accordions">Accordions</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#badges">Badges</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#icons">Icons</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#cards">Cards</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#alternative-cards">Alternative cards</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#blog-items">Blog items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#content-items">Content items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#newsletter-items">Newsletter items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#skeleton-items">Skeleton items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#skeleton-stacked-items">Skeleton stacked items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#skeleton-slider-items">Skeleton slider items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#sliders">Sliders</a>
+        </li>
+        
+        <li class="border--b-width color__border-divider-1 pt-8 pb-1 mb-4">Interaction components</li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#buttons">Buttons</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#progress-bars">Progress bars</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#combo-inputs">Combo inputs</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#incrementers">Incrementers</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#range-sliders">Range sliders</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#pagination">Pagination</a>
+        </li>
+
+        <li class="border--b-width color__border-divider-1 pt-8 pb-1 mb-4">Overlay components</li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#drawers">Drawers</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#popups">Popups</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#fullscreens">Fullscreens</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#alerts">Alerts</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#dropdowns">Dropdowns</a>
+        </li>
+
+        <li class="border--b-width color__border-divider-1 pt-8 pb-1 mb-4">Commerce components</li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#collection-items">Collection items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#product-items">Product items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#featured-items">Featured items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#upsell-stacked-items">Upsell stacked items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#upsell-slider-items">Upsell slider items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#cart-items">Cart items</a>
+        </li>
+        <li class="pb-2 pl-4">
+          <a class="hover:opacity-100 no-underline opacity-50" href="#search-items">Search items</a>
+        </li>
+
+      </ul>
+    </div>
+
+    {% comment %} Contents {% endcomment %}
+    <div class="md:w-5/6 w-full pt-12">
+      
+      {% comment %} Font family {% endcomment %}
+      {% capture font-family_short_text %}
+        Set a font family using values defined in your theme editor. Refer to Theme settings > Typography.
+      {% endcapture %}
+      {% capture font-family_table_rows %}
+        {% render 'styleguide__row',
+          class: '.type_heading',
+          properties:  '
+          font-family: var(--type-font-header-family);
+          font-style: var(--type-font-header-style);
+          font-weight: var(--type-font-header-weight);
+          @apply underline-offset-4 tracking-normal;
+          @apply leading-tight;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type_body',
+          properties:  '
+          font-family: var(--type-font-body-family);
+          font-style: var(--type-font-body-style);
+          font-weight: var(--type-font-body-weight);
+          @apply underline-offset-2 leading-relaxed tracking-normal;'
+        %}
+        {% render 'styleguide__row',
+          class: '.type_nav',
+          properties:  '
+          font-family: var(--type-font-nav-family);
+          font-style: var(--type-font-nav-style);
+          font-weight: var(--type-font-nav-weight);
+          @apply underline-offset-2 leading-normal tracking-wide;'
+        %}
+      {% endcapture %}
+      {% capture font-family_content %}
+        {% render 'styleguide__example',
+          name: 'Heading',
+          content: '<h1>A Sample Heading</h1>',
+          sample: '<h1>A Sample Heading</h1>' %}
+        {% render 'styleguide__example',
+          name: 'Body',
+          content: '<p>The fox is really quick today.</p>',
+          sample: '<p>The fox is really quick today.</p>' %}
+        {% render 'styleguide__example',
+          name: 'Navigation',
+          content: '<p class="type__nav">The fox is really quick today.</p>',
+          sample: '<p class="type__nav">The fox is really quick today.</p>' %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Font family',
+        short_text: font-family_short_text,
+        table_rows: font-family_table_rows,
+        content: font-family_content 
+      %}
+
+      {% comment %} Font size {% endcomment %}
+      {% capture font-size_short_text %}
+        Set font size using values defined in your theme editor. Refer to Theme settings > Typography.
+      {% endcapture %}
+      {% capture font-size_table_rows %}
+        {% render 'styleguide__row',
+          class: '.type__heading-1',
+          properties:  '
+          font-family: var(--type-font-header-family);
+          font-style: var(--type-font-header-style);
+          font-weight: var(--type-font-header-weight);
+          @apply md:text-5xl underline-offset-4 text-4xl tracking-normal;
+          @apply leading-tight;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type__heading-2',
+          properties:  '
+          font-family: var(--type-font-header-family);
+          font-style: var(--type-font-header-style);
+          font-weight: var(--type-font-header-weight);
+          @apply md:text-4xl underline-offset-4 text-3xl tracking-normal;
+          @apply leading-tight;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type__heading-3',
+          properties:  '
+          font-family: var(--type-font-header-family);
+          font-style: var(--type-font-header-style);
+          font-weight: var(--type-font-header-weight);
+          @apply md:text-3xl underline-offset-4 text-2xl tracking-normal;
+          @apply leading-tight;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type__heading-5',
+          properties:  '
+          font-family: var(--type-font-header-family);
+          font-style: var(--type-font-header-style);
+          font-weight: var(--type-font-header-weight);
+          @apply md:text-xl underline-offset-4 text-lg tracking-normal;
+          @apply leading-tight;'
+        %}
+        {% render 'styleguide__row',
+          class: '.type__heading-6',
+          properties:  '
+          font-family: var(--type-font-header-family);
+          font-style: var(--type-font-header-style);
+          font-weight: var(--type-font-header-weight);
+          @apply md:text-lg underline-offset-4 text-base tracking-normal;
+          @apply leading-tight;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type__heading-1',
+          properties:  '
+          font-family: var(--type-font-header-family);
+          font-style: var(--type-font-header-style);
+          font-weight: var(--type-font-header-weight);
+          @apply md:text-5xl underline-offset-4 text-4xl tracking-normal;
+          @apply leading-tight;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type--bigger',
+          properties:  '
+          @apply md:text-3xl text-2xl;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type--big',
+          properties:  '
+          @apply md:text-2xl text-xl;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type--base',
+          properties:  '
+          @apply md:text-lg text-base;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type--small',
+          properties:  '
+          @apply md:text-sm text-xs;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.type--smaller',
+          properties:  '
+          @apply text-xs' 
+        %}
+      {% endcapture %}
+      {% capture font-size_content %}
+        {% render 'styleguide__example',
+          name: 'Heading 1',
+          content: '<p class="type__heading-1">A Sample Heading</p>',
+          sample: '<p class="type__heading-1">A Sample Heading</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Heading 2',
+          content: '<p class="type__heading-2">A Sample Heading</p>',
+          sample: '<p class="type__heading-2">A Sample Heading</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Heading 3',
+          content: '<p class="type__heading-3">A Sample Heading</p>',
+          sample: '<p class="type__heading-3">A Sample Heading</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Heading 4',
+          content: '<p class="type__heading-4">A Sample Heading</p>',
+          sample: '<p class="type__heading-4">A Sample Heading</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Heading 5',
+          content: '<p class="type__heading-5">A Sample Heading</p>',
+          sample: '<p class="type__heading-5">A Sample Heading</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Heading 6',
+          content: '<p class="type__heading-6">A Sample Heading</p>',
+          sample: '<p class="type__heading-6">A Sample Heading</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Bigger',
+          content: '<p class="type--bigger">The fox is really quick today.</p>',
+          sample: '<p class="type--bigger">The fox is really quick today.</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Big',
+          content: '<p class="type--big">The fox is really quick today.</p>',
+          sample: '<p class="type--big">The fox is really quick today.</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Base',
+          content: '<p>The fox is really quick today.</p>',
+          sample: '<p>The fox is really quick today.</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Small',
+          content: '<p class="type--small">The fox is really quick today.</p>',
+          sample: '<p class="type--small">The fox is really quick today.</p>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Smaller',
+          content: '<p class="type--smaller">The fox is really quick today.</p>',
+          sample: '<p class="type--smaller">The fox is really quick today.</p>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Font size',
+        short_text: font-size_short_text,
+        table_rows: font-size_table_rows,
+        content: font-size_content 
+      %}
+      
+      {% comment %} Background color {% endcomment %}
+      {% capture background-color_short_text %}
+        Set background color using values defined in your theme editor. Refer to Theme settings > Colors.
+      {% endcapture %}
+      {% capture background-color_table_rows %}
+        {% render 'styleguide__row',
+          class: '.color__bg-body',
+          properties:  '
+          background-color: var(--color__bg-body-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-overlay-1 ',
+          properties:  '
+          background-color: var(--color__bg-overlay-light-1)' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-overlay-2 ',
+          properties:  '
+          background-color: var(--color__bg-overlay-light-2)' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-overlay-3 ',
+          properties:  '
+          background-color: var(--color__bg-overlay-light-3)' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-shade-1 ',
+          properties:  '
+          background-color: var(--color__bg-shade-light-1)' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-shade-2 ',
+          properties:  '
+          background-color: var(--color__bg-shade-light-2)' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-shade-3 ',
+          properties:  '
+          background-color: var(--color__bg-shade-light-3)' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-primary',
+          properties:  '
+          background-color: var(--color-primary-button-background-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-secondary',
+          properties:  '
+          background-color: var(--color-secondary-button-background-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-tertiary',
+          properties:  '
+          background-color: var(--color-tertiary-button-background-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__bg-neutral',
+          properties:  '
+          background-color: var(--color-neutral-button-background-light);' 
+        %}
+      {% endcapture %}
+      {% capture background-color_content %}
+        {% render 'styleguide__example',
+          name: 'Body',
+          content: '<div class="color__bg-body p-4"></div>',
+          sample: '<div class="color__bg-body p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Overlay-1',
+          content: '<div class="color__bg-overlay-1 p-4"></div>',
+          sample: '<div class="color__bg-overlay-1 p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Overlay-2',
+          content: '<div class="color__bg-overlay-2 p-4"></div>',
+          sample: '<div class="color__bg-overlay-2 p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Overlay-3',
+          content: '<div class="color__bg-overlay-3 p-4"></div>',
+          sample: '<div class="color__bg-overlay-3 p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Shade-1',
+          content: '<div class="color__bg-shade-1 p-4"></div>',
+          sample: '<div class="color__bg-shade-1 p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Shade-2',
+          content: '<div class="color__bg-shade-2 p-4"></div>',
+          sample: '<div class="color__bg-shade-2 p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Shade-3',
+          content: '<div class="color__bg-shade-3 p-4"></div>',
+          sample: '<div class="color__bg-shade-3 p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Primary',
+          content: '<div class="color__bg-primary p-4"></div>',
+          sample: '<div class="color__bg-primary p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Secondary',
+          content: '<div class="color__bg-secondary p-4"></div>',
+          sample: '<div class="color__bg-secondary p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Tertiary',
+          content: '<div class="color__bg-tertiary p-4"></div>',
+          sample: '<div class="color__bg-tertiary p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Neutral',
+          content: '<div class="color__bg-neutral p-4"></div>',
+          sample: '<div class="color__bg-neutral p-4"></div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Background color',
+        short_text: background-color_short_text,
+        table_rows: background-color_table_rows,
+        content: background-color_content 
+      %}
+
+      {% comment %} Text color {% endcomment %}
+      {% capture text-color_short_text %}
+        Set text color using values defined in your theme editor. Refer to Theme settings > Colors.
+      {% endcapture %}
+      {% capture text-color_table_rows %}
+        {% render 'styleguide__row',
+          class: '.color__text',
+          properties:  '
+          color: var(--color__text-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__dark',
+          properties:  '
+          color: var(--color__text-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__light',
+          properties:  '
+          color: var(--color__text-dark);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__link',
+          properties:  '
+          color: var(--color__link-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__primary',
+          properties:  '
+          color: var(--color-primary-button-text-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__secondary',
+          properties:  '
+          color: var(--color-tertiary-button-text-light);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__secondary',
+          properties:  '
+          color: var(--color-neutral-button-text-light);' 
+        %}
+      {% endcapture %}
+      {% capture text-color_content %}
+        {% render 'styleguide__example',
+          name: 'Default text color',
+          content: '<div class="color__text">Text</div>',
+          sample: '<div class="color__text">Text</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Text color on light background',
+          content: '<div class="color__dark">Text</div>',
+          sample: '<div class="color__dark">Text</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Text color on dark background',
+          content: '<div class="color__light">Text</div>',
+          sample: '<div class="color__light">Text</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Text color for links',
+          content: '<div class="color__link">Text</div>',
+          sample: '<div class="color__link">Text</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Text color that contrasts primary background',
+          content: '<div class="color__primary">Text</div>',
+          sample: '<div class="color__primary">Text</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Text color that contrasts secondary background',
+          content: '<div class="color__secondary">Text</div>',
+          sample: '<div class="color__secondary">Text</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Text color that contrasts tertiary background',
+          content: '<div class="color__tertiary">Text</div>',
+          sample: '<div class="color__tertiary">Text</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Text color that contrasts neutral background',
+          content: '<div class="color__neutral">Text</div>',
+          sample: '<div class="color__neutral">Text</div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Text color',
+        short_text: text-color_short_text,
+        table_rows: text-color_table_rows,
+        content: text-color_content 
+      %}
+
+      {% comment %} Border color {% endcomment %}
+      {% capture border-color_short_text %}
+        Set border color using values defined in your theme editor. Refer to Theme settings > Colors.
+      {% endcapture %}
+      {% capture border-color_table_rows %}
+        {% render 'styleguide__row',
+          class: '.color__border-divider-1',
+          properties:  '
+          border-color: var(--color__border-divider-light-1);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__border-divider-2',
+          properties:  '
+          border-color: var(--color__border-divider-light-2);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__border-divider-3',
+          properties:  '
+          border-color: var(--color__border-divider-light-3);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__border-selected-1',
+          properties:  '
+          border-color: var(--color__border-selected-light-1);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__border-selected-2',
+          properties:  '
+          border-color: var(--color__border-selected-light-2);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.color__border-transparent',
+          properties:  '
+          border-color: transparent;' 
+        %}
+      {% endcapture %}
+      {% capture border-color_content %}
+        {% render 'styleguide__example',
+          name: 'Border divider 1',
+          content: '<div class="color__border-divider-1 border--width p-4"></div>',
+          sample: '<div class="color__border-divider-1 border--width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border divider 2',
+          content: '<div class="color__border-divider-2 border--width p-4"></div>',
+          sample: '<div class="color__border-divider-2 border--width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border divider 3',
+          content: '<div class="color__border-divider-3 border--width p-4"></div>',
+          sample: '<div class="color__border-divider-3 border--width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border selected 1',
+          content: '<div class="color__border-selected-1 border--width p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border selected 2',
+          content: '<div class="color__border-selected-2 border--width p-4"></div>',
+          sample: '<div class="color__border-selected-2 border--width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border transparent',
+          content: '<div class="color__border-transparent border--width p-4"></div>',
+          sample: '<div class="color__border-transparent border--width p-4"></div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Border color',
+        short_text: border-color_short_text,
+        table_rows: border-color_table_rows,
+        content: border-color_content 
+      %}
+
+      {% comment %} Border width {% endcomment %}
+      {% capture border-width_short_text %}
+        Set border width using values defined in your theme editor. Refer to Theme settings > Borders.
+      {% endcapture %}
+      {% capture border-width_table_rows %}
+        {% render 'styleguide__row',
+          class: '.border--width',
+          properties:  '
+          border-width: var(--sizes-border-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.border--t-width',
+          properties:  '
+          border-top-width: var(--sizes-border-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.border--r-width',
+          properties:  '
+          border-right-width: var(--sizes-border-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.border--b-width',
+          properties:  '
+          border-bottom-width: var(--sizes-border-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.border--l-width',
+          properties:  '
+          border-left-width: var(--sizes-border-width);' 
+        %}
+      {% endcapture %}
+      {% capture border-width_content %}
+        {% render 'styleguide__example',
+          name: 'Border width',
+          content: '<div class="color__border-selected-1 border--width p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border top width',
+          content: '<div class="color__border-selected-1 border--t-width p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--t-width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border right width',
+          content: '<div class="color__border-selected-1 border--r-width p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--r-width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border bottom width',
+          content: '<div class="color__border-selected-1 border--b-width p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--b-width p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Border left width',
+          content: '<div class="color__border-selected-1 border--l-width p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--l-width p-4"></div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Border width',
+        short_text: border-width_short_text,
+        table_rows: border-width_table_rows,
+        content: border-width_content 
+      %}
+      
+      {% comment %} Border radius {% endcomment %}
+      {% capture border-radius_short_text %}
+        Set border radius using values defined in your theme editor. Refer to Theme settings > Borders.
+      {% endcapture %}
+      {% capture border-radius_table_rows %}
+        {% render 'styleguide__row',
+          class: '.border--radius',
+          properties:  '
+          border-radius: var(--sizes-border-element-radius);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.border__button--radius',
+          properties:  '
+          border-radius: var(--sizes-border-button-radius);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.border__input--radius',
+          properties:  '
+          border-radius: var(--sizes-border-input-radius);' 
+        %}
+      {% endcapture %}
+      {% capture border-radius_content %}
+        {% render 'styleguide__example',
+          name: 'Default radius',
+          content: '<div class="color__border-selected-1 border--width border--radius p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--width border--radius p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Button radius',
+          content: '<div class="color__border-selected-1 border--width border__button--radius p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--width border__button--radius p-4"></div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Input radius',
+          content: '<div class="color__border-selected-1 border--width border__input--radius p-4"></div>',
+          sample: '<div class="color__border-selected-1 border--width border__input--radius p-4"></div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Border radius',
+        short_text: border-radius_short_text,
+        table_rows: border-radius_table_rows,
+        content: border-radius_content 
+      %}
+      
+      {% comment %} Spacing {% endcomment %}
+      {% capture spacing_short_text %}
+        Set padding and margin using values defined in your theme editor. Refer to Theme settings > Layout > Grid margin.
+      {% endcapture %}
+      {% capture spacing_table_rows %}
+        {% render 'styleguide__row',
+          class: '.padding--gap',
+          properties:  '
+          padding: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.padding--t-gap',
+          properties:  '
+          padding-top: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.padding--r-gap',
+          properties:  '
+          padding-right: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.padding--b-gap',
+          properties:  '
+          padding-bottom: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.padding--l-gap',
+          properties:  '
+          padding-left: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.margin--gap',
+          properties:  '
+          margin: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.margin--t-gap',
+          properties:  '
+          margin-top: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.margin--r-gap',
+          properties:  '
+          margin-right: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.margin--b-gap',
+          properties:  '
+          margin-bottom: var(--sizes-gap-width);' 
+        %}
+        {% render 'styleguide__row',
+          class: '.margin--l-gap',
+          properties:  '
+          margin-left: var(--sizes-gap-width);' 
+        %}
+      {% endcapture %}
+      {% capture spacing_content %}
+        {% render 'styleguide__example',
+          name: 'Padding',
+          content: '<div class="padding--gap color__bg-overlay-2"><div class="color__bg-overlay-3">Padding</div></div>',
+          sample: '<div class="padding--gap">Padding</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Padding top',
+          content: '<div class="padding--t-gap color__bg-overlay-2"><div class="color__bg-overlay-3">Padding</div></div>',
+          sample: '<div class="padding--t-gap">Padding</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Padding right',
+          content: '<div class="padding--r-gap color__bg-overlay-2"><div class="color__bg-overlay-3">Padding</div></div>',
+          sample: '<div class="padding--r-gap">Padding</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Padding bottom',
+          content: '<div class="padding--b-gap color__bg-overlay-2"><div class="color__bg-overlay-3">Padding</div></div>',
+          sample: '<div class="padding--b-gap">Padding</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Padding left',
+          content: '<div class="padding--l-gap color__bg-overlay-2"><div class="color__bg-overlay-3">Padding</div></div>',
+          sample: '<div class="padding--l-gap">Padding</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Margin',
+          content: '<div class="color__bg-overlay-2 flex"><div class="color__bg-overlay-3 margin--gap w-full">Margin</div></div>',
+          sample: '<div class="margin--gap">Margin</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Margin top',
+          content: '<div class="color__bg-overlay-2 flex"><div class="color__bg-overlay-3 margin--t-gap w-full">Margin</div></div>',
+          sample: '<div class="margin--t-gap">Margin</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Margin right',
+          content: '<div class="color__bg-overlay-2 flex"><div class="color__bg-overlay-3 margin--r-gap w-full">Margin</div></div>',
+          sample: '<div class="margin--r-gap">Margin</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Margin bottom',
+          content: '<div class="color__bg-overlay-2 flex"><div class="color__bg-overlay-3 margin--b-gap w-full">Margin</div></div>',
+          sample: '<div class="margin--b-gap">Margin</div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Margin left',
+          content: '<div class="color__bg-overlay-2 flex"><div class="color__bg-overlay-3 margin--l-gap w-full">Margin</div></div>',
+          sample: '<div class="margin--l-gap">Margin</div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Spacing',
+        short_text: spacing_short_text,
+        table_rows: spacing_table_rows,
+        content: spacing_content 
+      %}
+      
+      {% comment %} Animation {% endcomment %}
+      {% capture animation_short_text %}
+        Use .js:animation class in conjuction with data-delay and data-replace attributes.
+      {% endcapture %}
+      {% capture animation_table_rows %}
+        {% render 'styleguide__row',
+          class: '.animation-100',
+          properties:  '
+          @apply transition duration-100;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.animation-300',
+          properties:  '
+          @apply transition duration-300;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.animation-500',
+          properties:  '
+          @apply transition duration-500;' 
+        %}
+        {% render 'styleguide__row',
+          class: '.animation-1000',
+          properties:  '
+          @apply transition duration-1000;' 
+        %}
+      {% endcapture %}
+      {% capture animation_content %}
+        {% render 'styleguide__example',
+          name: 'On scroll',
+          content: '
+          <div
+            class="js:animation animation-1000 color__bg-overlay-2 inline-block p-4 translate-x-8 rounded-full opacity-0"
+            data-delay="300"
+            data-replace="{
+              &#39;opacity-0&#39; : &#39;opacity-100&#39;,
+              &#39;translate-x-8&#39; : &#39;translate-x-0&#39;
+            }">
+          </div>
+          <div
+            class="js:animation animation-1000 color__bg-primary inline-block p-4 translate-x-8 rounded-full opacity-0"
+            data-delay="600"
+            data-replace="{
+              &#39;opacity-0&#39; : &#39;opacity-100&#39;,
+              &#39;translate-x-8&#39; : &#39;translate-x-0&#39;
+            }">
+          </div>
+          <div
+            class="js:animation animation-1000 color__bg-secondary inline-block p-4 translate-x-8 rounded-full opacity-0"
+            data-delay="900"
+            data-replace="{
+              &#39;opacity-0&#39; : &#39;opacity-100&#39;,
+              &#39;translate-x-8&#39; : &#39;translate-x-0&#39;
+            }">
+          </div>',
+          sample: '
+          <div
+            class="js:animation animation-1000 color__bg-overlay-2 inline-block p-4 translate-x-8 rounded-full opacity-0"
+            data-delay="300"
+            data-replace="{
+              &#39;opacity-0&#39; : &#39;opacity-100&#39;,
+              &#39;translate-x-8&#39; : &#39;translate-x-0&#39;
+            }">
+          </div>
+          <div
+            class="js:animation animation-1000 color__bg-primary inline-block p-4 translate-x-8 rounded-full opacity-0"
+            data-delay="600"
+            data-replace="{
+              &#39;opacity-0&#39; : &#39;opacity-100&#39;,
+              &#39;translate-x-8&#39; : &#39;translate-x-0&#39;
+            }">
+          </div>
+          <div
+            class="js:animation animation-1000 color__bg-secondary inline-block p-4 translate-x-8 rounded-full opacity-0"
+            data-delay="900"
+            data-replace="{
+              &#39;opacity-0&#39; : &#39;opacity-100&#39;,
+              &#39;translate-x-8&#39; : &#39;translate-x-0&#39;
+            }">
+          </div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Animation',
+        short_text: animation_short_text,
+        table_rows: animation_table_rows,
+        content: animation_content 
+      %}
+      
+      {% comment %} Forms {% endcomment %}
+      {% capture forms_short_text %}
+        Default styles for form elements.
+      {% endcapture %}
+      {% capture forms_content %}
+        {% render 'styleguide__example',
+          name: 'Text field',
+          content: '
+          <label 
+            for="input-email">Label</label>
+          <input
+            id="input-email"
+            placeholder="Enter your email"
+            type="text">',
+          sample: '
+          <label 
+            for="input-email">Label</label>
+          <input
+            id="input-email"
+            placeholder="Enter your email"
+            type="text">' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Number field',
+          content: '
+          <label 
+            for="input-quantity">Label</label>
+          <input
+            type="number"
+            id="input-quantity"
+            name="input-quantity"
+            placeholder="1"
+            min="1"
+            max="5">',
+          sample: '
+          <label 
+            for="input-quantity">Label</label>
+          <input
+            type="number"
+            id="input-quantity"
+            name="input-quantity"
+            placeholder="1"
+            min="1"
+            max="5">' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Select options',
+          content: '
+          <label 
+            for="select">Label</label>
+          <select 
+            id="select">
+            <option disabled selected>Choose an option</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>',
+          sample: '
+          <label 
+            for="select">Label</label>
+          <select 
+            id="select">
+            <option disabled selected>Choose an option</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Textarea',
+          content: '
+          <label 
+            for="textarea">Label</label>
+          <textarea
+            id="textarea"
+            name="textarea"
+            rows="8"
+            cols="50"
+            placeholder="Enter your answer"></textarea>',
+          sample: '
+          <label 
+            for="textarea">Label</label>
+          <textarea
+            id="textarea"
+            name="textarea"
+            rows="8"
+            cols="50"
+            placeholder="Enter your answer"></textarea>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Checkbox',
+          content: '
+          <label 
+            class="flex items-center gap-2">
+            <input
+              class="form-checkbox"
+              type="checkbox">
+            <span>
+              I agree to the
+              <a href="">privacy policy</a>
+            </span>
+          </label>',
+          sample: '
+          <label 
+            class="flex items-center gap-2">
+            <input
+              class="form-checkbox"
+              type="checkbox">
+            <span>
+              I agree to the
+              <a href="">privacy policy</a>
+            </span>
+          </label>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Radio',
+          content: '
+          <div 
+            class="flex items-center gap-6">
+            <label 
+              class="flex items-center gap-2">
+              <input
+                type="radio"
+                class="form-radio"
+                name="accountType"
+                value="personal">
+              <span>Personal</span>
+            </label>
+            <label 
+              class="flex items-center gap-2">
+              <input
+                type="radio"
+                class="form-radio"
+                name="accountType"
+                value="busines">
+              <span>Business</span>
+            </label>
+          </div>',
+          sample: '
+          <div 
+            class="flex items-center gap-6">
+            <label 
+              class="flex items-center gap-2">
+              <input
+                type="radio"
+                class="form-radio"
+                name="accountType"
+                value="personal">
+              <span>Personal</span>
+            </label>
+            <label 
+              class="flex items-center gap-2">
+              <input
+                type="radio"
+                class="form-radio"
+                name="accountType"
+                value="busines">
+              <span>Business</span>
+            </label>
+          </div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Forms',
+        short_text: forms_short_text,
+        content: forms_content 
+      %}
+      
+      {% comment %} Grids {% endcomment %}
+      {% capture grids_short_text %}
+        Default grid layouts.
+      {% endcapture %}
+      {% capture grids_content %}
+        {% render 'styleguide__example',
+          name: 'Flex',
+          content: '
+          <div 
+            class="flex items-stretch justify-between"
+            style="gap: 10px;">
+            <div 
+              class="border--width color__border-divider-1 p-4 pb-20">
+              Flex 1
+            </div>
+            <div 
+              class="border--width color__border-divider-1 w-1/2 p-4">
+              Flex 2
+            </div>
+            <div 
+              class="border--width color__border-divider-1 grow p-4">
+              Flex 3
+            </div>
+          </div>',
+          sample: '
+          <div 
+            class="flex items-stretch justify-between"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            <div 
+              class="border--width color__border-divider-1 p-4 pb-20">
+              Flex 1
+            </div>
+            <div 
+              class="border--width color__border-divider-1 w-1/2 p-4">
+              Flex 2
+            </div>
+            <div 
+              class="border--width color__border-divider-1 grow p-4">
+              Flex 3
+            </div>
+          </div>' 
+        %}
+        {% render 'styleguide__example',
+          name: 'Grid',
+          content: '
+          <div 
+            class="md:grid-cols-3 grid grid-cols-1"
+            style="gap: 10px;">
+            <div 
+              class="border--width color__border-divider-1 p-4">
+              Grid 1
+            </div>
+            <div 
+              class="border--width color__border-divider-1 p-4">
+              Grid 2
+            </div>
+            <div 
+              class="border--width color__border-divider-1 p-4">
+              Grid 3
+            </div>
+          </div>',
+          sample: '
+          <div 
+            class="md:grid-cols-3 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            <div 
+              class="border--width color__border-divider-1 p-4">
+              Grid 1
+            </div>
+            <div 
+              class="border--width color__border-divider-1 p-4">
+              Grid 2
+            </div>
+            <div 
+              class="border--width color__border-divider-1 p-4">
+              Grid 3
+            </div>
+          </div>' 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Grids',
+        short_text: grids_short_text,
+        content: grids_content 
+      %}
+      
+      {% comment %} Images {% endcomment %}
+      {% capture images_short_text %}
+        component__image.liquid
+      {% endcapture %}
+      {% capture images_table_rows %}
+        {% render 'styleguide__row',
+          class: 'container_class',
+          properties:  '
+          string to set classes for the container' 
+        %}
+      {% endcapture %}
+      {% capture images_1_preview %}
+        {% render 'component__image',
+          image: page_image
+          aspect_ratio: 'aspect-[1/1]',
+          background: 'color__bg-shade-2'
+          crop: 'object-cover',
+          max_width: 1200,
+          container_class: 'my-class'
+          image_class: 'my-class',
+          diable_lazy_load: false,
+          include_2x: true
+        %}
+      {% endcapture %}
+      {% capture images_1_code %}
+        {% raw %}
+          {% render 'component__image',
+            image: page_image
+            aspect_ratio: 'aspect-[1/1]',
+            background: 'color__bg-shade-2'
+            crop: 'object-cover',
+            max_width: 1200,
+            container_class: 'my-class'
+            image_class: 'my-class',
+            diable_lazy_load: false,
+            include_2x: true
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture images_examples %}
+        {% render 'styleguide__example',
+          name: 'Default image',
+          content: images_1_preview,
+          sample: images_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Images',
+        short_text: images_short_text,
+        table_rows: images_table_rows,
+        content: images_examples 
+      %}
+      
+      {% comment %} Accordions {% endcomment %}
+      {% capture accordions_short_text %}
+        component__accordion.liquid
+      {% endcapture %}
+      {% capture accordions_table_rows %}
+        {% render 'styleguide__row',
+          class: 'open',
+          properties: '
+          boolean to show accordion open' 
+        %}
+        {% render 'styleguide__row',
+          class: 'once',
+          properties: '
+          boolean to set if only one accordion can be open at a time' 
+        %}
+        {% render 'styleguide__row',
+          class: 'index',
+          properties: '
+          integer to set the index of the accordion if used with once' 
+        %}
+        {% render 'styleguide__row',
+          class: 'container_class',
+          properties: '
+          string of classes to add to the container' 
+        %}
+        {% render 'styleguide__row',
+          class: 'inner_class',
+          properties: '
+          string of classes for the inner container' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_class',
+          properties: '
+          string of classes to add to the button' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_label',
+          properties: '
+          string of text for the accordion button' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties: '
+          content to display' 
+        %}
+      {% endcapture %}
+      {% capture accordion_1_preview %}
+        {% render 'component__accordion',
+          open: true,
+          once: false,
+          container_class: 'border--b-width color__border-divider-1',
+          inner_class: ''
+          button_class: 'px-4',
+          button_label: 'Label', 
+          content: '
+          <p class="p-4 mb-0">
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Ut provident hic quis delectus in suscipit,
+            minima voluptates adipisci animi aliquid laborum
+            fuga quibusdam dolor vel aperiam unde ullam!
+            Dolores, possimus!
+          </p>' %}
+      {% endcapture %}
+      {% capture accordion_2_preview %}
+        {% render 'component__accordion',
+          open: false,
+          once: false,
+          container_class: 'border--b-width color__border-divider-1',
+          inner_class: ''
+          button_class: 'px-4',
+          button_label: 'Label', 
+          content: '
+          <p class="p-4 mb-0">
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Ut provident hic quis delectus in suscipit,
+            minima voluptates adipisci animi aliquid laborum
+            fuga quibusdam dolor vel aperiam unde ullam!
+            Dolores, possimus!
+          </p>' %}
+      {% endcapture %}
+      {% capture accordion_3_preview %}
+        <div 
+          x-data="{
+            activeAccordion: 0
+          }">
+          {% render 'component__accordion',
+            open: false,
+            once: true,
+            index: 0,
+            container_class: 'border--b-width color__border-divider-1',
+            inner_class: ''
+            button_class: 'px-4',
+            button_label: 'Label', 
+            content: '
+            <p class="p-4 mb-0">
+              Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Ut provident hic quis delectus in suscipit,
+              minima voluptates adipisci animi aliquid laborum
+              fuga quibusdam dolor vel aperiam unde ullam!
+              Dolores, possimus!
+            </p>' %}
+          {% render 'component__accordion',
+            open: false,
+            once: true,
+            index: 1,
+            container_class: 'border--b-width color__border-divider-1',
+            inner_class: ''
+            button_class: 'px-4',
+            button_label: 'Label', 
+            content: '
+            <p class="p-4 mb-0">
+              Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Ut provident hic quis delectus in suscipit,
+              minima voluptates adipisci animi aliquid laborum
+              fuga quibusdam dolor vel aperiam unde ullam!
+              Dolores, possimus!
+            </p>' %}
+          {% render 'component__accordion',
+            open: false,
+            once: true,
+            index: 2,
+            container_class: 'border--b-width color__border-divider-1',
+            inner_class: ''
+            button_class: 'px-4',
+            button_label: 'Label', 
+            content: '
+            <p class="p-4 mb-0">
+              Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Ut provident hic quis delectus in suscipit,
+              minima voluptates adipisci animi aliquid laborum
+              fuga quibusdam dolor vel aperiam unde ullam!
+              Dolores, possimus!
+            </p>' %}
+        </div>
+      {% endcapture %}
+      {% capture accordion_1_code %}
+        {% raw %}
+          {% render 'component__accordion',
+            open: true,
+            once: false,
+            container_class: 'border--b-width color__border-divider-1',
+            inner_class: ''
+            button_class: 'px-4',
+            button_label: 'Label', 
+            content: '
+            <p class="p-4 mb-0">
+              Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Ut provident hic quis delectus in suscipit,
+              minima voluptates adipisci animi aliquid laborum
+              fuga quibusdam dolor vel aperiam unde ullam!
+              Dolores, possimus!
+            </p>' 
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture accordion_2_code %}
+        {% raw %}
+          {% render 'component__accordion',
+            open: false,
+            once: false,
+            container_class: 'border--b-width color__border-divider-1',
+            inner_class: ''
+            button_class: 'px-4',
+            button_label: 'Label', 
+            content: '
+            <p class="p-4 mb-0">
+              Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Ut provident hic quis delectus in suscipit,
+              minima voluptates adipisci animi aliquid laborum
+              fuga quibusdam dolor vel aperiam unde ullam!
+              Dolores, possimus!
+            </p>' 
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture accordion_3_code %}
+        {% raw %}
+          <div 
+            x-data="{
+              activeAccordion: 0
+            }">
+            {% render 'component__accordion',
+              open: false,
+              once: true,
+              index: 0,
+              container_class: 'border--b-width color__border-divider-1',
+              inner_class: ''
+              button_class: 'px-4',
+              button_label: 'Label', 
+              content: '
+              <p class="p-4 mb-0">
+                Lorem ipsum dolor sit amet consectetur adipisicing
+                elit.
+              </p>' %}
+            {% render 'component__accordion',
+              open: false,
+              once: true,
+              index: 1,
+              container_class: 'border--b-width color__border-divider-1',
+              inner_class: ''
+              button_class: 'px-4',
+              button_label: 'Label', 
+              content: '
+              <p class="p-4 mb-0">
+                Lorem ipsum dolor sit amet consectetur adipisicing
+                elit.
+              </p>' %}
+            {% render 'component__accordion',
+              open: false,
+              once: true,
+              index: 2,
+              container_class: 'border--b-width color__border-divider-1',
+              inner_class: ''
+              button_class: 'px-4',
+              button_label: 'Label', 
+              content: '
+              <p class="p-4 mb-0">
+                Lorem ipsum dolor sit amet consectetur adipisicing
+                elit.
+              </p>' %}
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture accordions_examples %}
+        {% render 'styleguide__example',
+          name: 'Accordion (open by default)',
+          content: accordion_1_preview,
+          sample: accordion_1_code 
+        %}
+        {% render 'styleguide__example',
+          name: 'Accordion (closed by default)',
+          content: accordion_2_preview,
+          sample: accordion_2_code 
+        %}
+        {% render 'styleguide__example',
+          name: 'Accordion (only one open at a time)',
+          content: accordion_3_preview,
+          sample: accordion_3_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Accordions',
+        table_rows: accordions_table_rows,
+        short_text: accordions_short_text,
+        content: accordions_examples 
+      %}
+      
+      {% comment %} Badges {% endcomment %}
+      {% capture badges_short_text %}
+        component__badge.liquid
+      {% endcapture %}
+      {% capture badges_table_rows %}
+        {% render 'styleguide__row',
+          class: 'container_class',
+          properties:  '
+          string to set classes for the container' 
+        %}
+        {% render 'styleguide__row',
+          class: 'background',
+          properties:  '
+          color to use for the background color' 
+        %}
+        {% render 'styleguide__row',
+          class: 'text',
+          properties:  '
+          color to use for the text color' 
+        %}
+        {% render 'styleguide__row',
+          class: 'border',
+          properties:  '
+          color to use for the border color' 
+        %}
+        {% render 'styleguide__row',
+          class: 'icon',
+          properties:  '
+          icon to display from component__icon.liquid' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          content of the badge' 
+        %}
+      {% endcapture %}
+      {% capture badges_1_preview %}
+        {% render 'component__badge',
+          background: 'primary',
+          text: 'primary',
+          border: 'primary',
+          icon: 'cart',
+          content: 'Lorem ipsum'
+        %}
+      {% endcapture %}
+      {% capture badges_2_preview %}
+        {% render 'component__badge',
+          background: 'transparent',
+          text: 'dark',
+          border: 'dark',
+          icon: '',
+          content: 'Best seller'
+        %}
+      {% endcapture %}
+      {% capture badges_1_code %}
+        {% raw %}
+          {% render 'component__badge',
+            background: 'primary',
+            text: 'primary',
+            border: 'primary',
+            icon: 'cart',
+            content: 'Lorem ipsum'
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture badges_2_code %}
+        {% raw %}
+          {% render 'component__badge',
+            background: 'transparent',
+            text: 'dark',
+            border: 'dark',
+            icon: '',
+            content: 'Best seller'
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture badges_examples %}
+        {% render 'styleguide__example',
+          name: 'Primary badge with icon',
+          content: badges_1_preview,
+          sample: badges_1_code 
+        %}
+        {% render 'styleguide__example',
+          name: 'Transparent badge',
+          content: badges_2_preview,
+          sample: badges_2_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Badges',
+        short_text: badges_short_text,
+        table_rows: badges_table_rows,
+        content: badges_examples 
+      %}
+      
+      {% comment %} Icons {% endcomment %}
+      {% capture icons_short_text %}
+        component__icon.liquid
+      {% endcapture %}
+      {% capture icons_table_rows %}
+        {% render 'styleguide__row',
+          class: 'icon',
+          properties:  '
+          string of icon to render' 
+        %}
+        {% render 'styleguide__row',
+          class: 'size',
+          properties:  '
+          number to set the width and height of the icon' 
+        %}
+        {% render 'styleguide__row',
+          class: 'class',
+          properties:  '
+          string of classes to add to the icon container' 
+        %}
+      {% endcapture %}
+      {% capture icons_1_preview %}
+        {% render 'component__icon', 
+          icon: 'book', 
+          size: '20', 
+          class: '' 
+        %}
+      {% endcapture %}
+      {% capture icons_1_code %}
+        {% raw %}
+          {% render 'component__icon', 
+            icon: 'book', 
+            size: '20', 
+            class: '' 
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture icons_examples %}
+        {% render 'styleguide__example',
+          name: 'Simple icon',
+          content: icons_1_preview,
+          sample: icons_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Icons',
+        short_text: icons_short_text,
+        table_rows: icons_table_rows,
+        content: icons_examples 
+      %}
+      
+      {% comment %} Cards {% endcomment %}
+      {% capture cards_short_text %}
+        component__card.liquid
+      {% endcapture %}
+      {% capture cards_table_rows %}
+        {% render 'styleguide__row',
+          class: 'color_scheme',
+          properties:  '
+          string to apply classes for color scheme' 
+        %}
+        {% render 'styleguide__row',
+          class: 'horizontal_alignment',
+          properties:  '
+          string for horizontal alignment (left, center, right)' 
+        %}
+        {% render 'styleguide__row',
+          class: 'url',
+          properties:  '
+          string for url' 
+        %}
+        {% render 'styleguide__row',
+          class: 'image',
+          properties:  '
+          liquid image object' 
+        %}
+        {% render 'styleguide__row',
+          class: 'title',
+          properties:  '
+          string for title' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          string for content' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_label',
+          properties: '
+          string of text for the button' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_color',
+          properties: '
+          string for button color (primary, secondary, etc)' 
+        %}
+      {% endcapture %}
+      {% capture card_1_preview %}
+        <div class="max-w-prose">
+          {% render 'component__card',
+            color_scheme: 'color__light',
+            horizontal_alignment: 'left',
+            url: '/',
+            image: page_image,
+            title: 'Title',
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+            button_label: 'Button',
+            button_color: 'primary'
+          %}
+        </div>
+      {% endcapture %}
+      {% capture card_1_code %}
+        {% raw %}
+          {% render 'component__card',
+            color_scheme: 'color__light',
+            horizontal_alignment: 'left',
+            url: '/',
+            image: page_image,
+            title: 'Title',
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+            button_label: 'Button',
+            button_color: 'primary'
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture cards_examples %}
+        {% render 'styleguide__example',
+          name: 'Default card',
+          content: card_1_preview,
+          sample: card_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Cards',
+        short_text: cards_short_text,
+        table_rows: cards_table_rows,
+        content: cards_examples 
+      %}
+      
+      {% comment %} Alternative cards {% endcomment %}
+      {% capture alternative-cards_short_text %}
+        component__card-alt.liquid
+      {% endcapture %}
+      {% capture alternative-cards_table_rows %}
+        {% render 'styleguide__row',
+          class: 'color_scheme',
+          properties:  '
+          string to apply classes for color scheme' 
+        %}
+        {% render 'styleguide__row',
+          class: 'horizontal_alignment',
+          properties:  '
+          string for horizontal alignment (left, center, right)' 
+        %}
+        {% render 'styleguide__row',
+          class: 'url',
+          properties:  '
+          string for url' 
+        %}
+        {% render 'styleguide__row',
+          class: 'image',
+          properties:  '
+          liquid image object' 
+        %}
+        {% render 'styleguide__row',
+          class: 'title',
+          properties:  '
+          string for title' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          string for content' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_label',
+          properties: '
+          string of text for the button' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_color',
+          properties: '
+          string for button color (primary, secondary, etc)' 
+        %}
+      {% endcapture %}
+      {% capture alternative-card_1_preview %}
+        <div class="max-w-prose">
+          {% render 'component__card-alt',
+            color_scheme: 'color__text',
+            horizontal_alignment: 'left',
+            url: '/',
+            image: page_image,
+            title: 'Title',
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+            button_label: 'Button',
+            button_color: 'primary'
+          %}
+        </div>
+      {% endcapture %}
+      {% capture alternative-card_1_code %}
+        {% raw %}
+          {% render 'component__card-alt',
+            color_scheme: 'color__text',
+            horizontal_alignment: 'left',
+            url: '/',
+            image: page_image,
+            title: 'Title',
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+            button_label: 'Button',
+            button_color: 'primary'
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture alternative-cards_examples %}
+        {% render 'styleguide__example',
+          name: 'Default card',
+          content: alternative-card_1_preview,
+          sample: alternative-card_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Alternative cards',
+        short_text: alternative-cards_short_text,
+        table_rows: alternative-cards_table_rows,
+        content: alternative-cards_examples 
+      %}
+      
+      {% comment %} Blog items {% endcomment %}
+      {% capture blog-items_short_text %}
+        component__blog-item.liquid
+      {% endcapture %}
+      {% capture blog-items_table_rows %}
+        {% render 'styleguide__row',
+          class: 'article',
+          properties:  '
+          liquid object of the article' 
+        %}
+      {% endcapture %}
+      {% capture blog-item_1_preview %}
+        <div class="max-w-prose">
+          {% for article in blogs.news.articles limit: 1 %}
+            {% render 'component__blog-item',
+              article: article,
+            %}
+          {% endfor %}
+        </div>
+      {% endcapture %}
+      {% capture blog-item_1_code %}
+        {% raw %}
+          {% for article in blogs.news.articles limit: 1 %}
+            {% render 'component__blog-item',
+              article: article,
+            %}
+          {% endfor %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture blog-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default blog item',
+          content: blog-item_1_preview,
+          sample: blog-item_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Blog items',
+        short_text: blog-items_short_text,
+        table_rows: blog-items_table_rows,
+        content: blog-items_examples
+      %}
+      
+      {% comment %} Content items {% endcomment %}
+      {% capture content-items_short_text %}
+        component__content-item.liquid
+      {% endcapture %}
+      {% capture content-items_table_rows %}
+        {% render 'styleguide__row',
+          class: 'color_scheme',
+          properties:  '
+          string to apply classes for color scheme' 
+        %}
+        {% render 'styleguide__row',
+          class: 'url',
+          properties:  '
+          string for url' 
+        %}
+        {% render 'styleguide__row',
+          class: 'title',
+          properties:  '
+          string for title' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          string for content' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_label',
+          properties: '
+          string of text for the button' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_color',
+          properties: '
+          string to apply class for button color' 
+        %}
+        {% render 'styleguide__row',
+          class: 'size_desktop',
+          properties: '
+          string to apply class to set desktop column span' 
+        %}
+        {% render 'styleguide__row',
+          class: 'size_mobile',
+          properties: '
+          string to apply class to set mobile column span' 
+        %}
+      {% endcapture %}
+      {% capture content-items_1_preview %}
+        <div class="max-w-prose">
+          <div class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            {% render 'component__content-item',
+              url: '/',
+              title: 'Title',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+              color_scheme: 'color__bg-secondary color__secondary',
+              button_label: 'Shop now',
+              button_color: 'btn--plain'
+            %}
+            {% for product in collections.all.products limit: 1 %}
+              {% render 'component__product-item',
+                product: product
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture content-items_1_code %}
+        {% raw %}
+          {% render 'component__content-item',
+            url: '/',
+            title: 'Title',
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+            color_scheme: 'color__bg-secondary color__secondary',
+            button_label: 'Shop now',
+            button_color: 'btn--plain'
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture content-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default content item',
+          content: content-items_1_preview,
+          sample: content-items_1_code
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Content items',
+        short_text: content-items_short_text,
+        table_rows: content-items_table_rows,
+        content: content-items_examples
+      %}
+
+      {% comment %} Newsletter items {% endcomment %}
+      {% capture newsletter-items_short_text %}
+        component__newsletter-item.liquid
+      {% endcapture %}
+      {% capture newsletter-items_table_rows %}
+        {% render 'styleguide__row',
+          class: 'color_scheme',
+          properties:  '
+          string to apply classes for color scheme' 
+        %}
+        {% render 'styleguide__row',
+          class: 'title',
+          properties:  '
+          string for title' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          string for content' 
+        %}
+        {% render 'styleguide__row',
+          class: 'disclaimer',
+          properties:  '
+          string for disclaimer text' 
+        %}
+        {% render 'styleguide__row',
+          class: 'success',
+          properties:  '
+          string for success text' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_label',
+          properties: '
+          string of text for the button' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_color',
+          properties: '
+          string to apply class for button color' 
+        %}
+        {% render 'styleguide__row',
+          class: 'size_desktop',
+          properties: '
+          string to apply class to set desktop column span' 
+        %}
+        {% render 'styleguide__row',
+          class: 'size_mobile',
+          properties: '
+          string to apply class to set mobile column span' 
+        %}
+      {% endcapture %}
+      {% capture newsletter-items_1_preview %}
+        <div class="max-w-prose">
+          <div class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            {% render 'component__newsletter-item',
+              color_scheme: 'color__bg-overlay-2',
+              title: 'Title',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+              disclaimer: 'We will not spam you.',
+              success: 'Success!',
+              button_label: 'Subscribe',
+              button_color: 'btn--secondary'
+            %}
+            {% for product in collections.all.products limit: 1 %}
+              {% render 'component__product-item',
+                product: product
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture newsletter-items_1_code %}
+        {% raw %}
+          {% render 'component__newsletter-item',
+            color_scheme: 'color__bg-overlay-2',
+            title: 'Title',
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit.',
+            disclaimer: 'We will not spam you.',
+            success: 'Success!',
+            button_label: 'Subscribe',
+            button_color: 'btn--secondary'
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture newsletter-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default newsletter item',
+          content: newsletter-items_1_preview,
+          sample: newsletter-items_1_code
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Newsletter items',
+        short_text: newsletter-items_short_text,
+        table_rows: newsletter-items_table_rows,
+        content: newsletter-items_examples
+      %}
+      
+      {% comment %} Skeleton items {% endcomment %}
+      {% capture skeleton-items_short_text %}
+        component__skeleton-grid-item.liquid
+      {% endcapture %}
+      {% capture skeleton-items_table_rows %}
+      {% endcapture %}
+      {% capture skeleton-items_1_preview %}
+        <div class="max-w-prose">
+          <div class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            {% render 'component__skeleton-grid-item' %}
+            {% for product in collections.all.products limit: 1 %}
+              {% render 'component__product-item',
+                product: product
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture skeleton-items_1_code %}
+        {% raw %}
+        {% render 'component__skeleton-grid-item' %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture skeleton-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default skeleton item',
+          content: skeleton-items_1_preview,
+          sample: skeleton-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Skeleton items',
+        short_text: skeleton-items_short_text,
+        table_rows: skeleton-items_table_rows,
+        content: skeleton-items_examples 
+      %}
+      
+      {% comment %} Skeleton stacked items {% endcomment %}
+      {% capture skeleton-stakced-items_short_text %}
+        component__skeleton-stacked-item.liquid
+      {% endcapture %}
+      {% capture skeleton-stakced-items_table_rows %}
+      {% endcapture %}
+      {% capture skeleton-stakced-items_1_preview %}
+        <div 
+          class="max-w-prose flex flex-col"
+          style="gap: {{ settings.layout_gap_size }}px;"
+          x-data="{ 
+            button_loading: false 
+          }">
+          {% render 'component__skeleton-stacked-item' %}
+          {% for product in collections.chairs.products limit: 2 %}
+            {% render 'component__upsell-item', 
+              product: product
+            %}
+          {% endfor %}
+        </div>
+      {% endcapture %}
+      {% capture skeleton-stakced-items_1_code %}
+        {% raw %}
+          {% render 'component__skeleton-stacked-item' %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture skeleton-stakced-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default skeleton stacked item',
+          content: skeleton-stakced-items_1_preview,
+          sample: skeleton-stakced-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Skeleton stacked items',
+        short_text: skeleton-stakced-items_short_text,
+        table_rows: skeleton-stakced-items_table_rows,
+        content: skeleton-stakced-items_examples 
+      %}
+      
+      {% comment %} Skeleton slider items {% endcomment %}
+      {% capture skeleton-slider-items_short_text %}
+        component__skeleton-slider-item.liquid
+      {% endcapture %}
+      {% capture skeleton-slider-items_table_rows %}
+      {% endcapture %}
+      {% capture skeleton-slider-items_1_preview %}
+        <div class="max-w-prose">
+          <div 
+            class="whitespace-nowrap md:snap-x scroll-smooth hidescrollbar inline-flex w-full overflow-x-auto overflow-y-hidden"
+            style="gap: {{ settings.layout_gap_size }}px;"
+            x-data="{ 
+              button_loading: false 
+            }">
+            {% render 'component__skeleton-slider-item',
+              index: 0
+            %}
+            {% for product in collections.chairs.products limit: 2 %}
+              {% render 'component__upsell-slider-item', 
+                product: product, 
+                index: forloop.index0 
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture skeleton-slider-items_1_code %}
+        {% raw %}
+          {% render 'component__skeleton-slider-item' %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture skeleton-slider-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default skeleton slider item',
+          content: skeleton-slider-items_1_preview,
+          sample: skeleton-slider-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Skeleton slider items',
+        short_text: skeleton-slider-items_short_text,
+        table_rows: skeleton-slider-items_table_rows,
+        content: skeleton-slider-items_examples 
+      %}
+      
+      {% comment %} Sliders {% endcomment %}
+      {% capture sliders_short_text %}
+        component__slider.liquid
+      {% endcapture %}
+      {% capture sliders_table_rows %}
+        {% render 'styleguide__row',
+          class: 'container_class',
+          properties:  '
+          string to apply classes for slider container' 
+        %}
+        {% render 'styleguide__row',
+          class: 'slider_size',
+          properties:  '
+          number to set the size of the slider' 
+        %}
+        {% render 'styleguide__row',
+          class: 'slider_size',
+          properties:  '
+          liquid capture variable of slider content' 
+        %}
+      {% endcapture %}
+      {% capture sliders_1_preview %}
+        {% render 'component__slider',
+          container_class: '',
+          slider_size: 2,
+          slides: '
+          <div class="snap-center color__bg-overlay-2 flex justify-center flex-none w-2/3 py-12"
+            x-bind:data-slide="0">
+            One
+          </div>
+          <div class="snap-center color__bg-overlay-2 flex justify-center flex-none w-2/3 py-12"
+            x-bind:data-slide="1">
+            Two
+          </div>
+          <div class="snap-center color__bg-overlay-2 flex justify-center flex-none w-2/3 py-12"
+            x-bind:data-slide="2">
+            Three
+          </div>'
+        %} 
+      {% endcapture %}
+      {% capture sliders_1_code %}
+        {% raw %}
+          {% render 'component__slider',
+            container_class: '',
+            slider_size: 2,
+            slides: '
+            <div class="snap-center color__bg-overlay-2 flex justify-center flex-none w-2/3 py-12"
+              x-bind:data-slide="0">
+              One
+            </div>
+            <div class="snap-center color__bg-overlay-2 flex justify-center flex-none w-2/3 py-12"
+              x-bind:data-slide="1">
+              Two
+            </div>
+            <div class="snap-center color__bg-overlay-2 flex justify-center flex-none w-2/3 py-12"
+              x-bind:data-slide="2">
+              Three
+            </div>'
+          %} 
+        {% endraw %}
+      {% endcapture %}
+      {% capture sliders_examples %}
+        {% render 'styleguide__example',
+          name: 'Default slider',
+          content: sliders_1_preview,
+          sample: sliders_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Sliders',
+        short_text: sliders_short_text,
+        table_rows: sliders_table_rows,
+        content: sliders_examples 
+      %}
+      
+      {% comment %} Buttons {% endcomment %}
+      {% capture buttons_short_text %}
+        Buttons
+      {% endcapture %}
+      {% capture buttons_table_rows %}
+      {% endcapture %}
+      {% capture buttons_1_preview %}
+          <a href="" class="btn btn--smaller">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--small">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--big">
+            <span class="btn__content">Button</span>
+          </a>
+      {% endcapture %}
+      {% capture buttons_2_preview %}
+          <a href="" class="btn btn--primary">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--secondary">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--tertiary">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--neutral">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--plain">
+            <span class="btn__content">Button</span>
+          </a>
+      {% endcapture %}
+      {% capture buttons_3_preview %}
+          <a href="" class="btn btn--outline">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--outline-alt">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--minimal ml-1">
+            <span class="btn__content">Button</span>
+          </a>
+          <a href="" class="btn btn--minimal-alt ml-1">
+            <span class="btn__content">Button</span>
+          </a>
+      {% endcapture %}
+      {% capture buttons_4_preview %}
+        <a href="" class="btn btn--disabled">
+          <span class="btn__content">Button</span>
+        </a>
+        <button
+          type="submit"
+          class="btn btn--load btn--loading"
+          role="button">
+          <div class="btn__content">Button</div>
+          <div class="btn__spinner">
+            {% render 'component__icon',
+              icon: 'spinner',
+              size: '24',
+              class: ''
+            %}
+          </div>
+        </button>
+      {% endcapture %}
+      {% capture buttons_4_code %}
+        {% raw %}
+          <a href="" class="btn btn--disabled">
+            <span class="btn__content">Button</span>
+          </a>
+          <button
+            type="submit"
+            class="btn btn--load btn--loading"
+            role="button">
+            <div class="btn__content">Button</div>
+            <div class="btn__spinner">
+              {% render 'component__icon',
+                icon: 'spinner',
+                size: '24',
+                class: ''
+              %}
+            </div>
+          </button>
+        {% endraw %}
+      {% endcapture %}
+      {% capture buttons_examples %}
+        {% render 'styleguide__example',
+          name: 'Button sizes',
+          content: buttons_1_preview,
+          sample: buttons_1_preview 
+        %}
+        {% render 'styleguide__example',
+          name: 'Button colors',
+          content: buttons_2_preview,
+          sample: buttons_2_preview 
+        %}
+        {% render 'styleguide__example',
+          name: 'Button outlines',
+          content: buttons_3_preview,
+          sample: buttons_3_preview 
+        %}
+        {% render 'styleguide__example',
+          name: 'Addtional states',
+          content: buttons_4_preview,
+          sample: buttons_4_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Buttons',
+        short_text: buttons_short_text,
+        table_rows: buttons_table_rows,
+        content: buttons_examples 
+      %}
+      
+      {% comment %} Progress bars {% endcomment %}
+      {% capture progress-bars_short_text %}
+        Visual indication of progress. 
+      {% endcapture %}
+      {% capture progress-bars_table_rows %}
+      {% endcapture %}
+      {% capture progress-bars_1_preview %}
+        <div 
+          class="color__bg-overlay-2 border--radius h-2 overflow-hidden">
+          <div
+            class="color__bg-primary animation-500--all h-2"
+            :style="{ width: '10%' }">
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture progress-bars_1_code %}
+        {% raw %}
+          <div 
+            class="color__bg-overlay-2 border--radius h-2 overflow-hidden">
+            <div
+              class="color__bg-primary animation-500--all h-2"
+              :style="{ width: '10%' }">
+            </div>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture progress-bars_examples %}
+        {% render 'styleguide__example',
+          name: 'Default progress bar',
+          content: progress-bars_1_preview,
+          sample: progress-bars_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Progress bars',
+        short_text: progress-bars_short_text,
+        table_rows: progress-bars_table_rows,
+        content: progress-bars_examples 
+      %}
+      
+      {% comment %} Combo inputs {% endcomment %}
+      {% capture combo-inputs_short_text %}
+        Inputs with addtional content.
+      {% endcapture %}
+      {% capture combo-inputs_table_rows %}
+      {% endcapture %}
+      {% capture combo-inputs_1_preview %}
+        <div class="relative w-full">
+          <span
+            class="left-4 type--small absolute inline-flex items-center h-full pointer-events-none"
+            aria-hidden="true">
+            {{ cart.currency.symbol }}
+          </span>
+          <input
+            id="combo1"
+            class="!pl-8 !pr-8"
+            type="text"
+            name="combo1"
+            placeholder="Enter something">
+          <span
+            class="right-4 type--small absolute inline-flex items-center h-full pointer-events-none"
+            aria-hidden="true">
+            USD
+          </span>
+        </div>
+      {% endcapture %}
+      {% capture combo-inputs_1_code %}
+        {% raw %}
+          <div class="relative w-full">
+            <span
+              class="left-4 type--small absolute inline-flex items-center h-full pointer-events-none"
+              aria-hidden="true">
+              {{ cart.currency.symbol }}
+            </span>
+            <input
+              id="combo1"
+              class="!pl-8 !pr-8"
+              type="text"
+              name="combo1"
+              placeholder="Enter something">
+            <span
+              class="right-4 type--small absolute inline-flex items-center h-full pointer-events-none"
+              aria-hidden="true">
+              USD
+            </span>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture combo-inputs_2_preview %}
+        <div class="relative flex items-center w-full">
+          <input
+            id="combo2"
+            class="!pr-8"
+            type="text"
+            name="combo2"
+            placeholder="Enter something">
+          <button
+            type="submit"
+            class="btn btn--secondary btn--smaller whitespace-nowrap right-4 absolute">
+            <span class="btn__content">Sign up</span>
+          </button>
+        </div>
+      {% endcapture %}
+      {% capture combo-inputs_2_code %}
+        {% raw %}
+          <div class="relative flex items-center w-full">
+            <input
+              id="combo2"
+              class="!pr-8"
+              type="text"
+              name="combo2"
+              placeholder="Enter something">
+            <button
+              type="submit"
+              class="btn btn--secondary btn--smaller whitespace-nowrap right-4 absolute">
+              <span class="btn__content">Sign up</span>
+            </button>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture combo-inputs_3_preview %}
+        <div class="flex items-center w-full gap-4">
+          <input
+            id="combo3"
+            type="text"
+            name="combo3"
+            placeholder="Enter something">
+          <button
+            type="submit"
+            class="btn btn--secondary whitespace-nowrap">
+            <span class="btn__content">Sign up</span>
+          </button>
+        </div>
+      {% endcapture %}
+      {% capture combo-inputs_3_code %}
+        {% raw %}
+          <div class="flex items-center w-full gap-4">
+            <input
+              id="combo3"
+              type="text"
+              name="combo3"
+              placeholder="Enter something">
+            <button
+              type="submit"
+              class="btn btn--secondary whitespace-nowrap">
+              <span class="btn__content">Sign up</span>
+            </button>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture combo-inputs_examples %}
+        {% render 'styleguide__example',
+          name: 'Input with prefix and suffix',
+          content: combo-inputs_1_preview,
+          sample: combo-inputs_1_code 
+        %}
+        {% render 'styleguide__example',
+          name: 'Input with button overlay',
+          content: combo-inputs_2_preview,
+          sample: combo-inputs_2_code 
+        %}
+        {% render 'styleguide__example',
+          name: 'Input with button side by side',
+          content: combo-inputs_3_preview,
+          sample: combo-inputs_3_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Combo inputs',
+        short_text: combo-inputs_short_text,
+        table_rows: combo-inputs_table_rows,
+        content: combo-inputs_examples 
+      %}
+      
+      {% comment %} Incrementers {% endcomment %}
+      {% capture incrementers_short_text %}
+        Number input with increment and decrement buttons.
+      {% endcapture %}
+      {% capture incrementers_table_rows %}
+      {% endcapture %}
+      {% capture incrementers_1_preview %}
+        <div
+          class="color__border-divider-1 border--width hover:color__border-selected-1 border__input--radius animation-300 relative flex w-full overflow-hidden"
+          x-data="
+            {
+              counter: 1,
+              button_loading: false
+            }
+          ">
+          <button
+            class="btn btn--smaller btn--plain shrink-0 !border-0 !rounded-none !bg-transparent"
+            :disabled="button_loading"
+            @click="
+              counter--;
+              button_loading = true;
+              setTimeout(function(){ button_loading = false}, 500);
+            ">
+            {% render 'component__icon',
+              icon: 'minus',
+              size: '14',
+              class: ''
+            %}
+          </button>
+          <input
+            id="input"
+            class="form-input text-center !border-0 !rounded-none !bg-transparent"
+            :class="{ 'opacity-0' : button_loading }"
+            placeholder="1"
+            type="text"
+            @change.debounce="
+              button_loading = true;
+              setTimeout(function(){ button_loading = false}, 500);
+            "
+            x-model="counter">
+          <div
+            class="btn__spinner btn--smaller !w-auto"
+            :class="{ '!visible z-10' : button_loading }">
+            {% render 'component__icon',
+              icon: 'spinner',
+              size: '16',
+              class: ''
+            %}
+          </div>
+          <button
+            class="btn btn--smaller btn--plain shrink-0 !border-0 !rounded-none !bg-transparent"
+            :disabled="button_loading"
+            @click="
+              counter++;
+              button_loading = true;
+              setTimeout(function(){ button_loading = false}, 500);
+            ">
+            {% render 'component__icon',
+              icon: 'plus',
+              size: '14',
+              class: ''
+            %}
+          </button>
+        </div>
+      {% endcapture %}
+      {% capture incrementers_1_code %}
+        {% raw %}
+          <div
+            class="color__border-divider-1 border--width hover:color__border-selected-1 border__input--radius animation-300 relative flex w-full overflow-hidden"
+            x-data="
+              {
+                counter: 1,
+                button_loading: false
+              }
+            ">
+            <button
+              class="btn btn--smaller btn--plain shrink-0 !border-0 !rounded-none !bg-transparent"
+              :disabled="button_loading"
+              @click="
+                counter--;
+                button_loading = true;
+                setTimeout(function(){ button_loading = false}, 500);
+              ">
+              {% render 'component__icon',
+                icon: 'minus',
+                size: '14',
+                class: ''
+              %}
+            </button>
+            <input
+              id="input"
+              class="form-input text-center !border-0 !rounded-none !bg-transparent"
+              :class="{ 'opacity-0' : button_loading }"
+              placeholder="1"
+              type="text"
+              @change.debounce="
+                button_loading = true;
+                setTimeout(function(){ button_loading = false}, 500);
+              "
+              x-model="counter">
+            <div
+              class="btn__spinner btn--smaller !w-auto"
+              :class="{ '!visible z-10' : button_loading }">
+              {% render 'component__icon',
+                icon: 'spinner',
+                size: '16',
+                class: ''
+              %}
+            </div>
+            <button
+              class="btn btn--smaller btn--plain shrink-0 !border-0 !rounded-none !bg-transparent"
+              :disabled="button_loading"
+              @click="
+                counter++;
+                button_loading = true;
+                setTimeout(function(){ button_loading = false}, 500);
+              ">
+              {% render 'component__icon',
+                icon: 'plus',
+                size: '14',
+                class: ''
+              %}
+            </button>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture incrementers_examples %}
+        {% render 'styleguide__example',
+          name: 'Default incrementer',
+          content: incrementers_1_preview,
+          sample: incrementers_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Incrementers',
+        short_text: incrementers_short_text,
+        table_rows: incrementers_table_rows,
+        content: incrementers_examples 
+      %}
+      
+      {% comment %} Range sliders {% endcomment %}
+      {% capture range-sliders_short_text %}
+        Draggable range slider.
+      {% endcapture %}
+      {% capture range-sliders_table_rows %}
+      {% endcapture %}
+      {% capture range-sliders_1_preview %}
+        <div
+          class="relative w-full"
+          x-data="range()"
+          x-init="
+            mintrigger(); 
+            maxtrigger()">
+            
+          <div 
+            class="pb-4">
+            <input
+              class="absolute z-20 w-full h-2 opacity-0 appearance-none cursor-pointer pointer-events-none"
+              type="range"
+              step="100"
+              x-bind:min="min"
+              x-bind:max="max"
+              x-on:input="mintrigger"
+              x-model="minprice">
+            <input
+              class="absolute z-20 w-full h-2 opacity-0 appearance-none cursor-pointer pointer-events-none"
+              type="range"
+              step="100"
+              x-bind:min="min"
+              x-bind:max="max"
+              x-on:input="maxtrigger"
+              x-model="maxprice">
+              
+            <div class="relative z-10 h-2">
+              <div
+                class="color__bg-overlay-2 border--radius absolute top-0 bottom-0 left-0 right-0 z-10">
+              </div>
+              <div
+                class="border--radius color__bg-secondary absolute top-0 bottom-0 z-20"
+                x-bind:style="'right:'+maxthumb+'%; left:'+minthumb+'%'">
+              </div>
+              <div
+                class="color__bg-body border--width color__border-selected-1 top-1/2 absolute left-0 z-30 w-4 h-4 -ml-2 -translate-y-1/2 rounded-full"
+                x-bind:style="'left: '+minthumb+'%'">
+              </div>
+              <div
+                class="color__bg-body border--width color__border-selected-1 top-1/2 absolute right-0 z-30 w-4 h-4 -mr-2 -translate-y-1/2 rounded-full"
+                x-bind:style="'right: '+maxthumb+'%'">
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="relative">
+              <span
+                class="left-4 type--smaller absolute inline-flex items-center h-full pointer-events-none"
+                aria-hidden="true">
+                {{ cart.currency.symbol }}
+              </span>
+              <input
+                class="!pl-8"
+                type="number"
+                name="min"
+                placeholder="0"
+                maxlength="5"
+                min="0"
+                x-on:input="mintrigger"
+                x-model="minprice">
+            </div>
+            <div class="shrink text-center">—</div>
+            <div class="relative">
+              <span
+                class="left-4 type--smaller absolute inline-flex items-center h-full pointer-events-none"
+                aria-hidden="true">
+                {{ cart.currency.symbol }}
+              </span>
+              <input
+                class="!pl-8"
+                type="number"
+                name="max"
+                placeholder="0"
+                maxlength="5"
+                min="0"
+                x-on:input="maxtrigger"
+                x-model="maxprice">
+            </div>
+          </div>
+        </div>
+        <script>
+          function range() {
+            return {
+              minprice: 1000,
+              maxprice: 7000,
+              min: 100,
+              max: 10000,
+              minthumb: 0,
+              maxthumb: 0,
+
+              mintrigger() {
+                this.minprice = Math.min(
+                  this.minprice,
+                  this.maxprice - 500
+                );
+                this.minthumb =
+                  ((this.minprice - this.min) /
+                    (this.max - this.min)) *
+                  100;
+              },
+
+              maxtrigger() {
+                this.maxprice = Math.max(
+                  this.maxprice,
+                  this.minprice + 500
+                );
+                this.maxthumb =
+                  100 -
+                  ((this.maxprice - this.min) /
+                    (this.max - this.min)) *
+                    100;
+              },
+            };
+          }
+        </script>
+      {% endcapture %}
+      {% capture range-sliders_1_code %}
+        {% raw %}
+          <div
+            class="relative w-full"
+            x-data="range()"
+            x-init="
+              mintrigger(); 
+              maxtrigger()">
+              
+            <div 
+              class="pb-4">
+              <input
+                class="absolute z-20 w-full h-2 opacity-0 appearance-none cursor-pointer pointer-events-none"
+                type="range"
+                step="100"
+                x-bind:min="min"
+                x-bind:max="max"
+                x-on:input="mintrigger"
+                x-model="minprice">
+              <input
+                class="absolute z-20 w-full h-2 opacity-0 appearance-none cursor-pointer pointer-events-none"
+                type="range"
+                step="100"
+                x-bind:min="min"
+                x-bind:max="max"
+                x-on:input="maxtrigger"
+                x-model="maxprice">
+                
+              <div class="relative z-10 h-2">
+                <div
+                  class="color__bg-overlay-2 border--radius absolute top-0 bottom-0 left-0 right-0 z-10">
+                </div>
+                <div
+                  class="border--radius color__bg-secondary absolute top-0 bottom-0 z-20"
+                  x-bind:style="'right:'+maxthumb+'%; left:'+minthumb+'%'">
+                </div>
+                <div
+                  class="color__bg-body border--width color__border-selected-1 top-1/2 absolute left-0 z-30 w-4 h-4 -ml-2 -translate-y-1/2 rounded-full"
+                  x-bind:style="'left: '+minthumb+'%'">
+                </div>
+                <div
+                  class="color__bg-body border--width color__border-selected-1 top-1/2 absolute right-0 z-30 w-4 h-4 -mr-2 -translate-y-1/2 rounded-full"
+                  x-bind:style="'right: '+maxthumb+'%'">
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="relative">
+                <span
+                  class="left-4 type--smaller absolute inline-flex items-center h-full pointer-events-none"
+                  aria-hidden="true">
+                  {{ cart.currency.symbol }}
+                </span>
+                <input
+                  class="!pl-8"
+                  type="number"
+                  name="min"
+                  placeholder="0"
+                  maxlength="5"
+                  min="0"
+                  x-on:input="mintrigger"
+                  x-model="minprice">
+              </div>
+              <div class="shrink text-center">—</div>
+              <div class="relative">
+                <span
+                  class="left-4 type--smaller absolute inline-flex items-center h-full pointer-events-none"
+                  aria-hidden="true">
+                  {{ cart.currency.symbol }}
+                </span>
+                <input
+                  class="!pl-8"
+                  type="number"
+                  name="max"
+                  placeholder="0"
+                  maxlength="5"
+                  min="0"
+                  x-on:input="maxtrigger"
+                  x-model="maxprice">
+              </div>
+            </div>
+          </div>
+          <script>
+            function range() {
+              return {
+                minprice: 1000,
+                maxprice: 7000,
+                min: 100,
+                max: 10000,
+                minthumb: 0,
+                maxthumb: 0,
+
+                mintrigger() {
+                  this.minprice = Math.min(
+                    this.minprice,
+                    this.maxprice - 500
+                  );
+                  this.minthumb =
+                    ((this.minprice - this.min) /
+                      (this.max - this.min)) *
+                    100;
+                },
+
+                maxtrigger() {
+                  this.maxprice = Math.max(
+                    this.maxprice,
+                    this.minprice + 500
+                  );
+                  this.maxthumb =
+                    100 -
+                    ((this.maxprice - this.min) /
+                      (this.max - this.min)) *
+                      100;
+                },
+              };
+            }
+          </script>
+        {% endraw %}
+      {% endcapture %}
+      {% capture range-sliders_examples %}
+        {% render 'styleguide__example',
+          name: 'Default range slider',
+          content: range-sliders_1_preview,
+          sample: range-sliders_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Range sliders',
+        short_text: range-sliders_short_text,
+        table_rows: range-sliders_table_rows,
+        content: range-sliders_examples 
+      %}
+
+      {% comment %} Pagination {% endcomment %}
+      {% capture pagination_short_text %}
+        Pagination component using values defined in theme settings. Refer to Theme settings > Pagination.
+      {% endcapture %}
+      {% capture pagination_table_rows %}
+        {% render 'styleguide__row',
+          class: 'paginate',
+          properties: '
+          Liquid object containing pagination information' 
+        %}
+      {% endcapture %}
+      {% capture pagination_1_preview %}
+        {% render 'component__pagination',
+          paginate: paginate
+        %}
+      {% endcapture %}
+      {% capture pagination_1_code %}
+        {% raw %}
+          {% render 'component__pagination',
+            paginate: paginate
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture pagination_examples %}
+        {% render 'styleguide__example',
+          name: 'Default pagination',
+          content: pagination_1_preview,
+          sample: pagination_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Pagination',
+        short_text: pagination_short_text,
+        table_rows: pagination_table_rows,
+        content: pagination_examples 
+      %}
+      
+      {% comment %} Drawers {% endcomment %}
+      {% capture drawers_short_text %}
+        Slide-out drawer.
+      {% endcapture %}
+      {% capture drawers_table_rows %}
+        {% render 'styleguide__row',
+          class: 'drawer_id',
+          properties:  '
+          unique id of drawer to toggle visibility' 
+        %}
+        {% render 'styleguide__row',
+          class: 'position',
+          properties:  '
+          string to set position to either left or right' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          liquid object for contents of the drawer' 
+        %}
+      {% endcapture %}
+      {% capture drawers_1_preview %}
+        <div x-data="{ drawer: false }">
+          <button
+            class="btn btn--secondary btn--small"
+            @click="drawer = true;">
+            Open drawer
+          </button>
+          {% capture drawer_content %}
+            <div 
+              class="flex flex-col h-full">
+              <div 
+                class="color__bg-body sticky top-0 flex flex-wrap items-center justify-between p-4">
+                <div>
+                  <button
+                    class="btn btn--minimal"
+                    @click="drawer = false;">
+                    {% render 'component__icon',
+                      icon: 'x',
+                      size: '20',
+                      class: 'mr-1'
+                    %}
+                    Close
+                  </button>
+                </div>
+              </div>
+              <div 
+                class="grow md:py-12 flex flex-wrap content-start">
+                <span
+                  class="type--bigger w-full p-4 font-bold">
+                  Content
+                </span>
+                <span
+                  class="type--bigger w-full p-4 font-bold">
+                  Content
+                </span>
+                <span
+                  class="type--bigger w-full p-4 font-bold">
+                  Content
+                </span>
+              </div>
+              <aside 
+                class="sticky bottom-0 p-4">
+                <span
+                  class="opacity-75">
+                  Footer
+                </span>
+              </aside>
+            </div>
+          {% endcapture %}
+          {% render 'component__drawer',
+            drawer_id: 'drawer',
+            position: 'left',
+            content: drawer_content
+          %}
+        </div>
+      {% endcapture %}
+      {% capture drawers_1_code %}
+        {% raw %}
+          <div x-data="{ drawer: false }">
+            <button
+              class="btn btn--secondary btn--small"
+              @click="drawer = true;">
+              Open drawer
+            </button>
+            {% capture drawer_content %}
+              <div 
+                class="flex flex-col h-full">
+                <div 
+                  class="color__bg-body sticky top-0 flex flex-wrap items-center justify-between p-4">
+                  <div>
+                    <button
+                      class="btn btn--minimal"
+                      @click="drawer = false;">
+                      {% render 'component__icon',
+                        icon: 'x',
+                        size: '20',
+                        class: 'mr-1'
+                      %}
+                      Close
+                    </button>
+                  </div>
+                </div>
+                <div 
+                  class="grow md:py-12 flex flex-wrap content-start">
+                  <span
+                    class="type--bigger w-full p-4 font-bold">
+                    Content
+                  </span>
+                  <span
+                    class="type--bigger w-full p-4 font-bold">
+                    Content
+                  </span>
+                  <span
+                    class="type--bigger w-full p-4 font-bold">
+                    Content
+                  </span>
+                </div>
+                <aside 
+                  class="sticky bottom-0 p-4">
+                  <span
+                    class="opacity-75">
+                    Footer
+                  </span>
+                </aside>
+              </div>
+            {% endcapture %}
+            {% render 'component__drawer',
+              drawer_id: 'drawer',
+              position: 'left',
+              content: drawer_content
+            %}
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture drawers_examples %}
+        {% render 'styleguide__example',
+          name: 'Default drawer',
+          content: drawers_1_preview,
+          sample: drawers_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Drawers',
+        short_text: drawers_short_text,
+        table_rows: drawers_table_rows,
+        content: drawers_examples 
+      %}
+     
+      {% comment %} Popups {% endcomment %}
+      {% capture popups_short_text %}
+        Simple popup modal.
+      {% endcapture %}
+      {% capture popups_table_rows %}
+        {% render 'styleguide__row',
+          class: 'popup_id',
+          properties:  '
+          unique id of popup to toggle visibility' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          liquid object for contents of the popup' 
+        %}
+      {% endcapture %}
+      {% capture popups_1_preview %}
+        <div x-data="{ popup: false }">
+          <button
+            class="btn btn--secondary btn--small"
+            @click="popup = true;">
+            Open popup
+          </button>
+          {% capture popup_content %}
+            <div 
+              class="p-4">
+              <p>Popup</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Mollitia deserunt iure
+                natus! Sit dolorum ipsam quis, accusamus dicta
+                assumenda molestias laborum praesentium
+                blanditiis doloremque, repudiandae ex culpa
+                cumque repellat perferendis?
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Mollitia deserunt iure
+                natus! Sit dolorum ipsam quis, accusamus dicta
+                assumenda molestias laborum praesentium
+                blanditiis doloremque, repudiandae ex culpa
+                cumque repellat perferendis?
+              </p>
+            </div>
+            <div 
+              class="color__bg-body border--t-width color__border-divider-1 sticky bottom-0 w-full p-4">
+              Popup footer
+            </div>
+          {% endcapture %}
+          {% render 'component__popup',
+            popup_id: 'popup',
+            content: popup_content
+          %}
+        </div>
+      {% endcapture %}
+      {% capture popups_1_code %}
+        {% raw %}
+          <div x-data="{ popup: false }">
+            <button
+              class="btn btn--secondary btn--small"
+              @click="popup = true;">
+              Open popup
+            </button>
+            {% capture popup_content %}
+              <div 
+                class="p-4">
+                <p>Popup</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Mollitia deserunt iure
+                  natus! Sit dolorum ipsam quis, accusamus dicta
+                  assumenda molestias laborum praesentium
+                  blanditiis doloremque, repudiandae ex culpa
+                  cumque repellat perferendis?
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Mollitia deserunt iure
+                  natus! Sit dolorum ipsam quis, accusamus dicta
+                  assumenda molestias laborum praesentium
+                  blanditiis doloremque, repudiandae ex culpa
+                  cumque repellat perferendis?
+                </p>
+              </div>
+              <div 
+                class="color__bg-body border--t-width color__border-divider-1 sticky bottom-0 w-full p-4">
+                Popup footer
+              </div>
+            {% endcapture %}
+            {% render 'component__popup',
+              popup_id: 'popup',
+              content: popup_content
+            %}
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture popups_examples %}
+        {% render 'styleguide__example',
+          name: 'Default popup',
+          content: popups_1_preview,
+          sample: popups_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Popups',
+        short_text: popups_short_text,
+        table_rows: popups_table_rows,
+        content: popups_examples 
+      %}
+
+      {% comment %} Fullscreens {% endcomment %}
+      {% capture fullscreens_short_text %}
+        Fullscreen popup.
+      {% endcapture %}
+      {% capture fullscreens_table_rows %}
+        {% render 'styleguide__row',
+          class: 'fullscreen_id',
+          properties:  '
+          unique id of fullscreen to toggle visibility' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          liquid object for contents of the fullscreen' 
+        %}
+        {% render 'styleguide__row',
+          class: 'footer',
+          properties:  '
+          liquid object for contents of the footer' 
+        %}
+      {% endcapture %}
+      {% capture fullscreens_1_preview %}
+        <div x-data="{ fullscreen: false }">
+          <button
+            class="btn btn--secondary btn--small"
+            @click="fullscreen = true;">
+            Open fullscreen
+          </button>
+          {% capture fullscreen_content %}
+            <div 
+              class="w-full p-4">
+              <p>Content</p>
+              <div 
+                class="color__bg-overlay-1 color__border-divider-1 border--width border--radius flex items-center w-full h-full">
+              </div>
+            </div>
+          {% endcapture %}
+          {% capture fullscreen_footer %}
+            <div>
+              <button
+                class="btn btn--minimal"
+                @click="fullscreen = false;">
+                {% render 'component__icon',
+                  icon: 'x',
+                  size: '20',
+                  class: 'mr-1'
+                %}
+                Close
+              </button>
+            </div>
+          {% endcapture %}
+          {% render 'component__fullscreen', 
+            fullscreen_id: 'fullscreen',
+            content: fullscreen_content,
+            footer: fullscreen_footer 
+          %}
+        </div>
+      {% endcapture %}
+      {% capture fullscreens_1_code %}
+        {% raw %}
+          <div x-data="{ fullscreen: false }">
+            <button
+              class="btn btn--secondary btn--small"
+              @click="fullscreen = true;">
+              Open fullscreen
+            </button>
+            {% capture fullscreen_content %}
+              <div 
+                class="w-full p-4">
+                <p>Content</p>
+                <div 
+                  class="color__bg-overlay-1 color__border-divider-1 border--width border--radius flex items-center w-full h-full">
+                </div>
+              </div>
+            {% endcapture %}
+            {% capture fullscreen_footer %}
+              <div>
+                <button
+                  class="btn btn--minimal"
+                  @click="fullscreen = false;">
+                  {% render 'component__icon',
+                    icon: 'x',
+                    size: '20',
+                    class: 'mr-1'
+                  %}
+                  Close
+                </button>
+              </div>
+            {% endcapture %}
+            {% render 'component__fullscreen', 
+              fullscreen_id: 'fullscreen',
+              content: fullscreen_content,
+              footer: fullscreen_footer 
+            %}
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture fullscreens_examples %}
+        {% render 'styleguide__example',
+          name: 'Default fullscreen popup',
+          content: fullscreens_1_preview,
+          sample: fullscreens_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Fullscreens',
+        short_text: fullscreens_short_text,
+        table_rows: fullscreens_table_rows,
+        content: fullscreens_examples 
+      %}
+      
+      {% comment %} Alerts {% endcomment %}
+      {% capture alerts_short_text %}
+        Minimal alert popup.
+      {% endcapture %}
+      {% capture alerts_table_rows %}
+        {% render 'styleguide__row',
+          class: 'alert_id',
+          properties:  '
+          unique id of alert to toggle visibility' 
+        %}
+        {% render 'styleguide__row',
+          class: 'position',
+          properties:  '
+          string to set position: top-left, top-right, bottom-left, bottom-right' 
+        %}
+        {% render 'styleguide__row',
+          class: 'closeable',
+          properties:  '
+          boolean to enable alert to be closed' 
+        %}
+        {% render 'styleguide__row',
+          class: 'cart_bar',
+          properties:  '
+          boolean to enable cart timer bar' 
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          liquid object for contents of the alert' 
+        %}
+      {% endcapture %}
+      {% capture alerts_1_preview %}
+        <div x-data="{ alert: false }">
+          <button
+            class="btn btn--secondary btn--small"
+            @click="alert = true;">
+            Open alert
+          </button>
+          {% capture alert_content %}
+            <div 
+              class="flex flex-wrap items-center justify-between mb-4">
+              <span 
+                class="flex items-center mb-0">
+                Alert
+              </span>
+              <button
+                class="btn btn--minimal"
+                @click="alert = false;">
+                {% render 'component__icon',
+                  icon: 'x',
+                  size: '20',
+                  class: 'mr-1'
+                %}
+                Close
+              </button>
+            </div>
+            <div class="flex flex-col gap-4">
+              <button class="btn btn--small btn--plain !w-full">
+                Button
+              </button>
+              <button class="btn btn--small btn--secondary !w-full">
+                Button
+              </button>
+            </div>
+          {% endcapture %}
+          {% render 'component__alert',
+            alert_id: 'alert',
+            position: 'bottom-right',
+            closeable: true,
+            cart_bar: true,
+            content: alert_content
+          %}
+        </div>
+      {% endcapture %}
+      {% capture alerts_1_code %}
+        {% raw %}
+          <div x-data="{ alert: false }">
+            <button
+              class="btn btn--secondary btn--small"
+              @click="alert = true;">
+              Open alert
+            </button>
+            {% capture alert_content %}
+              <div 
+                class="flex flex-wrap items-center justify-between mb-4">
+                <span 
+                  class="flex items-center mb-0">
+                  Alert
+                </span>
+                <button
+                  class="btn btn--minimal"
+                  @click="alert = false;">
+                  {% render 'component__icon',
+                    icon: 'x',
+                    size: '20',
+                    class: 'mr-1'
+                  %}
+                  Close
+                </button>
+              </div>
+              <div class="flex flex-col gap-4">
+                <button class="btn btn--small btn--plain !w-full">
+                  Button
+                </button>
+                <button class="btn btn--small btn--secondary !w-full">
+                  Button
+                </button>
+              </div>
+            {% endcapture %}
+            {% render 'component__alert',
+              alert_id: 'alert',
+              position: 'bottom-right',
+              closeable: true,
+              cart_bar: true,
+              content: alert_content
+            %}
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture alerts_examples %}
+        {% render 'styleguide__example',
+          name: 'Default alert',
+          content: alerts_1_preview,
+          sample: alerts_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Alerts',
+        short_text: alerts_short_text,
+        table_rows: alerts_table_rows,
+        content: alerts_examples 
+      %}
+      
+      {% comment %} Dropdowns {% endcomment %}
+      {% capture dropdowns_short_text %}
+        Dropdown overlay.
+      {% endcapture %}
+      {% capture dropdowns_table_rows %}
+        {% render 'styleguide__row',
+          class: 'direction',
+          properties:  '
+          set direction of dropdown, can be set to up or down' 
+        %}
+        {% render 'styleguide__row',
+          class: 'position',
+          properties:  '
+          set position of dropdown, can be set to left or right' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_class',
+          properties:  '
+          string of classes to style button' 
+        %}
+        {% render 'styleguide__row',
+          class: 'button_label',
+          properties:  '
+          string to set button text'
+        %}
+        {% render 'styleguide__row',
+          class: 'content',
+          properties:  '
+          liquid object for contents of the dropdown' 
+        %}
+      {% endcapture %}
+      {% capture dropdowns_1_preview %}
+        {% capture dropdown_content %}
+          <div 
+            class="border--b-width color__border-divider-1 flex flex-col p-2">
+            <button 
+              class="btn btn--minimal !w-full !p-2 !justify-start !p-2 hover:color__bg-overlay-1">
+              {% render 'component__icon', icon: 'book', size: '20', class: 'mr-1' %} Help and documentation
+            </button>
+            <button 
+              class="btn btn--minimal !w-full !p-2 !justify-start !p-2 hover:color__bg-overlay-1">
+              {% render 'component__icon', icon: 'chat', size: '20', class: 'mr-1' %} Message support
+            </button>
+          </div>
+          <div 
+            class="type--small border--b-width color__border-divider-1 flex flex-col p-2 opacity-50">
+            <a 
+              class="hover:color__bg-overlay-1 w-full px-2 py-1 no-underline"
+              href="#"
+              target="_blank">
+              Twitter
+            </a>
+            <a 
+              class="hover:color__bg-overlay-1 w-full px-2 py-1 no-underline"
+              href="#"
+              target="_blank">
+              Instagram
+            </a>
+          </div>
+          <div 
+            class="type--small flex flex-col px-4 py-2 opacity-50">
+            <div>
+              Space 1.0.0
+            </div>
+          </div>
+        {% endcapture %}
+        {% render 'component__dropdown', 
+          direction: 'up',
+          position: 'left',
+          button_class: 'btn btn--secondary btn--small',
+          button_label: 'Open dropdown', 
+          content: dropdown_content 
+        %}
+      {% endcapture %}
+      {% capture dropdowns_1_code %}
+        {% raw %}
+          {% capture dropdown_content %}
+            <div 
+              class="border--b-width color__border-divider-1 flex flex-col p-2">
+              <button 
+                class="btn btn--minimal w-full p-2 text-left">
+                {% render 'component__icon', icon: 'book', size: '20', class: 'mr-1' %} Help and documentation
+              </button>
+              <button 
+                class="btn btn--minimal w-full p-2 text-left">
+                {% render 'component__icon', icon: 'chat', size: '20', class: 'mr-1' %} Message support
+              </button>
+            </div>
+            <div 
+              class="type--small border--b-width color__border-divider-1 flex flex-col p-2 opacity-50">
+              <a 
+                class="hover:color__bg-overlay-1 hover:no-underline hover:opacity-100 w-full px-2 py-1 no-underline"
+                href="#"
+                target="_blank">
+                Twitter
+              </a>
+              <a 
+                class="hover:color__bg-overlay-1 hover:no-underline hover:opacity-100 w-full px-2 py-1 no-underline"
+                href="#"
+                target="_blank">
+                Instagram
+              </a>
+            </div>
+            <div 
+              class="type--small flex flex-col px-4 py-2 opacity-50">
+              <div>
+                Space 1.0.0
+              </div>
+            </div>
+          {% endcapture %}
+          {% render 'component__dropdown', 
+            direction: 'up',
+            position: 'left',
+            button_class: 'btn btn--secondary btn--small',
+            button_label: 'Open dropdown', 
+            content: dropdown_content 
+          %}
+        {% endraw %}
+      {% endcapture %}
+      {% capture dropdowns_examples %}
+        {% render 'styleguide__example',
+          name: 'Default dropdown',
+          content: dropdowns_1_preview,
+          sample: dropdowns_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Dropdowns',
+        short_text: dropdowns_short_text,
+        table_rows: dropdowns_table_rows,
+        content: dropdowns_examples 
+      %}
+      
+      {% comment %} Collection items {% endcomment %}
+      {% capture collection-items_short_text %}
+        component__collection-item.liquid
+      {% endcapture %}
+      {% capture collection-items_table_rows %}
+        {% render 'styleguide__row',
+          class: 'collection',
+          properties:  '
+          liquid object for a collection' 
+        %}
+      {% endcapture %}
+      {% capture collection-items_1_preview %}
+        <div class="max-w-prose">
+          <div class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            {% for collection in collections limit: 4 %}
+              {% render 'component__collection-item', 
+                collection: collection
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture collection-items_1_code %}
+        {% raw %}
+          <div class="max-w-prose">
+            <div class="md:grid-cols-2 grid grid-cols-1"
+              style="gap: {{ settings.layout_gap_size }}px;">
+              {% for collection in collections limit: 4 %}
+                {% render 'component__collection-item', 
+                  collection: collection
+                %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture collection-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default collection item',
+          content: collection-items_1_preview,
+          sample: collection-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Collection items',
+        short_text: collection-items_short_text,
+        table_rows: collection-items_table_rows,
+        content: collection-items_examples 
+      %}
+      
+      {% comment %} Product items {% endcomment %}
+      {% capture product-items_short_text %}
+        component__product-item.liquid / template__product-item.liquid
+      {% endcapture %}
+      {% capture product-items_table_rows %}
+        {% render 'styleguide__row',
+          class: 'product',
+          properties:  '
+          liquid object for a product' 
+        %}
+        {% render 'styleguide__row',
+          class: 'source',
+          properties:  '
+          string to set section name' 
+        %}
+      {% endcapture %}
+      {% capture product-items_1_preview %}
+        {% comment %} Display product items from Alpine template or from a liquid for loop {% endcomment %}
+
+        <div class="max-w-prose">
+          <div class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            <template 
+              x-for="(item, index) in recent_products.slice(0, 3)">
+              {% render 'template__product-item' %}
+            </template>
+            {% for product in collections.chairs.products limit: 2 %}
+              {% render 'component__product-item', 
+                product: product
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture product-items_1_code %}
+        {% raw %}
+          {% comment %} Display product items from Alpine template or from a liquid for loop {% endcomment %}
+
+          <div class="max-w-prose">
+            <div class="md:grid-cols-2 grid grid-cols-1"
+              style="gap: {{ settings.layout_gap_size }}px;">
+              <template 
+                x-for="(item, index) in recent_products.slice(0, 3)">
+                {% render 'template__product-item' %}
+              </template>
+              {% for product in collections.chairs.products limit: 2 %}
+                {% render 'component__product-item', 
+                  product: product
+                %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture product-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default product item',
+          content: product-items_1_preview,
+          sample: product-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Product items',
+        short_text: product-items_short_text,
+        table_rows: product-items_table_rows,
+        content: product-items_examples 
+      %}
+      
+      {% comment %} Featured items {% endcomment %}
+      {% capture featured-items_short_text %}
+        component__product-featured-item.liquid
+      {% endcapture %}
+      {% capture featured-items_table_rows %}
+        {% render 'styleguide__row',
+          class: 'product',
+          properties:  '
+          liquid object for a product' 
+        %}
+      {% endcapture %}
+      {% capture featured-items_1_preview %}
+        <div class="max-w-prose">
+          <div class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            {% for product in collections.chairs.products limit: 2 %}
+              {% render 'component__product-featured-item', 
+                product: product
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture featured-items_1_code %}
+        {% raw %}
+          <div class="max-w-prose">
+            <div class="md:grid-cols-2 grid grid-cols-1"
+              style="gap: {{ settings.layout_gap_size }}px;">
+              {% for product in collections.all.products limit: 2 %}
+                {% render 'component__product-featured-item', 
+                  product: product
+                %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture featured-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default featured item',
+          content: featured-items_1_preview,
+          sample: featured-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Featured items',
+        short_text: featured-items_short_text,
+        table_rows: featured-items_table_rows,
+        content: featured-items_examples 
+      %}
+      
+      {% comment %} Upsell stacked items {% endcomment %}
+      {% capture upsell-stakced-items_short_text %}
+        template__upsell-item.liquid / component__upsell-item.liquid
+      {% endcapture %}
+      {% capture upsell-stakced-items_table_rows %}
+      {% endcapture %}
+      {% capture upsell-stakced-items_1_preview %}
+        {% comment %} Display upsells from Alpine template or from a liquid for loop {% endcomment %}
+
+        <div 
+          class="max-w-prose flex flex-col"
+          style="gap: {{ settings.layout_gap_size }}px;"
+          x-data="{ 
+            button_loading: false 
+          }">
+          <template 
+            x-for="(item, index) in recent_products.slice(0, 3)">
+            {% render 'template__upsell-item' %}
+          </template>
+          {% for product in collections.chairs.products limit: 2 %}
+            {% render 'component__upsell-item', 
+              product: product
+            %}
+          {% endfor %}
+        </div>
+      {% endcapture %}
+      {% capture upsell-stakced-items_1_code %}
+        {% raw %}
+          {% comment %} Display upsells from Alpine template or from a liquid for loop {% endcomment %}
+
+          <div 
+            class="max-w-prose flex flex-col"
+            style="gap: {{ settings.layout_gap_size }}px;"
+            x-data="{ 
+              button_loading: false 
+            }">
+            <template 
+              x-for="(item, index) in recent_products.slice(0, 3)">
+              {% render 'template__upsell-item' %}
+            </template>
+            {% for product in collections.chairs.products limit: 2 %}
+              {% render 'component__upsell-item', 
+                product: product
+              %}
+            {% endfor %}
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture upsell-stakced-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default upsell stacked item',
+          content: upsell-stakced-items_1_preview,
+          sample: upsell-stakced-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Upsell stacked items',
+        short_text: upsell-stakced-items_short_text,
+        table_rows: upsell-stakced-items_table_rows,
+        content: upsell-stakced-items_examples 
+      %}
+     
+      {% comment %} Upsell slider items {% endcomment %}
+      {% capture upsell-slider-items_short_text %}
+        template__upsell-slider-item.liquid / component__upsell-slider-item.liquid
+      {% endcapture %}
+      {% capture upsell-slider-items_table_rows %}
+      {% endcapture %}
+      {% capture upsell-slider-items_1_preview %}
+        {% comment %} Display upsells from Alpine template or from a liquid for loop {% endcomment %}
+
+        <div class="max-w-prose">
+          <div 
+            class="whitespace-nowrap md:snap-x scroll-smooth hidescrollbar inline-flex w-full overflow-x-auto overflow-y-hidden"
+            style="gap: {{ settings.layout_gap_size }}px;"
+            x-data="{ 
+              button_loading: false 
+            }">
+            <template 
+              x-for="(item, index) in recent_products.slice(0, 5)">
+              {% render 'template__upsell-slider-item' %}
+            </template>
+            {% for product in collections.chairs.products limit: 2 %}
+              {% render 'component__upsell-slider-item', 
+                product: product, 
+                index: forloop.index0 
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture upsell-slider-items_1_code %}
+        {% raw %}
+          {% comment %} Display upsells from Alpine template or from a liquid for loop {% endcomment %}
+
+          <div class="max-w-prose">
+            <div 
+              class="whitespace-nowrap md:snap-x scroll-smooth hidescrollbar inline-flex w-full overflow-x-auto overflow-y-hidden"
+              style="gap: {{ settings.layout_gap_size }}px;"
+              x-data="{ 
+                button_loading: false 
+              }">
+              <template 
+                x-for="(item, index) in recent_products.slice(0, 5)">
+                {% render 'template__upsell-slider-item' %}
+              </template>
+              {% for product in collections.chairs.products limit: 2 %}
+                {% render 'component__upsell-slider-item', 
+                  product: product, 
+                  index: forloop.index0 
+                %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture upsell-slider-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default upsell slider item',
+          content: upsell-slider-items_1_preview,
+          sample: upsell-slider-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Upsell slider items',
+        short_text: upsell-slider-items_short_text,
+        table_rows: upsell-slider-items_table_rows,
+        content: upsell-slider-items_examples 
+      %}
+      
+      {% comment %} Cart items {% endcomment %}
+      {% capture cart-items_short_text %}
+        template__cart-item.liquid
+      {% endcapture %}
+      {% capture cart-items_table_rows %}
+      {% endcapture %}
+      {% capture cart-items_1_preview %}
+        <div 
+          class="max-w-prose flex flex-col"
+          style="gap: {{ settings.layout_gap_size }}px;">
+          <template 
+            x-for="(item, index) in cart.items">>
+            {% render 'template__cart-item' %}
+          </template>
+        </div>
+      {% endcapture %}
+      {% capture cart-items_1_code %}
+        {% raw %}
+          <div 
+            class="max-w-prose flex flex-col"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            <template 
+              x-for="(item, index) in cart.items">>
+              {% render 'template__cart-item' %}
+            </template>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture cart-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default cart item',
+          content: cart-items_1_preview,
+          sample: cart-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Cart items',
+        short_text: cart-items_short_text,
+        table_rows: cart-items_table_rows,
+        content: cart-items_examples 
+      %}
+      
+      {% comment %} Search items {% endcomment %}
+      {% capture search-items_short_text %}
+        template__search-item.liquid
+      {% endcapture %}
+      {% capture search-items_table_rows %}
+      {% endcapture %}
+      {% capture search-items_1_preview %}
+        <div
+          class="max-w-prose"
+          x-data="{
+            params: {
+              author: {{ settings.search_author }},
+              body: {{ settings.search_body }},
+              product_type: {{ settings.search_product_type }},
+              tag: {{ settings.search_tag }},
+              title: {{ settings.search_title }},
+              variants_barcode: {{ settings.search_variants_barcode }},
+              variants_sku: {{ settings.search_variants_sku }},
+              variants_title: {{ settings.search_variants_title }},
+              vendor: {{ settings.search_vendor }},
+            }
+          }">
+          <div 
+            class="relative mb-4">
+            <label 
+              class="sr-only"
+              for="search-desktop">
+              {{ 'general.search.search' | t }}
+            </label>
+
+            {% comment %} Icon {% endcomment %}
+            <div 
+              class="left-4 absolute top-0 flex items-center h-full opacity-50 pointer-events-none">
+              {% render 'component__icon', 
+                icon: 'search',
+                size: '20' %}
+            </div>
+
+            {% comment %} Input {% endcomment %}
+            <input 
+              class="color__text !border-transparent !px-10" 
+              type="text"
+              name="q" 
+              placeholder="{{ 'general.search.placeholder' | t }}"
+              x-ref="searchInput"
+              @input.debounce="fetchAndUpdateSearch($event, params)"\
+            />
+            
+            {% comment %} Cancel {% endcomment %}
+            <div 
+              class="right-4 absolute top-0 flex items-center h-full">
+              <button 
+                class="btn btn--smaller btn--plain"
+                title="{{ 'general.search.cancel_search' | t }}"
+                type="button"
+                @click="$refs.searchInput.value = '';">
+                {% render 'component__icon', 
+                  icon: 'x',
+                  size: '16' %}
+              </button>
+            </div>
+          
+          </div>
+          <div 
+            class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            <template x-for="item in search_items">
+              {% render 'template__search-item' %}
+            </template>
+          </div>
+        </div>
+      {% endcapture %}
+      {% capture search-items_1_code %}
+        {% raw %}
+          <div 
+            class="md:grid-cols-2 grid grid-cols-1"
+            style="gap: {{ settings.layout_gap_size }}px;">
+            <template x-for="item in search_items">
+              {% render 'template__search-item' %}
+            </template>
+          </div>
+        {% endraw %}
+      {% endcapture %}
+      {% capture search-items_examples %}
+        {% render 'styleguide__example',
+          name: 'Default search item',
+          content: search-items_1_preview,
+          sample: search-items_1_code 
+        %}
+      {% endcapture %}
+      {% render 'styleguide__section',
+        label: 'Search items',
+        short_text: search-items_short_text,
+        table_rows: search-items_table_rows,
+        content: search-items_examples 
+      %}
+      
+    </div>
+    
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/github-light.css">
+<script type="module">
+  import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
+  highlightAll();
+</script>
+<style>
+  code,
+  code * {
+    font-size: 14px !important;
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace !important;
+    box-shadow: none !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name":"Styleguide",
+  "presets":[
+    {
+      "name":"Styleguide"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.overlay"]
+  }
+}
+{% endschema %}

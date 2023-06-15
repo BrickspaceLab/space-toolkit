@@ -1,0 +1,187 @@
+/* ======= */
+/* tailwind layers */
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components";
+
+/* ======= */
+/* utilities */
+@import "../css/utilities/colors.css";
+@import "../css/utilities/borders.css";
+@import "../css/utilities/typography.css";
+@import "../css/utilities/animation.css";
+@import "../css/utilities/spacing.css";
+
+/* ======= */
+/* base */
+@import "../css/base/colors.css";
+@import "../css/base/typography.css";
+@import "../css/base/forms.css";
+@import "../css/base/images.css";
+@import "../css/base/tables.css";
+
+/* ======= */
+/* components */
+/* - atoms */
+@import "../css/components/buttons.css";
+@import "../css/components/windows.css";
+/* - components */
+@import "../css/components/header.css";
+
+/* ======= */
+/* development */
+
+/* - reset default border color */
+*,
+::before,
+::after {
+  @apply color__border-divider-1;
+}
+
+/* - fade in images when js is available */
+.js\:image {
+  @apply opacity-0;
+}
+.js\:image.loaded {
+  @apply !opacity-100;
+}
+.js\:picture {
+  @apply animate-pulse;
+}
+.js\:picture.loaded {
+  @apply animate-none;
+}
+.js\:picture.loaded .js\:placeholder {
+  @apply opacity-0;
+}
+
+/* - update page behavior */
+/* - scale with base size */
+html {
+  scroll-behavior: smooth;
+  font-size: var(--type-font-base-size);
+}
+
+/* - hide alpine elements until ready */
+[x-cloak] {
+  @apply hidden;
+}
+
+/* - remove margin on child content */
+.m-0--clear {
+  p {
+    @apply m-0;
+  }
+}
+
+/* - strikethrough */
+.strikethrough {
+  @apply relative;
+}
+.strikethrough:before {
+  @apply absolute left-0 right-0 opacity-50;
+  content: "";
+  top: 50%;
+  border-top: 2px solid;
+  border-color: var(--color__text-light) !important;
+
+  -webkit-transform: rotate(-15deg);
+  -moz-transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg);
+  -o-transform: rotate(-15deg);
+  transform: rotate(-15deg);
+}
+
+/* - hide scrollbar */
+.hidescrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hidescrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* - custom scrollbar */
+.customscrollbar {
+  scrollbar-width: thin;
+}
+.customscrollbar::-webkit-scrollbar-button,
+.customscrollbar::-webkit-scrollbar-corner,
+.customscrollbar::-webkit-resizer {
+  @apply hidden;
+}
+.customscrollbar::-webkit-scrollbar {
+  @apply w-1 h-1 px-4 m-auto opacity-50;
+}
+.customscrollbar::-webkit-scrollbar-track {
+  @apply color__bg-overlay-2 border__button--radius;
+}
+.customscrollbar::-webkit-scrollbar-thumb {
+  @apply color__bg-secondary border__button--radius;
+}
+.customscrollbar::-webkit-scrollbar-thumb:hover {
+  @apply opacity-100;
+}
+
+/* - flag icons */
+.fi {
+  @apply border--width color__border-divider-2 relative inline-block pr-2 bg-center bg-no-repeat bg-contain rounded-full;
+  width: 1.33333333em;
+  line-height: 1em;
+}
+.fi:before {
+  content: "\00a0";
+}
+
+/* 3d model viewer button */
+.btn[data-shopify-xr-hidden] {
+  @apply hidden;
+}
+@media screen and (max-width: 749px) {
+  .btn:not([data-shopify-xr-hidden]) {
+    @apply inline-flex;
+  }
+}
+
+/* - add spacing to challenge captcha page */
+/* - add spacing to shopify legal pages */
+.shopify-challenge__container,
+.shopify-policy__container {
+  @apply py-40;
+}
+
+/* dynamic checkout */
+/* https://github.com/Shopify/dawn/blob/main/assets/section-main-product.css */
+[data-shopify-buttoncontainer] {
+  @apply !justify-center;
+  li {
+    @apply !grow;
+  }
+}
+.shopify-payment-button__button {
+  @apply type__nav;
+}
+.shopify-payment-button__button--hidden {
+  @apply !hidden;
+}
+.shopify-payment-button__button,
+.shopify-payment-button__more-options {
+  @apply !border__button--radius overflow-hidden;
+}
+.shopify-payment-button__button--unbranded {
+  @apply color__bg-secondary !color__secondary hover:color__bg-secondary !px-6 !py-2 hover:opacity-75;
+  @apply !leading-normal !tracking-wide;
+}
+.shopify-payment-button__button--branded {
+  @apply hover:color__bg-secondary hover:opacity-75;
+  @apply !leading-normal !tracking-wide;
+}
+.shopify-payment-button__button [role="button"] {
+  @apply min-h-0 p-0;
+}
+.shopify-payment-button__button:focus-within {
+  @apply !border--focus;
+}
+.shopify-payment-button__more-options {
+  @apply !color__bg-overlay-1 px-6 py-2;
+}

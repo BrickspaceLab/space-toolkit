@@ -1,0 +1,48 @@
+<!-- snippets/styleguide__example.liquid -->
+{% comment %} 
+  Row of styleguide components.
+
+  Accepts: 
+    - name: boolean to show accordion open by, default false
+    - content: string to display as an example
+    - sample: content to display in code block
+
+  Usage:
+    {% render 'styleguide__example',
+      name: 'Heading 1',
+      content: ' ',
+      sample: ' ' %}
+{% endcomment %}
+
+<div class="mb-8">
+  <p 
+    class="mb-2 opacity-50">{{ name }}
+  </p>
+  <div 
+    class="color__bg-overlay-1 w-full p-4">
+    {{ content }}
+  </div>
+  <div 
+    class="w-full"
+    x-data="{ code: false }">
+    <div 
+      class="color__bg-overlay-1 border--t-width color__border-divider-1 w-full px-4 py-2"
+      x-show="!code">
+      <button 
+        class="type--smaller" @click="code = ! code">
+        View code
+      </button>
+    </div>
+    <code
+      class="shj-lang-html block w-full overflow-auto !m-0 !p-4 !rounded-none"
+      style="
+        line-height: 1.625 !important;
+        font-size: 14px !imporant;
+        font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace !important;
+        background: #f6f8fa;
+        word-break: break-all;
+        white-space: pre;"
+      x-show="code"
+      x-cloak>{{ sample | escape| strip | replace: '          ', '' }}</code>
+  </div>
+</div>

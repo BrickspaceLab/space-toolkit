@@ -1,0 +1,13 @@
+/* IMAGES */
+/* - apply base styles to set form images */
+/* ======= */
+
+@layer base {
+  img {
+    @apply relative;
+  }
+  img:after {
+    @apply md:type--smaller color__text md:absolute md:top-0 md:flex md:h-full md:w-full md:flex-col md:justify-center md:whitespace-normal md:p-4 md:text-center items-center justify-center hidden;
+    content: "" attr(alt) !important;
+  }
+}

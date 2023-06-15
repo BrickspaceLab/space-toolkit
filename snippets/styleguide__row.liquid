@@ -1,0 +1,19 @@
+<!-- snippets/styleguide__row.liquid -->
+{% comment %} 
+  Row class and property.
+
+  Accepts: 
+    - class: string to set the class name
+    - properties: string to set the properties
+
+  Usage:
+    {% render 'styleguide__row',
+      class: '.type_heading',
+      properties:  'font-family: var(--type-font-header-family);' %}
+{% endcomment %}
+
+<div class="border--t-width color__border-divider-1 color__bg-body flex py-4">
+  <code class="grow pr-4 whitespace-pre-line"
+    style="width:min-content;word-break: break-all;">{{ class | strip }}</code>
+  <code class="w-3/5 whitespace-pre-line">{{ properties | strip }}</code>
+</div>
