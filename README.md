@@ -2,7 +2,7 @@
 
 # Space
 
-[Join Discord](https://discord.gg/4qdBFhmzCR)
+[Join Discord](https://discord.gg/4qdBFhmzCR) / [Download theme](https://themes.shopify.com/themes/space)
 
 ---
 
