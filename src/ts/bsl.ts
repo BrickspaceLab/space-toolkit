@@ -1,45 +1,36 @@
-import { IShopify } from "./models.interface";
+import { ShopifyInterface } from "./models.interface";
 import { AppInterface } from "./models.interface";
+
 import { globals } from "./globals/globals";
 import { cart } from "./cart/cart";
 import { search } from "./search/search";
+import { products } from "./products/products";
 import { collections } from "./collections/collections";
-import { utils } from "./util/util";
-import formatMoney from "./shopify/formatMoney";
-import initAnimationObserver from "./animation/observer";
-import loadImages from "./animation/image";
+import { utils } from "./utils/utils";
+import { Shopify } from "./shopify/shopify";
+
+// Load images and replace classes
+utils.loadImages();
 
 // Extend window object with Shopify, app, and initial data
 declare global {
   interface Window {
-    Shopify: IShopify;
     app: () => AppInterface;
     __initialData: AppInterface;
+    Shopify: ShopifyInterface;
   }
 }
-
-// Set up Shopify stuff
-let Shopify = window.Shopify || {};
-Shopify.formatMoney = formatMoney;
-
-// Watch for class changes for animation
-initAnimationObserver();
-
-// Add loaded class to images
-loadImages();
 
 // Expose variables and functions to Alpine
 window.app = function () {
   return {
     // Spread globals
     ...globals,
-
     ...cart,
-
     ...search,
-
+    ...products,
     ...collections,
-
     ...utils,
+    ...Shopify,
   };
 };

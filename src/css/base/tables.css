@@ -3,15 +3,10 @@
 /* ======= */
 
 table {
-  @apply border--t-width border--r-width color__border-divider-1;
-
-  p {
-    @apply m-0;
-  }
   tr {
     @apply border--b-width color__border-divider-1;
   }
   td {
-    @apply border--l-width color__border-divider-1 p-2;
+    @apply border-0;
   }
 }

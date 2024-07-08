@@ -3,80 +3,124 @@
 /* ======= */
 
 @layer utilities {
+
   /* ======= */
   /* default borders */
   /* - default border width */
+  .outline--width {
+    outline-width: var(--sizes__border-element-width);
+    outline-style: solid;
+  }
   .border--width {
-    border-width: var(--sizes-border-width);
+    border-width: var(--sizes__border-element-width);
   }
   .border--t-width {
-    border-top-width: var(--sizes-border-width);
+    border-top-width: var(--sizes__border-element-width);
   }
   .border--r-width {
-    border-right-width: var(--sizes-border-width);
+    border-right-width: var(--sizes__border-element-width);
   }
   .border--b-width {
-    border-bottom-width: var(--sizes-border-width);
+    border-bottom-width: var(--sizes__border-element-width);
   }
   .border--l-width {
-    border-left-width: var(--sizes-border-width);
+    border-left-width: var(--sizes__border-element-width);
   }
+  .border--button-width {
+    border-width: var(--sizes__border-button-width);
+  }
+  .border--t-button-width {
+    border-top-width: var(--sizes__border-button-width);
+  }
+  .border--r-button-width {
+    border-right-width: var(--sizes__border-button-width);
+  }
+  .border--b-button-width {
+    border-bottom-width: var(--sizes__border-button-width);
+  }
+  .border--l-button-width {
+    border-left-width: var(--sizes__border-button-width);
+  }
+  .border--input-width {
+    border-width: var(--sizes__border-input-width);
+  }
+  .border--t-input-width {
+    border-top-width: var(--sizes__border-input-width);
+  }
+  .border--r-input-width {
+    border-right-width: var(--sizes__border-input-width);
+  }
+  .border--b-input-width {
+    border-bottom-width: var(--sizes__border-input-width);
+  }
+  .border--l-input-width {
+    border-left-width: var(--sizes__border-input-width);
+  }
+
   /* - default border raidus */
   .border--radius {
-    border-radius: var(--sizes-border-element-radius);
+    border-radius: var(--sizes__border-element-radius);
   }
-  .mobile-border--radius-t-0 {
+  .mobile-border--t0-radius {
     @media (max-width: 768px) {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
   }
-  .mobile-border--radius-b-0 {
+  .mobile-border--b0-radius {
     @media (max-width: 768px) {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
   }
+
   /* - default focus border */
   .border--focus {
-    box-shadow: var(--color__bg-body-light) 0px 0px 0px 2px, var(--color__border-selected-light-1) 0px 0px 0px 4px;
+    @apply !no-underline;
     outline: 2px solid transparent;
     outline-offset: 2px;
-    text-decoration: none;
-    * {
-      text-decoration: none;
-    }
+    box-shadow: var(--color__background-body) 0px 0px 0px 2px, var(--color__border-selected-1) 0px 0px 0px 4px;
   }
-  .simple--focus {
+  .border--focus--inset {
+    box-shadow: none;
+    outline: 2px solid var(--color__background-body);
+    outline-offset: -4px;
+    border: 2px solid var(--color__border-selected-1) !important;
+  }
+  .border--focus-simple {
+    @apply !underline;
     outline: 2px solid transparent;
     outline-offset: 2px;
-    text-decoration: underline;
+    box-shadow: none;
   }
 
   /* ======= */
   /* button borders */
   .border__button {
-    @apply border--width;
+    @apply border--button-width;
   }
   .border__button--focus {
     @apply border--focus;
   }
   .border__button--radius {
-    border-radius: var(--sizes-border-button-radius);
+    border-radius: var(--sizes__border-button-radius);
   }
 
   /* ======= */
   /* input borders */
   .border__input {
-    @apply border--width color__border-divider-1;
+    @apply border--input-width;
   }
   .border__input--focus {
-    @apply border--focus color__border-selected-1;
+    @apply border--focus !color__border-selected-1;
   }
   .border__input--hover {
-    @apply color__border-divider-2;
+    @apply !color__border-selected-1;
   }
   .border__input--radius {
-    border-radius: var(--sizes-border-input-radius);
+    border-radius: var(--sizes__border-input-radius);
+  }
+  .border__textarea--radius {
+    border-radius: var(--sizes__border-textarea-radius);
   }
 }

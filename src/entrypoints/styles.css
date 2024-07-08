@@ -38,58 +38,61 @@
   @apply color__border-divider-1;
 }
 
-/* - fade in images when js is available */
-.js\:image {
-  @apply opacity-0;
-}
-.js\:image.loaded {
-  @apply !opacity-100;
-}
-.js\:picture {
-  @apply animate-pulse;
-}
-.js\:picture.loaded {
-  @apply animate-none;
-}
-.js\:picture.loaded .js\:placeholder {
-  @apply opacity-0;
-}
-
 /* - update page behavior */
 /* - scale with base size */
 html {
   scroll-behavior: smooth;
-  font-size: var(--type-font-base-size);
 }
 
 /* - hide alpine elements until ready */
 [x-cloak] {
-  @apply hidden;
+  @apply !hidden;
 }
 
-/* - remove margin on child content */
-.m-0--clear {
-  p {
-    @apply m-0;
-  }
+/* - fix for firefox range slider */
+input[type=range]::-moz-range-thumb {
+	pointer-events: all;
+  cursor: pointer;
+	-moz-appearance: none;
+	width: 32px;
+	height: 24px;
+/* @apply w-6 h-6 appearance-none pointer-events-auto; */
 }
 
 /* - strikethrough */
-.strikethrough {
+.straightthrough {
   @apply relative;
 }
-.strikethrough:before {
-  @apply absolute left-0 right-0 opacity-50;
+.straightthrough:before {
+  @apply absolute left-0 right-0 opacity-25;
+  content: "";
+  top: 50%;
+  border-top: 2px solid;
+  border-color: var(--color__text-light) !important;
+}
+.anglethrough {
+  @apply relative;
+}
+.anglethrough:before {
+  @apply absolute left-0 right-0 opacity-25;
   content: "";
   top: 50%;
   border-top: 2px solid;
   border-color: var(--color__text-light) !important;
 
-  -webkit-transform: rotate(-15deg);
-  -moz-transform: rotate(-15deg);
-  -ms-transform: rotate(-15deg);
-  -o-transform: rotate(-15deg);
-  transform: rotate(-15deg);
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+}
+
+/* - reset line-height */
+.leading-reset {
+  line-height: 1em !important;
+  * {
+    line-height: 1em !important;
+  }
 }
 
 /* - hide scrollbar */
@@ -99,6 +102,16 @@ html {
 }
 .hidescrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* video */
+video::-webkit-media-controls-enclosure {
+  width:100%;
+  overflow: hidden;
+
+}
+video::-webkit-media-controls-panel {
+  padding: var(--sizes__gap-width);
 }
 
 /* - custom scrollbar */
@@ -125,22 +138,12 @@ html {
 
 /* - flag icons */
 .fi {
-  @apply border--width color__border-divider-2 relative inline-block pr-2 bg-center bg-no-repeat bg-contain rounded-full;
+  @apply inline-block pr-2 bg-center bg-no-repeat bg-contain rounded-full border--width color__border-divider-2;
   width: 1.33333333em;
   line-height: 1em;
 }
 .fi:before {
   content: "\00a0";
-}
-
-/* 3d model viewer button */
-.btn[data-shopify-xr-hidden] {
-  @apply hidden;
-}
-@media screen and (max-width: 749px) {
-  .btn:not([data-shopify-xr-hidden]) {
-    @apply inline-flex;
-  }
 }
 
 /* - add spacing to challenge captcha page */
@@ -168,8 +171,9 @@ html {
 .shopify-payment-button__more-options {
   @apply !border__button--radius overflow-hidden;
 }
+
 .shopify-payment-button__button--unbranded {
-  @apply color__bg-secondary !color__secondary hover:color__bg-secondary !px-6 !py-2 hover:opacity-75;
+  @apply !color__bg-secondary !color__secondary hover:color__bg-secondary !px-6 !py-2 hover:opacity-75;
   @apply !leading-normal !tracking-wide;
 }
 .shopify-payment-button__button--branded {

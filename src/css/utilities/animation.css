@@ -3,11 +3,15 @@
 /* ======= */
 
 @layer utilities {
+  
   .animation-100 {
     @apply transition duration-100;
   }
   .animation-300 {
     @apply transition duration-300;
+  }
+  .animation-300--all {
+    @apply transition-all duration-300;
   }
   .animation-500 {
     @apply transition duration-500;
@@ -25,5 +29,154 @@
   .animation-5000--all {
     @apply transition-all;
     transition-duration: 5000ms;
+  }
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .animate-xscroll {
+    animation: xscroll 10s linear infinite;
+  }
+
+
+
+  @supports (animation-range: 10%) {
+    .scroll-blurin-2-20 {
+      opacity: 0.5;
+      filter: blur(4px);
+      animation: blurin linear both;
+      animation-timeline: view();
+      animation-range: 2% 20%;
+    }
+    .scroll-blurinzoom-2-20 {
+      opacity: 0.8;
+      filter: blur(8px);
+      transform: scale(1.05);
+      animation: blurinzoom linear both;
+      animation-timeline: view();
+      animation-range: 2% 20%;
+    }
+    .scroll-blurinandout-5-100 {
+      opacity: 0.5;
+      filter: blur(4px);
+      animation: blurinandout linear both;
+      animation-timeline: view();
+      animation-range: 5% 100%;
+    }
+    .scroll-fadein-2-20 {
+      opacity: 0;
+      animation: fadein linear both;
+      animation-timeline: view();
+      animation-range: 2% 20%;
+    }
+    .scroll-fadeinhalf-inline-2-20 {
+      opacity: 0.2;
+      animation: fadeinhalf linear both;
+      animation-timeline: view(inline);
+      animation-range: 2% 20%;
+    }
+    .scroll-fadeinandouthalf-dynamic {
+      opacity: 0.1;
+      animation: fadeinandouthalf linear both;
+      animation-timeline: view();
+      animation-range: var(--offset-1) var(--offset-2);
+    }
+  }
+  
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes xscroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 0rem));
+  }
+}
+
+@keyframes blurin {
+  from {
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes blurinzoom {
+  from {
+    opacity: 0.8;
+    filter: blur(8px);
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+@keyframes blurinandout {
+  0% {
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+  20% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  80% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeinhalf {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeinandouthalf {
+  0% {
+    opacity: 0.1;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
   }
 }

@@ -3,6 +3,7 @@
 /* ======= */
 
 @layer base {
+
   /* body */
   html,
   body,
@@ -17,42 +18,36 @@
     @apply type__body type--base;
   }
 
-  /* headlines */
+  /* headings */
   h1,
   .h1,
   h1 > * {
-    @apply type__heading-1;
-    @apply leading-none;
+    @apply type__heading type__heading-1;
   }
   h2,
   .h2,
   h2 > * {
-    @apply type__heading-2;
-    @apply leading-none;
+    @apply type__heading type__heading-2;
   }
   h3,
   .h3,
   h3 > * {
-    @apply type__heading-3;
-    @apply leading-none;
+    @apply type__heading type__heading-3;
   }
   h4,
   .h4,
   h4 > * {
-    @apply type__heading-4;
-    @apply leading-tight;
+    @apply type__heading type__heading-4;
   }
   h5,
   .h5,
   h5 > * {
-    @apply type__heading-5;
-    @apply leading-tight;
+    @apply type__heading type__heading-5;
   }
   h6,
   .h6,
   h6 > * {
-    @apply type__heading-6;
-    @apply leading-tight;
+    @apply type__heading type__heading-6;
   }
 
   /* nav */
@@ -74,47 +69,32 @@
   textarea,
   .form-input,
   .form-select {
-    @apply type__body;
+    @apply type__body text-[16px];
   }
   label {
-    @apply type__body type--small cursor-pointer;
+    @apply cursor-pointer type__body type--small;
   }
 
   /* links  */
   a {
-    @apply underline-offset-1 underline;
+    @apply underline animation-300;
 
     &:hover {
-      @apply underline opacity-75;
+      @apply underline md:opacity-75;
     }
 
-    &:focus {
-      @apply simple--focus;
+    &:focus-visible {
+      @apply border--focus;
     }
   }
 
   /* spacing */
-  blockquote,
-  dl,
-  dd,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  figure,
-  p,
-  ul,
-  ol,
-  pre {
-    @apply md:mb-4 mb-2;
+  .rte {
+    @apply space-y-4;
   }
-
   ul {
     @apply pl-4 list-disc;
   }
-
   ol {
     @apply pl-4 list-decimal;
   }

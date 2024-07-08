@@ -6,103 +6,97 @@
   /* ======= */
   /* body type */
   .type__body {
-    font-family: var(--type-font-body-family);
-    font-style: var(--type-font-body-style);
-    font-weight: var(--type-font-body-weight);
-    @apply underline-offset-2 leading-relaxed tracking-normal;
+    font-family: var(--type__font-body-family);
+    font-style: var(--type__font-body-style);
+    font-weight: var(--type__font-body-weight);
+    @apply leading-relaxed tracking-normal normal-case underline-offset-2;
   }
 
   /* ======= */
   /* header type */
   .type__heading {
-    font-family: var(--type-font-header-family);
-    font-style: var(--type-font-header-style);
-    font-weight: var(--type-font-header-weight);
-    @apply underline-offset-4 tracking-normal;
-    @apply leading-tight;
+    font-family: var(--type__font-header-family);
+    font-style: var(--type__font-header-style);
+    font-weight: var(--type__font-header-weight);
+    text-transform: var(--type__heading-capiliziation);
+    line-height: var(--type__font-heading-line);
+    @apply tracking-normal underline-offset-8;
   }
   .type__heading-1 {
-    font-family: var(--type-font-header-family);
-    font-style: var(--type-font-header-style);
-    font-weight: var(--type-font-header-weight);
-    @apply md:text-5xl underline-offset-4 text-4xl tracking-normal;
-    @apply leading-tight;
+    font-size: var(--type__font-900);
+    font-size: var(--type__font-heading-1);
   }
   .type__heading-2 {
-    font-family: var(--type-font-header-family);
-    font-style: var(--type-font-header-style);
-    font-weight: var(--type-font-header-weight);
-    @apply md:text-4xl underline-offset-4 text-3xl tracking-normal;
-    @apply leading-tight;
+    font-size: var(--type__font-800);
+    font-size: var(--type__font-heading-2);
   }
   .type__heading-3 {
-    font-family: var(--type-font-header-family);
-    font-style: var(--type-font-header-style);
-    font-weight: var(--type-font-header-weight);
-    @apply md:text-3xl underline-offset-4 text-2xl tracking-normal;
-    @apply leading-tight;
+    font-size: var(--type__font-700);
+    font-size: var(--type__font-heading-3);
   }
   .type__heading-4 {
-    font-family: var(--type-font-header-family);
-    font-style: var(--type-font-header-style);
-    font-weight: var(--type-font-header-weight);
-    @apply md:text-2xl underline-offset-4 text-xl tracking-normal;
-    @apply leading-tight;
+    font-size: var(--type__font-600);
+    font-size: var(--type__font-heading-4);
   }
   .type__heading-5 {
-    font-family: var(--type-font-header-family);
-    font-style: var(--type-font-header-style);
-    font-weight: var(--type-font-header-weight);
-    @apply md:text-xl underline-offset-4 text-lg tracking-normal;
-    @apply leading-tight;
+    font-size: var(--type__font-500);
+    font-size: var(--type__font-heading-5);
   }
   .type__heading-6 {
-    font-family: var(--type-font-header-family);
-    font-style: var(--type-font-header-style);
-    font-weight: var(--type-font-header-weight);
-    @apply md:text-lg underline-offset-4 text-base tracking-normal;
-    @apply leading-tight;
+    font-size: var(--type__font-400);
+    font-size: var(--type__font-heading-6);
   }
 
   /* ======= */
   /* navigation type */
   .type__nav {
-    font-family: var(--type-font-nav-family);
-    font-style: var(--type-font-nav-style);
-    font-weight: var(--type-font-nav-weight);
-    @apply underline-offset-2 leading-normal tracking-wide;
+    font-family: var(--type__font-nav-family);
+    font-style: var(--type__font-nav-style);
+    font-weight: var(--type__font-nav-weight);
+    text-transform: var(--type__nav-capiliziation);
+    @apply leading-normal tracking-normal underline-offset-2;
   }
 
   /* ======= */
   /* changing font size */
   .type--smaller {
-    @apply text-xs;
-    * {
-      @apply text-xs;
+    font-size: var(--type__font-100);
+    font-size: var(--type__font-smaller);
+    *, &::placeholder {
+      font-size: var(--type__font-100);
+      font-size: var(--type__font-smaller);
     }
   }
   .type--small {
-    @apply md:text-sm text-xs;
+    font-size: var(--type__font-200);
+    font-size: var(--type__font-small);
     *, &::placeholder {
-      @apply md:text-sm text-xs;
+      font-size: var(--type__font-200);
+      font-size: var(--type__font-small);
     }
   }
   .type--base {
-    @apply md:text-lg text-base;
+    font-size: var(--type__font-300);
+    font-size: var(--type__font-base);
     *, &::placeholder {
-      @apply md:text-lg text-base;
+      font-size: var(--type__font-300);
+      font-size: var(--type__font-base);
     }
   }
   .type--big {
-    @apply md:text-2xl text-xl;
+    font-size: var(--type__font-400);
+    font-size: var(--type__font-big);
     *, &::placeholder {
-      @apply md:text-2xl text-xl;
+      font-size: var(--type__font-400);
+      font-size: var(--type__font-big);
     }
   }
   .type--bigger {
-    @apply md:text-3xl text-2xl;
+    font-size: var(--type__font-500);
+    font-size: var(--type__font-bigger);
     *, &::placeholder {
-      @apply md:text-3xl text-2xl;
+      font-size: var(--type__font-500);
+      font-size: var(--type__font-bigger);
     }
   }
 }

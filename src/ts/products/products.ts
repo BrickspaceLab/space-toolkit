@@ -1,0 +1,510 @@
+export const products = {
+
+  // Update page when variant selection changes
+  handleProductFormChange (
+    enableUrlParameters: boolean,
+    preselectedVariantId: number
+  ) {
+    
+    // Find and set selectedVariant
+    let selectedVariant = this.setSelectedVariant();
+
+    // Set variant based on what's passed to this function
+    this.setOptionsFromPreselectedVariantId(preselectedVariantId);
+  
+    // Update display values based on selectedVariant
+    this.setDefaultsFromSelectedVariant(selectedVariant);
+
+    // Update all_options_selected if all options are selected
+    this.setallOptionsSelected();
+
+    // Update order of product gallery based on new selections
+    this.reorderProductGallery();
+
+    // Refresh pickup availability block
+    this.fetchAndRefreshPickup();
+
+    // Add variant id to URL parameters
+    if (enableUrlParameters) {
+      this.updateUrlParameters();
+    }
+    
+    // Update calculated price with quantity
+    this.calculated_price = this.quantity * this.current_variant_price;
+    
+    // Set options as unavailable
+    this.setUnavailableOptions();
+    
+  },
+
+  // Find options that are not available based on selected options
+  setUnavailableOptions() {
+
+    // Dynamically find matching variants excluding the option being considered
+    const findMatchingVariants = (excludeOptionIndex: number) => {
+      return this.product.variants.filter(variant => {
+
+        // Check if the variant is sold out
+        if (variant.available) {
+          return false;
+        }
+
+        // Loop through and find matching variants
+        for (let i = 1; i <= this.product.options.length; i++) {
+          if (i === excludeOptionIndex) continue;
+          const optionKey = `option${i}`;
+          if (this.handleize(variant[optionKey]) !== this.handleize(this[`option${i}`])) {
+            return false; 
+          }
+        }
+        return true;
+      });
+    };
+
+    // Loop through options
+    for (let i = 1; i <= this.product.options.length; i++) {
+      const matchingVariants = findMatchingVariants(i);
+      // Initialize a set to hold unique sold-out options for each option
+      const unavailableOptionsSet = new Set<string>();
+
+      // For each matching variant, add its options to the unavailableOptionsSet
+      matchingVariants.forEach(variant => {
+        const optionKey = `option${i}`;
+        unavailableOptionsSet.add(this.handleize(variant[optionKey]));
+      });
+
+      // Convert the set to an array and assign it to the corresponding global variable
+      this[`unavailable_options${i}`] = Array.from(unavailableOptionsSet);
+    }
+  },
+
+  // Set selectedVariant based on selected options
+  // This will find the selectedVariant based on selected options
+  setSelectedVariant () {
+    let optionsSize = this.product.options.length;
+    let selectedVariant;
+
+    switch (optionsSize) {
+      case 1:
+        selectedVariant = this.product.variants.find(variant => 
+          (!this.option1 || this.handleize(variant.option1) === this.option1)
+        );
+        break;
+      case 2:
+        selectedVariant = this.product.variants.find(variant => 
+          (!this.option1 || this.handleize(variant.option1) === this.option1) &&
+          (!this.option2 || this.handleize(variant.option2) === this.option2)
+        );
+        break;
+      case 3:
+        selectedVariant = this.product.variants.find(variant => 
+          (!this.option1 || this.handleize(variant.option1) === this.option1) &&
+          (!this.option2 || this.handleize(variant.option2) === this.option2) &&
+          (!this.option3 || this.handleize(variant.option3) === this.option3)
+        );
+        break;
+    }
+    return selectedVariant;
+  },
+
+  // Check if preselectedVariantId exists and set options
+  setOptionsFromPreselectedVariantId (
+    preselectedVariantId: number
+  ) {
+
+    let optionsSize = this.product.options.length;
+
+    if (preselectedVariantId) {
+      this.current_variant_id = preselectedVariantId;
+
+      // Find the matching variant in this.product.variants
+      const selectedVariant = this.product.variants.find((variant: { id: number }) => 
+        variant.id === preselectedVariantId
+      );
+
+      // If a matching variant is found, update options to match the selected variant
+      if (selectedVariant) {
+        switch (optionsSize) {
+          case 1:
+            this.option1 = this.handleize(selectedVariant.option1);
+            break;
+          case 2:
+            this.option1 = this.handleize(selectedVariant.option1);
+            this.option2 = this.handleize(selectedVariant.option2);
+            break;
+          case 3:
+            this.option1 = this.handleize(selectedVariant.option1);
+            this.option2 = this.handleize(selectedVariant.option2);
+            this.option3 = this.handleize(selectedVariant.option3);
+            break;
+        }
+      }
+      
+    }
+
+  },
+
+  // Update values based on selected variant
+  setDefaultsFromSelectedVariant (
+    selectedVariant: number
+  ) {
+    // Get product form container
+    let formContainer = this.$refs.formContainer;
+    
+    // If variant exists
+    if (selectedVariant) {
+
+      // Update basics
+      this.current_variant_available = selectedVariant.available;
+      this.current_variant_exists = true;
+      this.current_variant_id = selectedVariant.id;
+      this.current_variant_price = selectedVariant.price;
+      this.current_variant_compare_price = selectedVariant.compare_at_price;
+      this.current_variant_sku = selectedVariant.sku;
+      this.current_variant_title = selectedVariant.title;
+
+      // Find the matching variant in this.variants
+      const customSelectedVariant = this.variants[this.current_variant_id];
+
+      // If a matching variant is found, update current_variant_inventory_quantity
+      if (customSelectedVariant && customSelectedVariant.length > 0) {
+        this.current_variant_inventory_quantity = customSelectedVariant[0].inventory_quantity;
+      }
+
+      // Set featured image id if available
+      this.current_variant_featured_image_id = selectedVariant.featured_image ? selectedVariant.featured_image.id : null;
+      this.current_variant_featured_media_id = selectedVariant.featured_media ? selectedVariant.featured_media.id : null;
+
+      // Update unit price
+      if (selectedVariant.unit_price) {
+        this.current_variant_unit_price = selectedVariant.unit_price;
+        this.current_variant_unit_label = selectedVariant.unit_price_measurement.reference_unit;
+      }
+
+      // Set selling plan to true if allocations are available
+      this.current_variant_has_selling_plan = Array.isArray(selectedVariant.selling_plan_allocations) && selectedVariant.selling_plan_allocations.length > 0;
+      if (this.current_variant_has_selling_plan && this.enable_selling_plan_widget) {
+
+        // Update if variant requires plan
+        this.current_variant_requires_selling_plan = selectedVariant.requires_selling_plan;
+
+        // Set array of available groups
+        this.current_variant_selling_group_ids = selectedVariant.selling_plan_allocations.map(allocation => allocation.selling_plan_group_id);
+        this.current_variant_selling_group_ids.push('0');
+  
+        // Update current_variant_selling_group_id if it is not within current_variant_selling_group_ids          
+        this.current_variant_selling_group_id = this.current_variant_selling_group_ids.includes(this.current_variant_selling_group_id) ? this.current_variant_selling_group_id : this.current_variant_selling_group_ids[0];
+     
+        // Check if allocation exists with matching group and plan
+        let matchingAllocation = selectedVariant.selling_plan_allocations.find(
+          allocation => allocation.selling_plan_group_id === this.current_variant_selling_group_id && 
+          allocation.selling_plan_id === parseInt(this.current_variant_selling_plan_id)
+        );
+
+        // Set values to first plan if matching allocation not found
+        if (!matchingAllocation) {
+            const firstAllocationInGroup = selectedVariant.selling_plan_allocations.find(
+              allocation => allocation.selling_plan_group_id === this.current_variant_selling_group_id
+            );
+            if (firstAllocationInGroup) {
+              matchingAllocation = firstAllocationInGroup;
+              this.current_variant_selling_plan_id = firstAllocationInGroup.selling_plan_id;
+            }
+        } 
+
+        // Update prices to matchingAllocation
+        if (matchingAllocation) {
+          this.defaultSellingPlanPrice = matchingAllocation.per_delivery_price;
+          this.current_variant_price = matchingAllocation.per_delivery_price;
+          this.current_variant_compare_price = matchingAllocation.compare_at_price;
+          this.current_variant_unit_price = matchingAllocation.unit_price;
+        }
+
+        // Update defaults and summary from selling plan data
+        if (this.current_variant_selling_plan_id !== 0) {
+
+          // Update plan basics
+          let sellingPlanInput = formContainer.querySelector('.js-' + this.current_variant_selling_plan_id);
+          let sellingPlanData = JSON.parse(sellingPlanInput.getAttribute('data-selling-plan'));
+          this.current_variant_selling_plan_name = sellingPlanData.name.trim() + '.';
+          this.current_variant_selling_plan_description = sellingPlanData.description.trim(); 
+
+          // Update plan savings from price adjustment array
+          let savingSummary = '';
+          let savingHighlight = '';
+          sellingPlanData.price_adjustments.forEach((price_adjustment, index, array) => {
+            let savingValue = price_adjustment.value;
+            if (savingValue <= 0) return;
+            let savingsPercentLabel = '';
+            let savingsCount = price_adjustment.order_count || 'ongoing'; 
+            let punctuation = index === (array.length - 1) ? '. ' : '';
+            let sentenceStart = 'Save ';
+            switch (price_adjustment.value_type) {
+              case 'percentage':
+                savingsPercentLabel = '%';
+                break;
+              case 'price':
+                savingValue = Shopify.formatMoney(sellingPlanData.compare_at_price - savingValue);
+                sentenceStart = '';
+                savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
+                break;
+              case 'fixed_amount':
+                savingValue = Shopify.formatMoney(savingValue);
+                break;
+            }
+
+            savingSummary += `${sentenceStart}${savingValue}${savingsPercentLabel} for ${savingsCount} orders${punctuation}`;
+            if (index === 0) {
+              savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
+            }
+          });
+
+          this.current_variant_selling_plan_savings_description = savingSummary;
+          this.current_variant_selling_plan_savings_summary = savingHighlight;
+        }
+
+        // If no group selected reset plan selection
+        if (this.current_variant_selling_group_id == "0") {
+          this.current_variant_selling_plan_id = 0;
+        }
+
+      }
+
+    } 
+
+    // If variant does not exist
+    else {
+      this.current_variant_exists = false;
+    }
+
+  },
+
+  // Update all_options_selected if all options are selected
+  setallOptionsSelected () {
+    let optionsSize = this.product.options.length;
+    this.all_options_selected = 
+      (optionsSize === 1 && this.option1) ||
+      (optionsSize === 2 && this.option1 && this.option2) ||
+      (optionsSize === 3 && this.option1 && this.option2 && this.option3);
+  },
+
+  // Update order of product gallery images
+  reorderProductGallery () {
+    let formContainer = this.$refs.formContainer;
+    
+    // Check if enable_variant_images is enabled - this checks if store is using "Only show media associated with the selected variant"
+    // If so we scroll to start of slider
+    if (this.enable_variant_images) {
+      setTimeout(() => {
+        this.galleryScrollToStart(0);
+      }, 100);
+    } 
+
+    // If store is not using enable_variant_images
+    // Scroll to first featured image
+    else {
+      const featuredImage = formContainer.querySelectorAll('.js-' + this.current_variant_featured_media_id);
+      if (featuredImage.length > 0) {
+
+        // Slide to image
+        const slideIndex = featuredImage[0].getAttribute('data-slide');
+        if (slideIndex) {
+          this.galleryScrollToIndex(parseInt(slideIndex));
+        }
+
+        // Reorder grid
+        else {
+          const parentElement = featuredImage[0].parentNode;
+          if (parentElement) {
+            parentElement.insertBefore(featuredImage[0], parentElement.firstChild);
+          }
+        }
+        
+      }
+    }
+
+  },
+
+  // Add variant id to URL parameters
+  updateUrlParameters () {
+    if (this.all_options_selected) {
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.set('variant', this.current_variant_id);
+      const newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+      history.replaceState(null, '', newRelativePathQuery);
+    }
+  },
+
+  // Refresh pickup availability block
+  fetchAndRefreshPickup () {
+    const formContainer = this.$refs.formContainer;
+    const pickupContainer = formContainer.querySelector('.js-pickup');
+
+    if (pickupContainer) {
+      fetch(window.location + '&section_id=product__pickup')
+      .then( async (response) => {
+        const data = await response.text();
+        if (response.status === 200) {
+          const html = document.createElement('div'); html.innerHTML = data;
+          const htmlCleaned = html.querySelector('.js-pickup');
+          if(htmlCleaned){
+            pickupContainer.innerHTML = htmlCleaned.innerHTML;
+          } 
+        } 
+        else {
+          console.error('Error:', error);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+  },
+
+  // Scroll to next row of items
+  galleryScrollNext () {
+
+    // Unzoom the gallery
+    this.galleryResetZoom();
+    
+    let slider = this.$refs.slider;
+    let nextScrollPosition = slider.scrollLeft + slider.clientWidth;
+    if (nextScrollPosition >= slider.scrollWidth - 20) {
+      nextScrollPosition = 0;
+    }
+    slider.scrollTo({
+      top: 0,
+      left: nextScrollPosition,
+      behavior: 'smooth'
+    });
+  },
+
+  // Scroll to previous row of items
+  galleryScrollBack () {
+
+    // Unzoom the gallery
+    this.galleryResetZoom();
+    
+    // Set the next index
+    let slider = this.$refs.slider;
+    let previousScrollPosition = slider.scrollLeft - slider.clientWidth;
+    if (slider.scrollLeft <= 20) {
+      previousScrollPosition = slider.scrollWidth - slider.clientWidth;
+    }
+    slider.scrollTo({
+      top: 0,
+      left: previousScrollPosition,
+      behavior: 'smooth'
+    });
+  },
+
+  // Scroll to a specific gallery item
+  galleryScrollToIndex (
+    index: number
+  ) {
+
+    // Unzoom the gallery
+    this.galleryResetZoom();
+
+    // Get product form container
+    let formContainer = this.$refs.formContainer;
+
+    // Get sliders
+    let slider = formContainer.querySelector('.js-slider');
+    let thumbnailSlider = formContainer.querySelector('.js-thumbnailSlider');
+    let zoomSlider = formContainer.querySelector('.js-zoomSlider');
+
+    // Go to slide
+    let currentSlide = slider.querySelector('[data-slide="' + index +'"]');
+    if (currentSlide) {
+      let currentSlidePosition = currentSlide.offsetLeft;
+      slider.scrollTo({
+        top: 0,
+        left: currentSlidePosition,
+        behavior: 'smooth'
+      });
+    }
+
+    // Go to slide on thumbnail
+    if (thumbnailSlider){
+      let currentThumb = thumbnailSlider.querySelector('[data-slide="' + index +'"]');
+      if (currentThumb) {
+        let currentThumbPosition = currentThumb.offsetTop;
+        thumbnailSlider.scrollTo({
+          top: currentThumbPosition-200,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+    
+    // Go to slide on fullscreen gallery
+    setTimeout(() => {
+      if (zoomSlider){
+        let currentSlide = zoomSlider.querySelector('[data-slide="' + index +'"]');
+        let currentSlidePosition = currentSlide.offsetLeft;
+        if (currentSlide) {
+          zoomSlider.scrollTo({
+            top: 0,
+            left: currentSlidePosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 100);
+
+    // Update index
+    this.gallery_index = index;
+  },
+
+  // Scroll to start of gallery slider
+  galleryScrollToStart () {
+
+    // Unzoom the gallery
+    this.galleryResetZoom();
+    
+    // Get product form container
+    let formContainer = this.$refs.formContainer;
+
+    // Get sliders
+    let slider = formContainer.querySelector('.js-slider');
+    let thumbnailSlider = formContainer.querySelector('.js-thumbnailSlider');
+
+    // Go to slide
+    slider.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+
+    // Go to slide on thumbnail
+    if (thumbnailSlider){
+      thumbnailSlider.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Update index
+    this.gallery_index = 0;
+  },
+
+  // Unzoom all images
+  galleryResetZoom () {
+    for(let i = 0; i < this.gallery_size; i++) {
+      this['gallery_zoom_' + i] = false;
+    }
+  },
+
+  galleryZoomIn() {
+    this['gallery_zoom_'+this.gallery_index] = true;
+    this.zoomed = true;
+  },
+
+  galleryZoomOut() {
+    this['gallery_zoom_'+this.gallery_index] = false;
+    this.zoomed = false;
+  }
+
+};
