@@ -1,19 +1,33 @@
 <!-- snippets/styleguide__row.liquid -->
 {% comment %} 
-  Row class and property.
+  This snippet is used to create a row in the styleguide. It accepts two parameters to customize the row.
 
   Accepts: 
-    - class: string to set the class name
-    - properties: string to set the properties
+  - class: {string} Set the class name for the row.
+  - properties: {string} Set the properties for the row.
 
   Usage:
     {% render 'styleguide__row',
       class: '.type_heading',
-      properties:  'font-family: var(--type-font-header-family);' %}
+      properties:  'font-family: var(--type__font-header-family);' 
+    %}
+
+  Recommendations:
+    - Use this snippet to create a row in the styleguide with custom class and properties.
 {% endcomment %}
 
-<div class="border--t-width color__border-divider-1 color__bg-body flex py-4">
-  <code class="grow pr-4 whitespace-pre-line"
-    style="width:min-content;word-break: break-all;">{{ class | strip }}</code>
-  <code class="w-3/5 whitespace-pre-line">{{ properties | strip }}</code>
+<div 
+  class="border--t-width color__border-divider-1 color__bg-body flex py-2"
+  style="
+    background: #fff;
+  ">
+  <code 
+    class="grow pr-4 whitespace-pre-line"
+    style="width:min-content;word-break: break-all;">
+    {{ class | strip }}
+  </code>
+  <code 
+    class="w-3/5 whitespace-pre-line">
+    {{ properties | strip }}
+  </code>
 </div>

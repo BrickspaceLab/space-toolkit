@@ -1,12 +1,12 @@
 <!-- snippets/styleguide__section.liquid -->
 {% comment %} 
-  Row of styleguide components.
+  This snippet is used to create a section in the styleguide. It accepts several parameters to customize the section.
 
   Accepts: 
-    - label: string to set the label of the section
-    - short_text: boolean to set if only one accordion can be open at a time
-    - table_rows: integer to set the index of the accordion if used with 'once'
-    - content: string of classes to add to the container
+  - label: {string} The label of the section.
+  - short_text: {string} A short description of the section.
+  - table_rows: {string} The rows of the table in the section.
+  - content: {string} The content of the section.
 
   Usage:
     {% render 'styleguide__section',
@@ -16,33 +16,44 @@
       content: ' ' %}
 {% endcomment %}
 
-<p class="border--b-width color__border-divider-1 pb-1 m-0" id="{{ label | handle }}">
-  <span class="opacity-50">{{ label }}</span>
+<p 
+  id="{{ label | handle }}"
+  class="border--b-width color__border-divider-1 pb-1 m-0">
+  <span 
+    class="opacity-50">{{ label }}
+  </span>
 </p>
-<div class="flex flex-wrap pb-40">
-  <div class="md:w-2/5 md:pr-4 md:sticky top-0 w-full pt-6">
+
+<div 
+  class="flex flex-wrap pb-40">
+
+  <div 
+    class="md:w-2/5 md:pr-4 md:sticky top-0 w-full pt-6">
     {% if short_text %}
       <div class="type--small">
         {{ short_text }}
       </div>
     {% endif %}
     {% if table_rows %}
-      <div class="type--small max-h-56 w-full mt-4 overflow-scroll">
+      <div 
+        class="type--small max-h-56 w-full mt-4 overflow-scroll">
         {{ table_rows }}
-        <div class="absolute inset-0"
+        <div 
+          class="absolute inset-0 border--b-width color__border-divider-1"
           style="
-          background-image: 
-            linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255 255 255));
-          pointer-events: none;
-          position: sticky;
-          inset: 0;
-          height: 128px;
-          width: 100%;">
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255 255 255));
+            pointer-events: none;
+            position: sticky;
+            inset: 0;
+            height: 200px;
+            width: 100%;
+          ">
         </div>
       </div>
     {% endif %}
   </div>
-  <div class="md:w-3/5 w-full pt-6" class='shj-lang-html'>
-    {{ content }}
-  </div>
+
+  <div 
+    class="md:w-3/5 w-full pt-6">{{ content }}</div>
+
 </div>

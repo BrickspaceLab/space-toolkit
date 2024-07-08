@@ -1,32 +1,35 @@
 <!-- snippets/styleguide__example.liquid -->
 {% comment %} 
-  Row of styleguide components.
+  This snippet is used to create a row of styleguide components. It accepts several parameters to customize the row.
 
   Accepts: 
-    - name: boolean to show accordion open by, default false
-    - content: string to display as an example
-    - sample: content to display in code block
+  - name: {boolean} Set to show accordion open by default, false if not specified.
+  - content: {string} Set the content to display as an example.
+  - sample: {string} Set the content to display in the code block.
 
   Usage:
     {% render 'styleguide__example',
       name: 'Heading 1',
-      content: ' ',
-      sample: ' ' %}
+      content: 'Example content',
+      sample: 'Example code' 
+    %}
 {% endcomment %}
 
 <div class="mb-8">
+
   <p 
     class="mb-2 opacity-50">{{ name }}
   </p>
   <div 
-    class="color__bg-overlay-1 w-full p-4">
+    class="color__bg-shade-1 w-full p-4">
     {{ content }}
   </div>
+
   <div 
     class="w-full"
     x-data="{ code: false }">
     <div 
-      class="color__bg-overlay-1 border--t-width color__border-divider-1 w-full px-4 py-2"
+      class="color__bg-overlay-2 border--t-width color__border-divider-1 w-full px-4 py-2"
       x-show="!code">
       <button 
         class="type--smaller" @click="code = ! code">
@@ -45,4 +48,5 @@
       x-show="code"
       x-cloak>{{ sample | escape| strip | replace: '          ', '' }}</code>
   </div>
+
 </div>
