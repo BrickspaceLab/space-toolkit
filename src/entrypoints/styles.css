@@ -146,6 +146,13 @@ video::-webkit-media-controls-panel {
   content: "\00a0";
 }
 
+/* mapbox styling */
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  background-color: transparent !important;
+  padding: 5px !important;
+  opacity: 0.5 !important;
+}
+
 /* - add spacing to challenge captcha page */
 /* - add spacing to shopify legal pages */
 .shopify-challenge__container,

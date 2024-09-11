@@ -4,9 +4,9 @@ Below is an example of this
 
 ```
 <!-- snippets/component__content-item.liquid -->
-{% comment %} 
+{% comment %}
   Thumbnail for simple content in a product or collection grid.
-  
+
   Accepts:
   - heading: {string} Set content for heading text.
   - content: {string} Set content for body text.
@@ -32,10 +32,10 @@ Below is an example of this
   - layout_row_span_mobile: {string} Class string to set row span on mobile.
   - layout_y_alignment: {string} Class string to set vertical aligment.
   - layout_x_alignment: {string} Class string to set horizontal aligment (left, center, right).
-  
+
   Globals:
   - layout_horizontal: {string} Class string to set horizontal margin.
-  
+
   Usage:
     {% render 'component__content-item',
       heading: block.settings.heading,
@@ -43,7 +43,7 @@ Below is an example of this
       button_label: block.settings.button_label,
       url: block.settings.url,
       image: block.settings.image,
-      image_background: block.settings.image_background,
+      show_image_as_background: block.settings.show_image_as_background,
       video: block.settings.video,
       enable_autoplay: block.settings.enable_autoplay,
       enable_mute_toggle: block.settings.enable_mute_toggle,
@@ -61,9 +61,10 @@ Below is an example of this
       layout_row_span_desktop: 'md:row-span-2',
       layout_row_span_mobile: 'row-span-2',
       layout_y_alignment: block.settings.layout_y_alignment,
-      layout_x_alignment: block.settings.layout_x_alignment
+      layout_x_alignment: block.settings.layout_x_alignment,
+      text_position: block.settings.text_position
     %}
-  
+
   Recommendations:
   - Use this snippet to display promotional content.
 {% endcomment %}

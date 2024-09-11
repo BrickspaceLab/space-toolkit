@@ -109,16 +109,24 @@ export const utils = {
   },
 
 
-  // Match to liquid handle filter
-  handleize (
+   // Match to liquid handle filter
+   handleize (
     str: string
-  ) {
+  ) {    
     return str
       .toLowerCase()
-      .replace(/'/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-+|-+$/g, '');
+      .replace(/['"]+/g, '') // Remove prime symbols and quotation marks
+      .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric characters with a dash
+      .replace(/^-+|-+$/g, '') // Remove leading/trailing dashes
+      .replace(/-+/g, '-'); // Replace multiple consecutive dashes with a single dash
+  },
+
+  // Encode to base64
+  // This should match liquid values like {{ value | replace: ' ', '+' | base64_encode }}
+  encodeToBase64 (
+    str: string
+  ) {
+    return btoa(unescape(encodeURIComponent(str)));
   },
 
   // Add classes to images after loading
@@ -224,12 +232,41 @@ export const utils = {
   openSearch () {
     this.search_drawer = true; 
     this.has_overlay = true; 
+
+    // Unfocus all input fields
+    const inputFields = document.querySelectorAll('input');
+    inputFields.forEach((input) => {
+      (input as HTMLInputElement).blur();
+    });
+
+    // Focus search field and open keyboard
     setTimeout(() => {
       let searchField = document.querySelector('#search-field') as HTMLInputElement;
       if (searchField) {
         searchField.focus();
+        
+        // Trigger a touch event to open the keyboard on iOS
+        const touchEvent = new TouchEvent('touchstart', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        searchField.dispatchEvent(touchEvent);
+        
+        // Set the cursor position to the end of the input value
+        searchField.setSelectionRange(searchField.value.length, searchField.value.length);
+
       }
     }, 400);
+
+    // Scroll to the search input
+    setTimeout(() => {
+      let searchField = document.querySelector('#search-field') as HTMLInputElement;
+      if (searchField) {
+        searchField.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    }, 100);
+                   
   },
 
   // Toggle menu
@@ -270,7 +307,9 @@ export const utils = {
       }, 400);
     }
     else {
-      this.has_overlay = false;
+      if (!this.menu_drawer) {
+        this.has_overlay = false;
+      }
     }
   },
 
@@ -290,7 +329,9 @@ export const utils = {
   // Close menu drawer
   closeSearch () {
     this.search_drawer = false; 
-    this.has_overlay = false;
+    if (!this.menu_drawer) {
+      this.has_overlay = false;
+    }
   },
   
 };

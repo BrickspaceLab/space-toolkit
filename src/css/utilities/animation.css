@@ -69,7 +69,8 @@
       animation-range: 2% 20%;
     }
     .scroll-fadeinhalf-inline-2-20 {
-      opacity: 0.2;
+      opacity: 0.5;
+      filter: blur(8px);
       animation: fadeinhalf linear both;
       animation-timeline: view(inline);
       animation-range: 2% 20%;
@@ -159,10 +160,12 @@
 
 @keyframes fadeinhalf {
   from {
-    opacity: 0.2;
+    opacity: 0.5;
+    filter: blur(8px);
   }
   to {
     opacity: 1;
+    filter: blur(0px);
   }
 }
 
