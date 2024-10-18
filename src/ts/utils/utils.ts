@@ -158,7 +158,7 @@ export const utils = {
           }
         }
 
-      }, 300);
+      }, 50);
 
       // Set a fallback for adding the classes
       setTimeout(() => {

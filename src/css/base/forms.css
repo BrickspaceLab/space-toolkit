@@ -20,12 +20,12 @@
   select,
   select[multiple],
   textarea {
-    @apply animation-300 border__input min-h-[44px] w-full appearance-none py-1.5;
+    @apply animation-300 border__input min-h-[44px] w-full appearance-none py-1.5 color__border-input color__bg-input border--input-padding;
     &:hover {
       @apply border__input--hover;
     }
     &:focus-visible {
-      @apply border__input--focus color__bg-body;
+      @apply border__input--focus;
     }
   }
 
@@ -64,7 +64,7 @@
 
   /* checkboxes and radios */
   input[type="checkbox"] {
-    @apply cursor-pointer color__link border__input;
+    @apply cursor-pointer color__link border__input color__border-input;
     &:checked {
       @apply bg-current;
     }
@@ -76,7 +76,7 @@
     }
   }
   input[type="radio"] {
-    @apply rounded-full cursor-pointer color__link border__input;
+    @apply rounded-full cursor-pointer color__link border__input color__border-input;
     &:checked {
       @apply bg-current;
     }

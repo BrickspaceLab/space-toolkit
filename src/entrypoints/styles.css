@@ -70,22 +70,6 @@ input[type=range]::-moz-range-thumb {
   border-top: 2px solid;
   border-color: var(--color__text-light) !important;
 }
-.anglethrough {
-  @apply relative;
-}
-.anglethrough:before {
-  @apply absolute left-0 right-0 opacity-25;
-  content: "";
-  top: 50%;
-  border-top: 2px solid;
-  border-color: var(--color__text-light) !important;
-
-  -webkit-transform: rotate(-30deg);
-  -moz-transform: rotate(-30deg);
-  -ms-transform: rotate(-30deg);
-  -o-transform: rotate(-30deg);
-  transform: rotate(-30deg);
-}
 
 /* - reset line-height */
 .leading-reset {
@@ -178,7 +162,6 @@ video::-webkit-media-controls-panel {
 .shopify-payment-button__more-options {
   @apply !border__button--radius overflow-hidden;
 }
-
 .shopify-payment-button__button--unbranded {
   @apply !color__bg-secondary !color__secondary hover:color__bg-secondary !px-6 !py-2 hover:opacity-75;
   @apply !leading-normal !tracking-wide;

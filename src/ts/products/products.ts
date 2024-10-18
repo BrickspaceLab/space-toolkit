@@ -279,42 +279,46 @@ export const products = {
 
           // Update plan basics
           let sellingPlanInput = formContainer.querySelector('.js-' + this.current_variant_selling_plan_id);
-          let sellingPlanData = JSON.parse(sellingPlanInput.getAttribute('data-selling-plan'));
-          this.current_variant_selling_plan_name = sellingPlanData.name.trim() + '.';
-          this.current_variant_selling_plan_description = sellingPlanData.description.trim();
 
-          // Update plan savings from price adjustment array
-          let savingSummary = '';
-          let savingHighlight = '';
-          sellingPlanData.price_adjustments.forEach((price_adjustment, index, array) => {
-            let savingValue = price_adjustment.value;
-            if (savingValue <= 0) return;
-            let savingsPercentLabel = '';
-            let savingsCount = price_adjustment.order_count || 'ongoing';
-            let punctuation = index === (array.length - 1) ? '. ' : '';
-            let sentenceStart = 'Save ';
-            switch (price_adjustment.value_type) {
-              case 'percentage':
-                savingsPercentLabel = '%';
-                break;
-              case 'price':
-                savingValue = Shopify.formatMoney(sellingPlanData.compare_at_price - savingValue);
-                sentenceStart = '';
+          // INFO: Using third-party widget won't update price display on page
+          if(sellingPlanInput) {
+            let sellingPlanData = JSON.parse(sellingPlanInput.getAttribute('data-selling-plan'));
+            this.current_variant_selling_plan_name = sellingPlanData.name.trim() + '.';
+            this.current_variant_selling_plan_description = sellingPlanData.description.trim();
+
+            // Update plan savings from price adjustment array
+            let savingSummary = '';
+            let savingHighlight = '';
+            sellingPlanData.price_adjustments.forEach((price_adjustment, index, array) => {
+              let savingValue = price_adjustment.value;
+              if (savingValue <= 0) return;
+              let savingsPercentLabel = '';
+              let savingsCount = price_adjustment.order_count || 'ongoing';
+              let punctuation = index === (array.length - 1) ? '. ' : '';
+              let sentenceStart = 'Save ';
+              switch (price_adjustment.value_type) {
+                case 'percentage':
+                  savingsPercentLabel = '%';
+                  break;
+                case 'price':
+                  savingValue = Shopify.formatMoney(sellingPlanData.compare_at_price - savingValue);
+                  sentenceStart = '';
+                  savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
+                  break;
+                case 'fixed_amount':
+                  savingValue = Shopify.formatMoney(savingValue);
+                  break;
+              }
+
+              savingSummary += `${sentenceStart}${savingValue}${savingsPercentLabel} for ${savingsCount} orders${punctuation}`;
+              if (index === 0) {
                 savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
-                break;
-              case 'fixed_amount':
-                savingValue = Shopify.formatMoney(savingValue);
-                break;
-            }
+              }
+            });
 
-            savingSummary += `${sentenceStart}${savingValue}${savingsPercentLabel} for ${savingsCount} orders${punctuation}`;
-            if (index === 0) {
-              savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
-            }
-          });
-
-          this.current_variant_selling_plan_savings_description = savingSummary;
-          this.current_variant_selling_plan_savings_summary = savingHighlight;
+            this.current_variant_selling_plan_savings_description = savingSummary;
+            this.current_variant_selling_plan_savings_summary = savingHighlight;
+          }
         }
 
         // If no group selected reset plan selection
@@ -362,8 +366,9 @@ export const products = {
     // Scroll to first featured image
     else {
       const featuredImage = formContainer.querySelectorAll('.js-' + this.current_variant_featured_media_id);
-      if (featuredImage.length > 0) {
+      const featuredImageGrid = formContainer.querySelectorAll('.js-' + this.current_variant_featured_media_id + '-grid');
 
+      if (featuredImage.length > 0) {
         // Slide to image
         const slideIndex = featuredImage[0].getAttribute('data-slide');
         if (slideIndex) {
@@ -371,13 +376,12 @@ export const products = {
         }
 
         // Reorder grid
-        else {
-          const parentElement = featuredImage[0].parentNode;
+        if(featuredImageGrid.length > 0) {
+          const parentElement = featuredImageGrid[0].parentNode;
           if (parentElement) {
-            parentElement.insertBefore(featuredImage[0], parentElement.firstChild);
+            parentElement.insertBefore(featuredImageGrid[0], parentElement.firstChild);
           }
         }
-
       }
     }
 
@@ -432,43 +436,43 @@ export const products = {
 
   },
 
-  // Scroll to next row of items
-  galleryScrollNext() {
+  // Scroll to next gallery item
+  galleryScrollNext () {
 
     // Unzoom the gallery
     this.galleryResetZoom();
-
-    let slider = this.$refs.slider;
-    let nextScrollPosition = slider.scrollLeft + slider.clientWidth;
-    if (nextScrollPosition >= slider.scrollWidth - 20) {
-      nextScrollPosition = 0;
-    }
-    slider.scrollTo({
-      top: 0,
-      left: nextScrollPosition,
-      behavior: 'smooth'
-    });
-  },
-
-  // Scroll to previous row of items
-  galleryScrollBack() {
-
-    // Unzoom the gallery
-    this.galleryResetZoom();
-
+    
     // Set the next index
-    let slider = this.$refs.slider;
-    let previousScrollPosition = slider.scrollLeft - slider.clientWidth;
-    if (slider.scrollLeft <= 20) {
-      previousScrollPosition = slider.scrollWidth - slider.clientWidth;
+    this.gallery_next = this.gallery_index + 1;
+    if (this.gallery_next > this.gallery_size){
+      this.gallery_next = 0;
     }
-    slider.scrollTo({
-      top: 0,
-      left: previousScrollPosition,
-      behavior: 'smooth'
-    });
+
+    // Go to new slide
+    this.galleryScrollToIndex(this.gallery_next);
+
   },
 
+  // Scroll to previous gallery item
+  galleryScrollBack () {
+
+    // Unzoom the gallery
+    this.galleryResetZoom();
+    
+    // Set the next index
+    if (!this.gallery_next) {
+      this.gallery_next = 0;
+    }
+    this.gallery_next = this.gallery_next - 1;
+    if (this.gallery_next < 0){
+      this.gallery_next = this.gallery_size;
+    }
+
+    // Go to new slide
+    this.galleryScrollToIndex(this.gallery_next);
+
+  },
+  
   // Scroll to a specific gallery item
   galleryScrollToIndex(
     index: number
@@ -511,13 +515,13 @@ export const products = {
 
     // Go to slide on fullscreen gallery
     setTimeout(() => {
-      if (zoomSlider) {
-        let currentSlide = zoomSlider.querySelector('[data-slide="' + index + '"]');
-        let currentSlidePosition = currentSlide.offsetLeft;
+      if (zoomSlider){
+        let currentSlide = zoomSlider.querySelector('[data-slide="' + index +'"]');
+        let currentSlidePosition = currentSlide.offsetTop;
         if (currentSlide) {
           zoomSlider.scrollTo({
-            top: 0,
-            left: currentSlidePosition,
+            top: currentSlidePosition,
+            left: 0,
             behavior: 'smooth'
           });
         }
@@ -525,7 +529,7 @@ export const products = {
     }, 100);
 
     // Update index
-    this.gallery_index = index;
+    // this.gallery_index = index;
   },
 
   // Scroll to start of gallery slider
