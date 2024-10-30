@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/4685863/225655352-0d8b3cd2-4b27-4565-9f60-e240a1285349.jpg" width="64" style="border-radius:4px;">
+<img src="https://avatars.githubusercontent.com/u/35352591?s=200&v=4" width="64" style="border-radius:4px;">
 
 # Space
 
@@ -28,7 +28,8 @@ Space has a number of useful features that make it a developer friendly theme to
 
 ### Requirements
 
-- Space installed on your Shopify account
+Make sure all dependencies have been installed before moving on:
+
 - [NPM](https://www.npmjs.com/package/npm) (6.0.0 or higher)
 - [Node.js](https://nodejs.org/en/download/) (16.0.0 or higher)
 - [Shopify CLI](https://shopify.dev/docs/themes/tools/cli/install) (3.0.0 or higher)
@@ -37,11 +38,36 @@ Space has a number of useful features that make it a developer friendly theme to
 
 1. Purchase Space from the Shopify theme store and create a duplicate
 2. Clone this repo
-3. Replace `space-theme-dev.myshopify.com` in `package.json` with your Shopify store URL
+3. Replace `brickspacetestingstore.myshopify.com` in `package.json` with your Shopify store URL
 4. Run `npm install` to install dependencies
 5. Run `npm run pull` to download the your theme (be sure to select the theme that has Space installed)
 6. Run `npm run dev` to create a development preview
 7. Run `npm run build` to build production ready assets
+
+### Development enviroment
+
+Consider using recommened development envitorment for a consistent experience.
+
+- Use [Cursor](https://www.cursor.com/)
+- Install extensions from `.vscode/extensions.json`
+- Install recommended Cursor settings from `.vscode/settings.json`
+  - Open cursor settings by clicking `CMD + ,` then clicking Open Settings (JSON)
+  - Paste in the settings from `.vscode/settings.json`
+
+### Automatic code formatting
+
+Automatic code formatting should be enabled by default if you follow above steps.
+
+1. Install [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+2. Ensure `editor.formatOnSave` is enabled in Cursor settings. Your `settings.json` should include the following:
+
+```
+"[liquid]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+},
+ "editor.formatOnSave": true
+```
 
 ### Command refferance
 
@@ -80,7 +106,7 @@ Section files follow a similar naming convention.
 ### Using Alpine.js
 
 - For debugging there are [Chrome](https://chrome.google.com/webstore/detail/alpinejs-devtools/fopaemeedckajflibkpifppcankfmbhk) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/alpinejs-devtools/?src=recommended) browser extensions available.
-- For an extensive list of Alpine resources take a look at this [repo](https://github.com/alpine-collective/awesome). 
+- For an extensive list of Alpine resources take a look at this [repo](https://github.com/alpine-collective/awesome).
 
 ---
 
@@ -92,4 +118,3 @@ Section files follow a similar naming convention.
 - [Shopify Vite Plugin](https://shopify-vite.barrelny.com/)
 - [Alpine.js](https://alpinejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
-
