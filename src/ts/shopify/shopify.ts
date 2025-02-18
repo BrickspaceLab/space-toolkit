@@ -32,12 +32,12 @@ function formatMoney (
   }
 
   // Function to return the default value if the option is undefined
-  function defaultOption(opt, def) {
+  function defaultOption(opt: any, def: any) {
      return (typeof opt == 'undefined' ? def : opt);
   }
 
   // Function to format the number with delimiters
-  function formatWithDelimiters(number, precision, thousands, decimal) {
+  function formatWithDelimiters(number: any, precision?: any, thousands?: any, decimal?: any) {
 
     // Set default values for precision, thousands, and decimal if they are not provided
     precision = defaultOption(precision, 2);
@@ -59,7 +59,7 @@ function formatMoney (
   }
 
   // Determine the format string and format the value accordingly
-  switch(formatString.match(placeholderRegex)[1]) {
+  switch(formatString.match(placeholderRegex)?.[1] ?? 'amount') {
     case 'amount':
       value = formatWithDelimiters(cents, 2);
       break;

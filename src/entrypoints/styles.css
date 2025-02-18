@@ -50,41 +50,27 @@ html {
 }
 
 /* - fix for firefox range slider */
-input[type=range]::-moz-range-thumb {
-	pointer-events: all;
+input[type="range"]::-moz-range-thumb {
+  pointer-events: all;
   cursor: pointer;
-	-moz-appearance: none;
-	width: 32px;
-	height: 24px;
-/* @apply w-6 h-6 appearance-none pointer-events-auto; */
+  -moz-appearance: none;
+  width: 32px;
+  height: 24px;
+  /* @apply w-6 h-6 appearance-none pointer-events-auto; */
 }
 
 /* - strikethrough */
-.straightthrough {
-  @apply relative;
-}
-.straightthrough:before {
-  @apply absolute left-0 right-0 opacity-25;
-  content: "";
-  top: 50%;
-  border-top: 2px solid;
-  border-color: var(--color__text-light) !important;
-}
 .anglethrough {
   @apply relative;
 }
 .anglethrough:before {
-  @apply absolute left-0 right-0 opacity-25;
+  @apply absolute opacity-25;
   content: "";
-  top: 50%;
-  border-top: 2px solid;
-  border-color: var(--color__text-light) !important;
-
-  -webkit-transform: rotate(-30deg);
-  -moz-transform: rotate(-30deg);
-  -ms-transform: rotate(-30deg);
-  -o-transform: rotate(-30deg);
-  transform: rotate(-30deg);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right bottom, transparent calc(50% - 2px), var(--color__text-light), transparent calc(50% + 2px));
 }
 
 /* - reset line-height */
@@ -95,7 +81,16 @@ input[type=range]::-moz-range-thumb {
   }
 }
 
-/* - hide scrollbar */
+/* video */
+video::-webkit-media-controls-enclosure {
+  width: 100%;
+  overflow: hidden;
+}
+video::-webkit-media-controls-panel {
+  padding: var(--sizes__gap-width);
+}
+
+/* - scrollbars */
 .hidescrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -103,47 +98,60 @@ input[type=range]::-moz-range-thumb {
 .hidescrollbar::-webkit-scrollbar {
   display: none;
 }
-
-/* video */
-video::-webkit-media-controls-enclosure {
-  width:100%;
-  overflow: hidden;
-
+.showscrollbar::-webkit-scrollbar {
+  @apply h-1;
 }
-video::-webkit-media-controls-panel {
-  padding: var(--sizes__gap-width);
+.showscrollbar::-webkit-scrollbar-track {
+  @apply color__bg-shade-1;
 }
-
-/* - custom scrollbar */
-.customscrollbar {
-  scrollbar-width: thin;
+.showscrollbar::-webkit-scrollbar-thumb {
+  @apply color__bg-shade-2 cursor-ew-resize;
 }
-.customscrollbar::-webkit-scrollbar-button,
-.customscrollbar::-webkit-scrollbar-corner,
-.customscrollbar::-webkit-resizer {
-  @apply hidden;
+.showscrollbar::-ms-scrollbar {
+  @apply h-1;
 }
-.customscrollbar::-webkit-scrollbar {
-  @apply w-1 h-1 px-4 m-auto opacity-50;
+.showscrollbar::-ms-track {
+  @apply color__bg-shade-1;
 }
-.customscrollbar::-webkit-scrollbar-track {
-  @apply color__bg-overlay-2 border__button--radius;
-}
-.customscrollbar::-webkit-scrollbar-thumb {
-  @apply color__bg-secondary border__button--radius;
-}
-.customscrollbar::-webkit-scrollbar-thumb:hover {
-  @apply opacity-100;
+.showscrollbar::-ms-thumb {
+  @apply color__bg-shade-2 cursor-ew-resize;
 }
 
 /* - flag icons */
 .fi {
-  @apply inline-block pr-2 bg-center bg-no-repeat bg-contain rounded-full border--width color__border-divider-2;
+  @apply border--width color__border-divider-2 inline-block rounded-full bg-contain bg-center bg-no-repeat pr-2;
   width: 1.33333333em;
   line-height: 1em;
 }
 .fi:before {
   content: "\00a0";
+}
+
+/* - tooltip */
+/* - add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  @apply z-10;
+}
+/* - hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  @apply invisible opacity-0 animation-300;
+}
+/* - position tooltip above the element */
+[data-tooltip]:before {
+  @apply absolute top-auto left-auto right-auto bottom-auto type--smaller color__bg-shade-1 px-2 py-1 flex items-center justify-center border__button--radius border-0 backdrop-blur-sm;
+  content: attr(data-tooltip);
+}
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  @apply visible opacity-100;
+}
+
+/* mapbox styling */
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  background-color: transparent !important;
+  padding: 5px !important;
+  opacity: 0.5 !important;
 }
 
 /* - add spacing to challenge captcha page */
@@ -171,7 +179,6 @@ video::-webkit-media-controls-panel {
 .shopify-payment-button__more-options {
   @apply !border__button--radius overflow-hidden;
 }
-
 .shopify-payment-button__button--unbranded {
   @apply !color__bg-secondary !color__secondary hover:color__bg-secondary !px-6 !py-2 hover:opacity-75;
   @apply !leading-normal !tracking-wide;
@@ -188,4 +195,14 @@ video::-webkit-media-controls-panel {
 }
 .shopify-payment-button__more-options {
   @apply !color__bg-overlay-1 px-6 py-2;
+}
+
+/* - hide buttons on number inputs  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }

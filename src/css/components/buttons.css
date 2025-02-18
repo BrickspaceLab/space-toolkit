@@ -63,6 +63,12 @@
     &--plain {
       @apply color__button-plain;
     }
+    &--shade {
+      @apply color__button-shade;
+    }
+    &--unshade {
+      @apply color__button-unshade backdrop-blur-sm;
+    }
     &--diff{
       background-color: #fff;
       border-color: #fff;

@@ -16,6 +16,7 @@ export interface AppInterface {
   prev_scroll_pos: number;
   show_scroll_up: boolean;
   has_overlay: boolean;
+  enable_body_scrolling: boolean;
   click_audio: string;
   success_audio: string;
   enable_audio: boolean;
@@ -31,10 +32,12 @@ export interface AppInterface {
   quick_edit_handle: string;
   error_alert: boolean;
   error_message: string;
+  pagination_pages_loaded: number;
   pagination_loading: boolean;
   pagination_total_pages: number;
   pagination_current_page: number;
   pagination_section: string;
+  product_loading: boolean;
   recent_products: RecentProduct[];
   discount_text: string;
   discount_code: string;
@@ -97,9 +100,8 @@ export interface ShopifyInterface {
   money_format: string;
   PaymentButton: {};
   SignInWithShop: {};
-  formatMoney(cents: string | number, currency?: string): string;
+  formatMoney(cents: string | number, forceEnableCurrency?: boolean): string;
 }
-
 
 // Collection interfaces
 interface Collection {
@@ -186,7 +188,6 @@ interface RecentProduct {
   }[];
 }
 
-
 // Product interfaces
 export interface Product {
   id: number;
@@ -233,14 +234,14 @@ export interface Product {
   line_level_discount_allocations: {
     amount: number;
     discount_application: {
-        target_selection: string,
-        target_type: string,
-        title: string,
-        total_allocated_amount: number,
-        type: string,
-        value: number,
-        value_type: string
-    }
+      target_selection: string;
+      target_type: string;
+      title: string;
+      total_allocated_amount: number;
+      type: string;
+      value: number;
+      value_type: string;
+    };
   }[];
   line_level_total_discount: number;
 }
@@ -315,11 +316,11 @@ interface SellingPlanAllocation {
   selling_plan_group_id: string;
 }
 
-
 // Cart interfaces
 export interface CartItem {
   variantId: number;
   quantity: number;
+  product_id: string;
 }
 
 interface Cart {
@@ -345,17 +346,20 @@ interface Cart {
   }[];
 }
 
-
 // Search interfaces
 export interface Params {
+  [key: string]: any;
   author: string;
   body: string;
   product_type: string;
   tag: string;
   title: string;
-  variants_barcode: string;
-  variants_sku: string;
-  variants_title: string;
+  variants: {
+    [key: string]: string;
+    barcode: string,
+    sku: string,
+    title: string
+  },
   vendor: string;
 }
 
@@ -364,7 +368,6 @@ interface SearchQuery {
   text: string;
   url: string;
 }
-
 
 // Page and blog interfaces
 interface Page {

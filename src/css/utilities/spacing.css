@@ -18,6 +18,21 @@
   .padding--l-gap {
     padding-left: var(--sizes__gap-width);
   }
+  .padding--element {
+    padding: var(--sizes__border-element-width);
+  }
+  .padding--t-element {
+    padding-top: var(--sizes__border-element-width);
+  }
+  .padding--r-element {
+    padding-right: var(--sizes__border-element-width);
+  }
+  .padding--b-element {
+    padding-bottom: var(--sizes__border-element-width);
+  }
+  .padding--l-element {
+    padding-left: var(--sizes__border-element-width);
+  }
 
   .margin--gap {
     margin: var(--sizes__gap-width);

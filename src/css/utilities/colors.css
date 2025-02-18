@@ -45,6 +45,21 @@
     background-color: var(--color__background-shade-3);
   }
   
+  /* - unshade 1 */
+  .color__bg-unshade-1 {
+    background-color: var(--color__background-unshade-1);
+  }
+
+  /* - unshade 2 */
+  .color__bg-unshade-2 {
+    background-color: var(--color__background-unshade-2);
+  }
+
+  /* - unshade 3 */
+  .color__bg-unshade-3 {
+    background-color: var(--color__background-unshade-3);
+  }
+  
   /* - primary */
   .color__bg-primary {
     background-color: var(--color__background-primary);
@@ -163,6 +178,13 @@
     }
   }
 
+  .color__input {
+    color: var(--inputs__text);
+    * {
+      color: var(--inputs__text);
+    }
+  }
+  
   /* ======= */
   /* borders */
   /* - transparent */
@@ -288,6 +310,26 @@
   .color__button-plain {
     background-color: var(--color__background-plain);
     border-color: var(--color__border-plain);
+    color: var(--color__foreground-plain);
+    * {
+      color: var(--color__foreground-plain);
+    }
+  }
+
+  /* - shade */
+  .color__button-shade {
+    background-color: var(--color__background-shade-2);
+    border-color: transparent;
+    color: var(--color__foreground-plain);
+    * {
+      color: var(--color__foreground-plain);
+    }
+  }
+
+  /* - unshade */
+  .color__button-unshade {
+    background-color: var(--color__background-unshade-2);
+    border-color: transparent;
     color: var(--color__foreground-plain);
     * {
       color: var(--color__foreground-plain);

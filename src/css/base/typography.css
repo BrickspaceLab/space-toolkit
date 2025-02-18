@@ -83,14 +83,26 @@
       @apply underline md:opacity-75;
     }
 
-    &:focus-visible {
-      @apply border--focus;
+    @media (max-width:1024px) {
+      &:focus {
+        @apply border--focus-simple;
+      }
+    }
+    @media (min-width:1024px) {
+      &:focus-visible {
+        @apply border--focus;
+      }
     }
   }
 
   /* spacing */
-  .rte {
+  .rte, #product-description {
     @apply space-y-4;
+  }
+  .rte {
+    p:empty {
+      @apply pt-4;
+    }
   }
   ul {
     @apply pl-4 list-disc;
@@ -109,4 +121,5 @@
     background: none;
     font-weight: bold;
   }
+  
 }

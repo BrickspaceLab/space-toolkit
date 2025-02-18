@@ -1,4 +1,4 @@
-import { Product } from "../models.interface";
+import { Product, CartItem } from "../models.interface";
 export const cart = {
   
   updateCartNote(note: string) {
@@ -45,6 +45,7 @@ export const cart = {
 
     // Reset global properties
     this.cart_loading = true;
+    this.enable_body_scrolling = true;
     this.has_overlay = false;
 
     // Get data from shopify
@@ -91,14 +92,14 @@ export const cart = {
       // Unhide upsells
       const cartUpsells = document.querySelectorAll(".js-upsell");
       cartUpsells.forEach(function (target) {
-        target.style.display = "flex"; 
+        (target as HTMLElement).style.display = "flex"; 
       });
 
       // Hide upsells
-      this.cart.items.forEach((item) => {
+      this.cart.items.forEach((item: CartItem) => {
         const upsellElements = document.querySelectorAll('.js-upsell-' + item.product_id);
         upsellElements.forEach((element) => {
-          element.style.display = "none";
+          (element as HTMLElement).style.display = "none";
         });
       });
 
@@ -158,7 +159,6 @@ export const cart = {
     openCart: boolean,
     refresh: boolean
   ) {
-
     // Play audio
     this.playAudioIfEnabled(this.click_audio);
 
@@ -180,14 +180,28 @@ export const cart = {
           "Content-Type": "application/json",
         },
       });
-
-      // If response is not OK, throw an error
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
       
       // Parse response data
       const data = await response.json();
+
+      // If the response status is 200, the item was added successfully
+      if (response.status === 200) {
+        // Play success audio if enabled
+        this.playAudioIfEnabled(this.success_audio);
+        
+        // Update the cart
+        this.updateCart(openCart);
+      }
+
+      // If the response status is not 200, there was an error adding the item
+      else {
+        // Set the error message and show the error alert
+        this.error_message = data.description;
+        this.error_alert = true;
+        this.cart_loading = false;
+        // update quantity input value
+        return
+      }
       
       // Update cart items
       this.cart.items = data.items.map((item: Product) => ({ ...item }));
@@ -211,8 +225,8 @@ export const cart = {
   async fetchAndRenderQuickEdit (
     product_handle: string, 
     variantId: number,
-    quantity: number,
-  ) {
+    quantity: number
+    ) {
 
     // Update global edit variables
     this.edit_variant = variantId;
@@ -224,7 +238,7 @@ export const cart = {
     // Get data from Shopify
     try {
       const response = await fetch(
-        `${window.Shopify.routes.root}products/${product_handle}?section_id=quick-edit`
+        `${window.Shopify.routes.root}products/${product_handle}?section_id=quick-edit&variant=${variantId}`
       );
 
       // If response is not OK, throw an error
@@ -235,6 +249,7 @@ export const cart = {
       const responseHtml = await response.text();
 
       // disable body scrolling when quick add is visible
+      this.enable_body_scrolling = false;
       this.has_overlay = true;
 
       // Get quick add container and inject new
@@ -271,6 +286,7 @@ export const cart = {
       const responseHtml = await response.text();
 
       // disable body scrolling when quick add is visible
+      this.enable_body_scrolling = false;
       this.has_overlay = true;
 
       // Get quick add container and inject new
@@ -296,6 +312,7 @@ export const cart = {
     sellingPlanId: number
   ) {
     this.cart_loading = true;
+    this.enable_body_scrolling = true;
     this.has_overlay = false;
     this.playAudioIfEnabled(this.click_audio);
 
@@ -388,8 +405,8 @@ export const cart = {
     openCart: boolean,
     enableAudio: boolean = true
   ) {
-
     this.cart_loading = true;
+    this.enable_body_scrolling = true;
     this.has_overlay = false;
     if (enableAudio) {
       this.playAudioIfEnabled(this.click_audio);
@@ -456,23 +473,20 @@ export const cart = {
     openCart: boolean
   ) {
     this.cart_loading = true;
+    this.enable_body_scrolling = true;
     this.has_overlay = false;
     this.playAudioIfEnabled(this.click_audio);
     let formData = new FormData(form);
 
     // Add properties to formData
     let propertiesObj = Array.from(formData.entries())
+    
     .filter(([key]) => key.includes("properties"))
-    .reduce((obj, [key, value]) => {
+    .reduce((obj:{ [key: string]: any }, [key, value]) => {
       let name = key.replace("properties[", "").replace("]", "");
       obj[name] = value;
       return obj;
     }, {});
-    if (Object.keys(propertiesObj).length > 0) {
-      for (const [key, value] of Object.entries(propertiesObj)) {
-        formData.append(`properties[${key}]`, value);
-      }
-    }
 
     // Remove selling_plan if it is set to 0
     for (let pair of formData.entries()) {
@@ -481,10 +495,22 @@ export const cart = {
       }
     }
     
+    let items = {
+      'items': [{
+       'id': formData.get('id'),
+       'quantity': formData.get('quantity'),
+       'selling_plan': formData.get('selling_plan'),
+       'properties': propertiesObj
+       }]
+     };
+
     // Make a POST request to add item to cart
     fetch(`${window.Shopify.routes.root}cart/add.js`, {
       method: 'POST',
-      body: formData
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(items)
     })
     .then(async (response) => {
       let data = await response.json();
@@ -503,6 +529,8 @@ export const cart = {
         // Set the error message and show the error alert
         this.error_message = data.description;
         this.error_alert = true;
+        this.cart_loading = false;
+        return
       }
     })
     .catch((error) => {
@@ -551,7 +579,7 @@ export const cart = {
         return null;
       }).filter(Boolean); // Use filter(Boolean) to remove null elements from the array
 
-      const itemsObject = itemsArray.map(obj => ({ variantId: Number(obj.id), quantity: Number(obj.q) || 1 }));
+      const itemsObject = itemsArray.map(obj => ({ variantId: Number(obj!.id), quantity: Number(obj!.q) || 1 }));
 
       // Add items and open cart
       this.addCartItems(itemsObject);

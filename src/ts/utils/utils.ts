@@ -78,47 +78,49 @@ export const utils = {
 
     is_executing = true;
     setTimeout(() => {
+      // Handle scrolled_up state
       if (window.scrollY > 200) {
         this.is_scrolled_up = false;
-        if (this.has_banner_overlap){
-          this.header_color = this.header_default_color;
-          this.header_border = this.header_default_border;
-        }
       } 
       else {
         this.is_scrolled_up = true;
-        if (this.has_banner_overlap){
-          this.header_color = this.header_overlay_color;
-          this.header_border = this.header_overlay_border;
-        }
       }
+
+      // Add buffer zone of 50px when comparing scroll positions
+      const scrollBuffer = 100;
       if (window.scrollY > 100) {
-        if (window.scrollY > this.prev_scroll_pos) {
-          this.is_scrolled = true;
-        } 
-        else {
-          this.is_scrolled = false;
+        if (Math.abs(window.scrollY - this.prev_scroll_pos) > scrollBuffer) {
+          this.is_scrolled = window.scrollY > this.prev_scroll_pos;
+          this.prev_scroll_pos = window.scrollY;
         }
       } 
       else {
         this.is_scrolled = false;
+        this.prev_scroll_pos = window.scrollY;
       }
-      this.prev_scroll_pos = window.scrollY;
+
       is_executing = false;
     }, 100);
   },
 
-
-  // Match to liquid handle filter
-  handleize (
+   // Match to liquid handle filter
+   handleize (
     str: string
-  ) {
+  ) {    
     return str
       .toLowerCase()
-      .replace(/'/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-+|-+$/g, '');
+      .replace(/['"]+/g, '') // Remove prime symbols and quotation marks
+      .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric characters with a dash
+      .replace(/^-+|-+$/g, '') // Remove leading/trailing dashes
+      .replace(/-+/g, '-'); // Replace multiple consecutive dashes with a single dash
+  },
+
+  // Encode to base64
+  // This should match liquid values like {{ value | replace: ' ', '+' | base64_encode }}
+  encodeToBase64 (
+    str: string
+  ) {
+    return btoa(unescape(encodeURIComponent(str)));
   },
 
   // Add classes to images after loading
@@ -150,7 +152,7 @@ export const utils = {
           }
         }
 
-      }, 300);
+      }, 50);
 
       // Set a fallback for adding the classes
       setTimeout(() => {
@@ -208,6 +210,7 @@ export const utils = {
   // Open menu drawer
   openMenu () {
     this.menu_drawer = true;
+    this.enable_body_scrolling = false;
     this.has_overlay = true;
     this.playAudioIfEnabled(this.click_audio);
   },
@@ -216,6 +219,7 @@ export const utils = {
   openCart () {
     this.cart_drawer = true; 
     this.cart_alert = false;
+    this.enable_body_scrolling = false;
     this.has_overlay = true;
     this.playAudioIfEnabled(this.click_audio);
   },
@@ -223,13 +227,43 @@ export const utils = {
   // Open search drawer
   openSearch () {
     this.search_drawer = true; 
+    this.enable_body_scrolling = false;
     this.has_overlay = true; 
+
+    // Unfocus all input fields
+    const inputFields = document.querySelectorAll('input');
+    inputFields.forEach((input) => {
+      (input as HTMLInputElement).blur();
+    });
+
+    // Focus search field and open keyboard
     setTimeout(() => {
       let searchField = document.querySelector('#search-field') as HTMLInputElement;
       if (searchField) {
         searchField.focus();
+        
+        // Trigger a touch event to open the keyboard on iOS
+        const touchEvent = new TouchEvent('touchstart', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        searchField.dispatchEvent(touchEvent);
+        
+        // Set the cursor position to the end of the input value
+        searchField.setSelectionRange(searchField.value.length, searchField.value.length);
+
       }
     }, 400);
+
+    // Scroll to the search input
+    setTimeout(() => {
+      let searchField = document.querySelector('#search-field') as HTMLInputElement;
+      if (searchField) {
+        searchField.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    }, 100);
+                   
   },
 
   // Toggle menu
@@ -237,9 +271,11 @@ export const utils = {
     this.menu_drawer = !this.menu_drawer;
     this.playAudioIfEnabled(this.click_audio);
     if (this.menu_drawer) {
+      this.enable_body_scrolling = false;
       this.has_overlay = true;
     }
     else {
+      this.enable_body_scrolling = true;
       this.has_overlay = false;
     }
   },
@@ -250,9 +286,11 @@ export const utils = {
     this.cart_alert = false;
     this.playAudioIfEnabled(this.click_audio);
     if (this.cart_drawer) {
+      this.enable_body_scrolling = false;
       this.has_overlay = true;
     }
     else {
+      this.enable_body_scrolling = true;
       this.has_overlay = false;
     }
   },
@@ -261,6 +299,7 @@ export const utils = {
   toggleSearch () {
     this.search_drawer = !this.search_drawer;
     if (this.search_drawer) {
+      this.enable_body_scrolling = false;
       this.has_overlay = true;
       setTimeout(() => {
         let searchField = document.querySelector('#search-field') as HTMLInputElement;
@@ -270,7 +309,10 @@ export const utils = {
       }, 400);
     }
     else {
-      this.has_overlay = false;
+      if (!this.menu_drawer) {
+        this.enable_body_scrolling = true;
+        this.has_overlay = false;
+      }
     }
   },
 
@@ -278,19 +320,24 @@ export const utils = {
   closeCart () {
     this.cart_drawer = false; 
     this.cart_alert = false;
+    this.enable_body_scrolling = true;
     this.has_overlay = false;
   },
   
   // Close menu drawer
   closeMenu (){
     this.menu_drawer = false; 
+    this.enable_body_scrolling = true;
     this.has_overlay = false;
   },
   
   // Close menu drawer
   closeSearch () {
     this.search_drawer = false; 
-    this.has_overlay = false;
+    if (!this.menu_drawer) {
+      this.enable_body_scrolling = true;
+      this.has_overlay = false;
+    }
   },
   
 };

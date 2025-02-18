@@ -4,27 +4,40 @@
 @layer components {
   /* standard containers */
   .window--narrow {
-    @apply m-auto px-4 md:max-w-2xl lg:max-w-3xl xl:max-w-4xl;
+    @apply px-4 md:px-[8vw] lg:px-[16vw] xl:px-[24vw];
   }
   .window {
-    @apply m-auto px-4 md:max-w-screen-xl;
+    @apply px-4 md:px-[4vw] lg:px-[8vw] xl:px-[12vw];
   }
   .window--wide {
-    @apply m-auto px-4 md:max-w-screen-2xl;
+    @apply px-4 md:px-[2vw] lg:px-[4vw] xl:px-[6vw];
   }
   .window--full {
-    @apply m-auto pl-[10px] pr-[10px];
+    @apply px-4;
   }
-  .md\:window--narrow {
-    @apply md:m-auto md:px-4 md:max-w-2xl lg:max-w-3xl xl:max-w-4xl;
+
+  /* max containers */
+  .max--narrow {
+    @apply md:max-w-[84vw] lg:max-w-[68vw] xl:max-w-[52vw];
   }
-  .md\:window {
-    @apply md:m-auto md:px-4 md:max-w-screen-xl;
+  .max {
+    @apply md:max-w-[92vw] lg:max-w-[84vw] xl:max-w-[76vw];
   }
-  .md\:window--wide {
-    @apply md:m-auto md:px-4 md:max-w-screen-2xl;
+  .max--wide {
+    @apply md:max-w-[96vw] lg:max-w-[92vw] xl:max-w-[88vw];
   }
-  .md\:window--full {
-    @apply md:m-auto md:pl-[10px] md:pr-[10px];
+  
+  /* scroll containers */
+  .scrollwindow--narrow {
+    @apply scroll-px-4 px-4 m-auto md:scroll-px-[8vw] lg:scroll-px-[16vw] xl:scroll-px-[24vw] md:px-[8vw] lg:px-[16vw] xl:px-[24vw];
+  }
+  .scrollwindow {
+    @apply scroll-px-4 px-4 m-auto md:scroll-px-[4vw] lg:scroll-px-[8vw] xl:scroll-px-[12vw] md:px-[4vw] lg:px-[8vw] xl:px-[12vw];
+  }
+  .scrollwindow--wide {
+    @apply scroll-px-4 px-4 m-auto md:scroll-px-[2vw] lg:scroll-px-[4vw] xl:scroll-px-[6vw] md:px-[2vw] lg:px-[4vw] xl:px-[6vw];
+  }
+  .scrollwindow--full {
+    @apply scroll-px-4 px-4 m-auto;
   }
 }

@@ -1,77 +1,86 @@
 export const collections = {
-
   // Call section render API with data from filter
-  async fetchAndRenderCollection (
-    filterData: FormData
-  ) {
-
+  async fetchAndRenderCollection(filterData: FormData) {
     // Loop through form data and build url
     const filterUrl = this.buildUrlFilter(filterData);
 
     // Get search term
     let searchUrl = new URL(location.href).searchParams.get("q");
-    searchUrl = searchUrl ? `&q=${searchUrl}` : '';
+    searchUrl = searchUrl ? `&q=${searchUrl}` : "";
 
     // Update page url
     history.pushState(
       null,
       "",
-      `${window.location.pathname}?${filterUrl}${searchUrl}`
+      `${window.location.pathname}?${filterUrl}${searchUrl}`,
     );
 
     // Listen to popstate event
-    window.addEventListener('popstate', () => {
+    window.addEventListener("popstate", () => {
       this.fetchAndRenderCollection(filterData);
     });
-    
+
     // Get data from Shopify
     try {
       const response = await fetch(
-        `${window.location.pathname}?section_id=${this.pagination_section}${filterUrl}${searchUrl}`
+        `${window.location.pathname}?section_id=${this.pagination_section}${filterUrl}${searchUrl}`,
       );
 
       // If response is not OK, throw an error
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       // Parse response data
       const data = await response.text();
 
       // Replace section with new content
-      const sectionElement = document.getElementById(`shopify-section-${this.pagination_section}`);
+      const sectionElement = document.getElementById(
+        `shopify-section-${this.pagination_section}`,
+      );
       if (sectionElement) {
         sectionElement.innerHTML = data;
       }
-      
+
       // Scroll to top
       this.scrollToTopOfPagination();
 
       // Reset loading
       this.loadImages();
       this.pagination_loading = false;
-    } 
-    
-    catch (error) {
+    } catch (error) {
       console.error("Error:", error);
       this.pagination_loading = false;
     }
   },
 
   // Check if next page is avaible and inject more products
-  async fetchAndRenderNextPage () {
+  async fetchAndRenderPage(direction: "next" | "previous") {
+    // Prevent browser from scrolling down
+    history.scrollRestoration = "manual";
 
     // Show loading
     this.pagination_loading = true;
 
+    // Update URL to show updated page number
+    if (direction === "next") {
+      let url = new URL(window.location.href);
+      url.searchParams.set("page", this.pagination_current_page + 1);
+      window.history.pushState({}, "", url);
+    }
+
     // Get filter data
-    const filter = document.getElementById("js-desktopFilter") as HTMLFormElement;
+    const filter = document.getElementById(
+      "js-desktopFilter",
+    ) as HTMLFormElement;
 
     // Get pagination count
-    const pageUrl = `&page=${this.pagination_current_page + 1}`;
+    const pageUrl = `&page=${direction === "next" ? this.pagination_current_page + 1 : this.pagination_current_page - 1}`;
 
     // Get search parameter
-    const searchUrl = new URL(location.href).searchParams.get("q") ? `&q=${new URL(location.href).searchParams.get("q")}` : '';
+    const searchUrl = new URL(location.href).searchParams.get("q")
+      ? `&q=${new URL(location.href).searchParams.get("q")}`
+      : "";
 
     // Build fetch url
     let fetchUrl = `${window.location.pathname}?section_id=${this.pagination_section}${pageUrl}${searchUrl}`;
@@ -82,10 +91,12 @@ export const collections = {
       const filterUrl = this.buildUrlFilter(filterData);
       fetchUrl += filterUrl;
     }
-    
-    // Check if new page is available
-    if (this.pagination_current_page < this.pagination_total_pages) {
 
+    // Check if new page is available
+    if (
+      this.pagination_current_page < this.pagination_total_pages ||
+      direction === "previous"
+    ) {
       // Get data from Shopify
       try {
         const response = await fetch(fetchUrl);
@@ -102,24 +113,37 @@ export const collections = {
         if (fetchedElement) {
           const resultsElement = document.getElementById("js-results");
           if (resultsElement) {
-            resultsElement.insertAdjacentHTML("beforeend", fetchedElement.innerHTML);
+            if (direction === "next") {
+              resultsElement.insertAdjacentHTML(
+                "beforeend",
+                fetchedElement.innerHTML,
+              );
+            } else {
+              resultsElement.insertAdjacentHTML(
+                "afterbegin",
+                fetchedElement.innerHTML,
+              );
+            }
           }
         }
 
         // Update next page url
-        this.pagination_current_page += 1;
-        
+        if (direction === "next") {
+          this.pagination_current_page += 1;
+          this.pagination_pages_loaded += 1;
+        } else {
+          this.pagination_current_page -= 1;
+        }
+
         // Reset loading
         this.loadImages();
         this.pagination_loading = false;
-      } 
-
-      catch (error) {
+      } catch (error) {
         console.error("Error:", error);
         this.pagination_loading = false;
       }
-    } 
-    
+    }
+
     // If last page, stop loading
     else {
       this.pagination_loading = false;
@@ -127,9 +151,7 @@ export const collections = {
   },
 
   // Handle filter changes on price
-  handlePriceFilterChange (
-    filterType: string
-  ) {
+  handlePriceFilterChange(filterType: string) {
     // Use destructuring to make the code cleaner and easier to read
     const { filter_min_price, filter_max_price, filter_min, filter_max } = this;
 
@@ -137,61 +159,57 @@ export const collections = {
     const priceRange = filter_max - filter_min;
 
     // Check the filter type and update the appropriate values
-    if (filterType === 'max') {
+    if (filterType === "max") {
       this.filter_max_price = Math.max(filter_max_price, filter_min_price);
-      this.filter_max_thumb = 100 - ((this.filter_max_price - filter_min) / priceRange) * 100;
-    } 
-    else if (filterType === 'min') {
+      this.filter_max_thumb =
+        100 - ((this.filter_max_price - filter_min) / priceRange) * 100;
+    } else if (filterType === "min") {
       this.filter_min_price = Math.min(filter_min_price, filter_max_price);
-      this.filter_min_thumb = ((this.filter_min_price - filter_min) / priceRange) * 100;
+      this.filter_min_thumb =
+        ((this.filter_min_price - filter_min) / priceRange) * 100;
     } else {
       console.error('Invalid filter type. Expected "min" or "max".');
     }
   },
 
   // Handle filter change
-  handleFilterChange (
-    id: string
-  ): void {
-
+  handleFilterChange(id: string): void {
     // Show loading indication
     this.pagination_loading = true;
-  
+
     // Reset pagination
     this.pagination_current_page = 1;
-  
+
     // Close mobile filter
     this.filter_overlay = false;
 
     // Get filter element
     const filter = document.getElementById(id) as HTMLFormElement | null;
-    
+
     // Check if filter exists before proceeding
     if (!filter) {
       console.error(`Filter element with id ${id} not found.`);
       return;
     }
-    
+
     // Capture filter data
     const filterData = new FormData(filter);
 
     // Get and inject new collection results
     this.fetchAndRenderCollection(filterData);
   },
-  
-  // Handle deleting filters
-  handleFilterDelete (
-    filterToReset: string
-  ): void {
 
+  // Handle deleting filters
+  handleFilterDelete(filterToReset: string): void {
     // Show loading indication
     this.pagination_loading = true;
-  
-    // Get filter element
-    const filter = document.getElementById("js-desktopFilter") as HTMLFormElement | null;
-    
-    if (filter) {
 
+    // Get filter element
+    const filter = document.getElementById(
+      "js-desktopFilter",
+    ) as HTMLFormElement | null;
+
+    if (filter) {
       // Capture filter data
       const filterData = new FormData(filter);
 
@@ -205,17 +223,16 @@ export const collections = {
         this.filter_min_price = this.filter_min;
         this.filter_max_price = this.filter_max;
       }
-      
+
       // Get and inject new collection results
       this.fetchAndRenderCollection(filterData);
-    } 
-    else {
+    } else {
       console.error("Filter element 'js-desktopFilter' not found.");
     }
   },
-  
+
   // Handle deleting all filters
-  handleFilterDeleteAll () {
+  handleFilterDeleteAll() {
     // Show loading indication
     this.pagination_loading = true;
 
@@ -227,11 +244,8 @@ export const collections = {
   },
 
   // Build urlFilter
-  buildUrlFilter (
-    filterData: FormData
-  ) {
-    
-    // Reset filter URL 
+  buildUrlFilter(filterData: FormData) {
+    // Reset filter URL
     let urlFilter = "";
 
     // Loop through filterData form
@@ -239,7 +253,7 @@ export const collections = {
       const [key, value] = pair;
 
       // If filtering with price range
-      if (key.includes("price")) { 
+      if (key.includes("price")) {
         if (key === "filter.v.price.lte" && value < this.filter_max) {
           urlFilter += `&${key}=${value}`;
         }
@@ -250,7 +264,7 @@ export const collections = {
 
       // All other filters
       else {
-        urlFilter += `&${key}=${encodeURIComponent(value)}`;
+        urlFilter += `&${key}=${encodeURIComponent(value.toString())}`;
       }
     }
 
@@ -262,8 +276,7 @@ export const collections = {
   scrollToTopOfPagination() {
     const element = document.querySelector(".js-paginationTop");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   },
-
 };

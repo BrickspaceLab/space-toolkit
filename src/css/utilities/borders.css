@@ -45,16 +45,20 @@
     border-width: var(--sizes__border-input-width);
   }
   .border--t-input-width {
-    border-top-width: var(--sizes__border-input-width);
+    border-top-width: var(--sizes__border-input-width-top);
   }
   .border--r-input-width {
-    border-right-width: var(--sizes__border-input-width);
+    border-right-width: var(--sizes__border-input-width-right);
   }
   .border--b-input-width {
-    border-bottom-width: var(--sizes__border-input-width);
+    border-bottom-width: var(--sizes__border-input-width-bottom);
   }
   .border--l-input-width {
-    border-left-width: var(--sizes__border-input-width);
+    border-left-width: var(--sizes__border-input-width-left);
+  }
+  .border--input-padding {
+    padding-left: var(--sizes__border-input-padding-left);
+    padding-right: var(--sizes__border-input-padding-right);
   }
 
   /* - default border raidus */
@@ -74,23 +78,21 @@
     }
   }
 
-  /* - default focus border */
+  /* - default focus borders */
   .border--focus {
     @apply !no-underline;
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    box-shadow: var(--color__background-body) 0px 0px 0px 2px, var(--color__border-selected-1) 0px 0px 0px 4px;
+    outline: 0px solid transparent;
+    box-shadow: var(--color__background-body) 0px 0px 0px 3px, var(--color__border-selected-2) 0px 0px 0px 4px;
   }
   .border--focus--inset {
     box-shadow: none;
     outline: 2px solid var(--color__background-body);
-    outline-offset: -4px;
-    border: 2px solid var(--color__border-selected-1) !important;
+    outline-offset: -2px;
+    box-shadow: var(--color__border-selected-1) 0px 0px 0px 1px;
   }
   .border--focus-simple {
     @apply !underline;
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+    outline: 0px solid transparent;
     box-shadow: none;
   }
 
@@ -109,10 +111,10 @@
   /* ======= */
   /* input borders */
   .border__input {
-    @apply border--input-width;
+    @apply border--t-input-width border--r-input-width border--b-input-width border--l-input-width;
   }
   .border__input--focus {
-    @apply border--focus !color__border-selected-1;
+    @apply border--focus--inset !color__border-selected-1;
   }
   .border__input--hover {
     @apply !color__border-selected-1;

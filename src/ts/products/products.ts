@@ -1,159 +1,137 @@
 export const products = {
 
   // Update page when variant selection changes
-  handleProductFormChange (
-    enableUrlParameters: boolean,
-    preselectedVariantId: number
+  handleProductFormChange(
+    newVariant: string,
+    source: number,
+    sectionId: number,
+    productHandle: string,
+    productUrl: string,
+    sellingPlanGroupId: number = 0,
+    sellingPlanId: number = 0,
+    enableDefault: boolean = true
   ) {
-    
-    // Find and set selectedVariant
-    let selectedVariant = this.setSelectedVariant();
+    if(!newVariant) return;
 
-    // Set variant based on what's passed to this function
-    this.setOptionsFromPreselectedVariantId(preselectedVariantId);
-  
-    // Update display values based on selectedVariant
-    this.setDefaultsFromSelectedVariant(selectedVariant);
+    // Parse incoming variant
+    const selectedVariant = JSON.parse(decodeURIComponent(newVariant));
 
-    // Update all_options_selected if all options are selected
-    this.setallOptionsSelected();
+    if(selectedVariant !== null) {
+      // Refesh the options with section rendering API
+      this.fetchAndUpdateOptions(sectionId, productHandle, selectedVariant.id, productUrl);
 
-    // Update order of product gallery based on new selections
-    this.reorderProductGallery();
-
-    // Refresh pickup availability block
-    this.fetchAndRefreshPickup();
-
-    // Add variant id to URL parameters
-    if (enableUrlParameters) {
-      this.updateUrlParameters();
-    }
-    
-    // Update calculated price with quantity
-    this.calculated_price = this.quantity * this.current_variant_price;
-    
-    // Set options as unavailable
-    this.setUnavailableOptions();
-    
-  },
-
-  // Find options that are not available based on selected options
-  setUnavailableOptions() {
-
-    // Dynamically find matching variants excluding the option being considered
-    const findMatchingVariants = (excludeOptionIndex: number) => {
-      return this.product.variants.filter(variant => {
-
-        // Check if the variant is sold out
-        if (variant.available) {
-          return false;
-        }
-
-        // Loop through and find matching variants
-        for (let i = 1; i <= this.product.options.length; i++) {
-          if (i === excludeOptionIndex) continue;
-          const optionKey = `option${i}`;
-          if (this.handleize(variant[optionKey]) !== this.handleize(this[`option${i}`])) {
-            return false; 
-          }
-        }
-        return true;
-      });
-    };
-
-    // Loop through options
-    for (let i = 1; i <= this.product.options.length; i++) {
-      const matchingVariants = findMatchingVariants(i);
-      // Initialize a set to hold unique sold-out options for each option
-      const unavailableOptionsSet = new Set<string>();
-
-      // For each matching variant, add its options to the unavailableOptionsSet
-      matchingVariants.forEach(variant => {
-        const optionKey = `option${i}`;
-        unavailableOptionsSet.add(this.handleize(variant[optionKey]));
-      });
-
-      // Convert the set to an array and assign it to the corresponding global variable
-      this[`unavailable_options${i}`] = Array.from(unavailableOptionsSet);
-    }
-  },
-
-  // Set selectedVariant based on selected options
-  // This will find the selectedVariant based on selected options
-  setSelectedVariant () {
-    let optionsSize = this.product.options.length;
-    let selectedVariant;
-
-    switch (optionsSize) {
-      case 1:
-        selectedVariant = this.product.variants.find(variant => 
-          (!this.option1 || this.handleize(variant.option1) === this.option1)
-        );
-        break;
-      case 2:
-        selectedVariant = this.product.variants.find(variant => 
-          (!this.option1 || this.handleize(variant.option1) === this.option1) &&
-          (!this.option2 || this.handleize(variant.option2) === this.option2)
-        );
-        break;
-      case 3:
-        selectedVariant = this.product.variants.find(variant => 
-          (!this.option1 || this.handleize(variant.option1) === this.option1) &&
-          (!this.option2 || this.handleize(variant.option2) === this.option2) &&
-          (!this.option3 || this.handleize(variant.option3) === this.option3)
-        );
-        break;
-    }
-    return selectedVariant;
-  },
-
-  // Check if preselectedVariantId exists and set options
-  setOptionsFromPreselectedVariantId (
-    preselectedVariantId: number
-  ) {
-
-    let optionsSize = this.product.options.length;
-
-    if (preselectedVariantId) {
-      this.current_variant_id = preselectedVariantId;
-
-      // Find the matching variant in this.product.variants
-      const selectedVariant = this.product.variants.find((variant: { id: number }) => 
-        variant.id === preselectedVariantId
-      );
-
-      // If a matching variant is found, update options to match the selected variant
-      if (selectedVariant) {
-        switch (optionsSize) {
-          case 1:
-            this.option1 = this.handleize(selectedVariant.option1);
-            break;
-          case 2:
-            this.option1 = this.handleize(selectedVariant.option1);
-            this.option2 = this.handleize(selectedVariant.option2);
-            break;
-          case 3:
-            this.option1 = this.handleize(selectedVariant.option1);
-            this.option2 = this.handleize(selectedVariant.option2);
-            this.option3 = this.handleize(selectedVariant.option3);
-            break;
-        }
+      if(enableDefault) {
+        // Set option variables base on selectedVariant
+        this.setVariantOptions(selectedVariant);
       }
-      
-    }
 
+      // Update display values based on selectedVariant
+      this.setDefaultsFromSelectedVariant(selectedVariant, sellingPlanGroupId, sellingPlanId);
+
+      // Update all_options_selected if all options are selected
+      this.setallOptionsSelected();
+
+      // Update order of product gallery based on new selections
+      this.reorderProductGallery();
+
+      // Refresh pickup availability block
+      this.fetchAndRefreshPickup(selectedVariant.id);
+
+      // Add variant id to URL parameters
+      this.updateUrlParameters();
+
+      // Update calculated price with quantity
+      this.calculated_price = this.quantity * this.current_variant_price;
+    } else if(productUrl) {
+      // refresh product page
+      this.fetchAndRefreshProduct(productUrl, sectionId);
+    } else {
+      // handle unavailable variant
+
+    // set all_options_selected to true
+    this.all_options_selected = true;
+    // set current_variant_exists to false
+    this.current_variant_exists = false;
+    }
+  },
+  
+  fetchAndUpdateOptions(sectionId: string, productHandle: string, variantId: string, productUrl: string) {
+    const oldProductUrl = (document.querySelector('.js-product') as HTMLElement)?.dataset.productUrl;
+    const newProductUrl = productUrl;
+
+    if(newProductUrl && oldProductUrl !== newProductUrl) {
+      this.fetchAndRefreshProduct(productUrl, sectionId, variantId);
+    } else {
+      this.product_loading = true;
+      // Regular product (reload the options only)
+      // Call the section rendering api 
+      fetch(`${window.Shopify.routes.root}products/${productHandle}?section_id=${sectionId}&variant=${variantId}`)
+      .then((response) => response.text())
+      .then((responseText) => {
+        const html = new DOMParser().parseFromString(responseText, 'text/html');
+        const optionsElement = document.querySelector(`.options-${sectionId}`);
+        optionsElement?.parentNode?.insertBefore(html.querySelector(`.options-${sectionId}`), optionsElement)
+        optionsElement?.remove();
+        this.product_loading = false;
+      });
+    }
+   
+  },
+
+  async fetchAndRefreshProduct(productUrl: string, sectionId: string, variantId?: string) {
+
+    const oldProductUrl = (document.querySelector('.js-product') as HTMLElement)?.dataset.productUrl;
+    const newProductUrl = productUrl;
+          // Combined listing (reload the whole pdp)
+      // load product section with Section Render API
+      try {
+        const response = await fetch(
+          `${productUrl}?section_id=${sectionId}&variant=${variantId}`
+        );
+  
+        // If response is not OK, throw an error
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // Catpure data from fetch
+        const responseHtml = await response.text();
+        const html = new DOMParser().parseFromString(responseHtml, 'text/html');
+  
+        // inject new html
+        const oldSection = document.querySelector('.js-product')
+        if(oldSection) {
+          const newSection = html.querySelector('.js-product');
+          oldSection.parentNode!.insertBefore(newSection!, oldSection);
+          oldSection.remove();
+        }
+      } 
+  
+      catch (error) {
+        console.error(error);
+      }
+  },
+
+  // Update options to match the selected variant
+  setVariantOptions(selectedVariant: any) {
+    if (selectedVariant) {
+      const optionsSize = this.product_options.length;
+      selectedVariant.options.forEach((option: string, index: number) => {
+        this[`option${index + 1}`] = this.encodeToBase64(option);
+      })
+    }
   },
 
   // Update values based on selected variant
-  setDefaultsFromSelectedVariant (
-    selectedVariant: number
+  setDefaultsFromSelectedVariant(
+    selectedVariant: any,
+    sellingPlanGroupId: number,
+    sellingPlanId: number
   ) {
     // Get product form container
     let formContainer = this.$refs.formContainer;
-    
+
     // If variant exists
     if (selectedVariant) {
-
       // Update basics
       this.current_variant_available = selectedVariant.available;
       this.current_variant_exists = true;
@@ -163,12 +141,11 @@ export const products = {
       this.current_variant_sku = selectedVariant.sku;
       this.current_variant_title = selectedVariant.title;
 
-      // Find the matching variant in this.variants
-      const customSelectedVariant = this.variants[this.current_variant_id];
-
       // If a matching variant is found, update current_variant_inventory_quantity
-      if (customSelectedVariant && customSelectedVariant.length > 0) {
-        this.current_variant_inventory_quantity = customSelectedVariant[0].inventory_quantity;
+      if (selectedVariant) {
+        this.current_variant_inventory_quantity = selectedVariant.inventory_quantity;
+        this.current_variant_inventory_policy = selectedVariant.inventory_policy;
+        this.current_variant_inventory_management = selectedVariant.inventory_management;
       }
 
       // Set featured image id if available
@@ -191,76 +168,82 @@ export const products = {
         // Set array of available groups
         this.current_variant_selling_group_ids = selectedVariant.selling_plan_allocations.map(allocation => allocation.selling_plan_group_id);
         this.current_variant_selling_group_ids.push('0');
-  
-        // Update current_variant_selling_group_id if it is not within current_variant_selling_group_ids          
-        this.current_variant_selling_group_id = this.current_variant_selling_group_ids.includes(this.current_variant_selling_group_id) ? this.current_variant_selling_group_id : this.current_variant_selling_group_ids[0];
-     
+
+        this.current_variant_selling_group_id = sellingPlanGroupId;
+        if (sellingPlanId) {
+          this.current_variant_selling_plan_id = sellingPlanId;
+        }
+
         // Check if allocation exists with matching group and plan
         let matchingAllocation = selectedVariant.selling_plan_allocations.find(
-          allocation => allocation.selling_plan_group_id === this.current_variant_selling_group_id && 
-          allocation.selling_plan_id === parseInt(this.current_variant_selling_plan_id)
+          allocation => allocation.selling_plan_group_id === this.current_variant_selling_group_id &&
+            allocation.selling_plan_id === parseInt(this.current_variant_selling_plan_id)
         );
 
         // Set values to first plan if matching allocation not found
         if (!matchingAllocation) {
-            const firstAllocationInGroup = selectedVariant.selling_plan_allocations.find(
-              allocation => allocation.selling_plan_group_id === this.current_variant_selling_group_id
-            );
-            if (firstAllocationInGroup) {
-              matchingAllocation = firstAllocationInGroup;
-              this.current_variant_selling_plan_id = firstAllocationInGroup.selling_plan_id;
-            }
-        } 
-
+          const firstAllocationInGroup = selectedVariant.selling_plan_allocations.find(
+            allocation => allocation.selling_plan_group_id === this.current_variant_selling_group_id
+          );
+          if (firstAllocationInGroup) {
+            matchingAllocation = firstAllocationInGroup;
+            this.current_variant_selling_plan_id = firstAllocationInGroup.selling_plan_id;
+          }
+        }
         // Update prices to matchingAllocation
-        if (matchingAllocation) {
+        if (matchingAllocation && sellingPlanGroupId !== 0) {
           this.defaultSellingPlanPrice = matchingAllocation.per_delivery_price;
           this.current_variant_price = matchingAllocation.per_delivery_price;
           this.current_variant_compare_price = matchingAllocation.compare_at_price;
           this.current_variant_unit_price = matchingAllocation.unit_price;
         }
 
+
         // Update defaults and summary from selling plan data
         if (this.current_variant_selling_plan_id !== 0) {
 
           // Update plan basics
           let sellingPlanInput = formContainer.querySelector('.js-' + this.current_variant_selling_plan_id);
-          let sellingPlanData = JSON.parse(sellingPlanInput.getAttribute('data-selling-plan'));
-          this.current_variant_selling_plan_name = sellingPlanData.name.trim() + '.';
-          this.current_variant_selling_plan_description = sellingPlanData.description.trim(); 
 
-          // Update plan savings from price adjustment array
-          let savingSummary = '';
-          let savingHighlight = '';
-          sellingPlanData.price_adjustments.forEach((price_adjustment, index, array) => {
-            let savingValue = price_adjustment.value;
-            if (savingValue <= 0) return;
-            let savingsPercentLabel = '';
-            let savingsCount = price_adjustment.order_count || 'ongoing'; 
-            let punctuation = index === (array.length - 1) ? '. ' : '';
-            let sentenceStart = 'Save ';
-            switch (price_adjustment.value_type) {
-              case 'percentage':
-                savingsPercentLabel = '%';
-                break;
-              case 'price':
-                savingValue = Shopify.formatMoney(sellingPlanData.compare_at_price - savingValue);
-                sentenceStart = '';
+          // INFO: Using third-party widget won't update price display on page
+          if(sellingPlanInput) {
+            let sellingPlanData = JSON.parse(sellingPlanInput.getAttribute('data-selling-plan'));
+            this.current_variant_selling_plan_name = sellingPlanData.name.trim() + '.';
+            this.current_variant_selling_plan_description = sellingPlanData.description.trim();
+
+            // Update plan savings from price adjustment array
+            let savingSummary = '';
+            let savingHighlight = '';
+            sellingPlanData.price_adjustments.forEach((price_adjustment, index, array) => {
+              let savingValue = price_adjustment.value;
+              if (savingValue <= 0) return;
+              let savingsPercentLabel = '';
+              let savingsCount = price_adjustment.order_count || 'ongoing';
+              let punctuation = index === (array.length - 1) ? '. ' : '';
+              let sentenceStart = 'Save ';
+              switch (price_adjustment.value_type) {
+                case 'percentage':
+                  savingsPercentLabel = '%';
+                  break;
+                case 'price':
+                  savingValue = Shopify.formatMoney(sellingPlanData.compare_at_price - savingValue);
+                  sentenceStart = '';
+                  savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
+                  break;
+                case 'fixed_amount':
+                  savingValue = Shopify.formatMoney(savingValue);
+                  break;
+              }
+
+              savingSummary += `${sentenceStart}${savingValue}${savingsPercentLabel} for ${savingsCount} orders${punctuation}`;
+              if (index === 0) {
                 savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
-                break;
-              case 'fixed_amount':
-                savingValue = Shopify.formatMoney(savingValue);
-                break;
-            }
+              }
+            });
 
-            savingSummary += `${sentenceStart}${savingValue}${savingsPercentLabel} for ${savingsCount} orders${punctuation}`;
-            if (index === 0) {
-              savingHighlight = `Save ${savingValue}${savingsPercentLabel}`;
-            }
-          });
-
-          this.current_variant_selling_plan_savings_description = savingSummary;
-          this.current_variant_selling_plan_savings_summary = savingHighlight;
+            this.current_variant_selling_plan_savings_description = savingSummary;
+            this.current_variant_selling_plan_savings_summary = savingHighlight;
+          }
         }
 
         // If no group selected reset plan selection
@@ -269,8 +252,7 @@ export const products = {
         }
 
       }
-
-    } 
+    }
 
     // If variant does not exist
     else {
@@ -280,32 +262,37 @@ export const products = {
   },
 
   // Update all_options_selected if all options are selected
-  setallOptionsSelected () {
-    let optionsSize = this.product.options.length;
-    this.all_options_selected = 
+  setallOptionsSelected() {
+    let optionsSize = this.product_options.length;
+    this.all_options_selected =
       (optionsSize === 1 && this.option1) ||
       (optionsSize === 2 && this.option1 && this.option2) ||
       (optionsSize === 3 && this.option1 && this.option2 && this.option3);
+
+    if (this.current_variant_has_only_default_variant === true) {
+      this.all_options_selected = true;
+    }
   },
 
   // Update order of product gallery images
-  reorderProductGallery () {
+  reorderProductGallery() {
     let formContainer = this.$refs.formContainer;
-    
+
     // Check if enable_variant_images is enabled - this checks if store is using "Only show media associated with the selected variant"
     // If so we scroll to start of slider
     if (this.enable_variant_images) {
       setTimeout(() => {
         this.galleryScrollToStart(0);
       }, 100);
-    } 
+    }
 
     // If store is not using enable_variant_images
     // Scroll to first featured image
     else {
       const featuredImage = formContainer.querySelectorAll('.js-' + this.current_variant_featured_media_id);
-      if (featuredImage.length > 0) {
+      const featuredImageGrid = formContainer.querySelectorAll('.js-' + this.current_variant_featured_media_id + '-grid');
 
+      if (featuredImage.length > 0) {
         // Slide to image
         const slideIndex = featuredImage[0].getAttribute('data-slide');
         if (slideIndex) {
@@ -313,21 +300,21 @@ export const products = {
         }
 
         // Reorder grid
-        else {
-          const parentElement = featuredImage[0].parentNode;
+        if(featuredImageGrid.length > 0) {
+          const parentElement = featuredImageGrid[0].parentNode;
           if (parentElement) {
-            parentElement.insertBefore(featuredImage[0], parentElement.firstChild);
+            parentElement.insertBefore(featuredImageGrid[0], parentElement.firstChild);
           }
         }
-        
       }
     }
 
   },
 
   // Add variant id to URL parameters
-  updateUrlParameters () {
-    if (this.all_options_selected) {
+  // URL will only update if on a product page and all options are selected
+  updateUrlParameters() {
+    if (window.location.pathname.includes('/products/') && this.all_options_selected) {
       const searchParams = new URLSearchParams(window.location.search);
       searchParams.set('variant', this.current_variant_id);
       const newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
@@ -336,70 +323,82 @@ export const products = {
   },
 
   // Refresh pickup availability block
-  fetchAndRefreshPickup () {
-    const formContainer = this.$refs.formContainer;
-    const pickupContainer = formContainer.querySelector('.js-pickup');
+  async fetchAndRefreshPickup(
+    variantId: number
+  ) {
 
-    if (pickupContainer) {
-      fetch(window.location + '&section_id=product__pickup')
-      .then( async (response) => {
-        const data = await response.text();
+    // TODO: Write universal fetchAndRender function
+    const updatePickupContainer = async (containerSelector: string, url: string) => {
+      const formContainer = this.$refs.formContainer;
+      if (!formContainer) return;
+
+      const containerElement = formContainer.querySelector(containerSelector);
+      if (!containerElement) return;
+
+      try {
+        const response = await fetch(url);
         if (response.status === 200) {
-          const html = document.createElement('div'); html.innerHTML = data;
-          const htmlCleaned = html.querySelector('.js-pickup');
-          if(htmlCleaned){
-            pickupContainer.innerHTML = htmlCleaned.innerHTML;
-          } 
-        } 
-        else {
-          console.error('Error:', error);
+          const html = document.createElement('div'); html.innerHTML = await response.text();
+          const htmlCleaned = html.querySelector(containerSelector);
+          if (htmlCleaned) {
+            this.current_variant_pickup_available = htmlCleaned.hasAttribute('data-pickup-available');
+            containerElement.innerHTML = htmlCleaned.innerHTML;
+          } else {
+            this.current_variant_pickup_available = false;
+            containerElement.innerHTML = '';
+          }
+        } else {
+          console.error('Error:', response.status);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error:', error);
-      });
-    }
+      }
+    };
+
+    await updatePickupContainer('.js-pickupButton', `${window.location.pathname}?section_id=product__pickup-button&variant=${variantId}`);
+    await updatePickupContainer('.js-pickupDrawer', `${window.location.pathname}?section_id=product__pickup-drawer&variant=${variantId}`);
+
   },
 
-  // Scroll to next row of items
+  // Scroll to next gallery item
   galleryScrollNext () {
 
     // Unzoom the gallery
     this.galleryResetZoom();
     
-    let slider = this.$refs.slider;
-    let nextScrollPosition = slider.scrollLeft + slider.clientWidth;
-    if (nextScrollPosition >= slider.scrollWidth - 20) {
-      nextScrollPosition = 0;
+    // Set the next index
+    this.gallery_next = this.gallery_index + 1;
+    if (this.gallery_next > this.gallery_size){
+      this.gallery_next = 0;
     }
-    slider.scrollTo({
-      top: 0,
-      left: nextScrollPosition,
-      behavior: 'smooth'
-    });
+
+    // Go to new slide
+    this.galleryScrollToIndex(this.gallery_next);
+
   },
 
-  // Scroll to previous row of items
+  // Scroll to previous gallery item
   galleryScrollBack () {
 
     // Unzoom the gallery
     this.galleryResetZoom();
     
     // Set the next index
-    let slider = this.$refs.slider;
-    let previousScrollPosition = slider.scrollLeft - slider.clientWidth;
-    if (slider.scrollLeft <= 20) {
-      previousScrollPosition = slider.scrollWidth - slider.clientWidth;
+    if (!this.gallery_next) {
+      this.gallery_next = 0;
     }
-    slider.scrollTo({
-      top: 0,
-      left: previousScrollPosition,
-      behavior: 'smooth'
-    });
-  },
+    this.gallery_next = this.gallery_next - 1;
+    if (this.gallery_next < 0){
+      this.gallery_next = this.gallery_size;
+    }
 
+    // Go to new slide
+    this.galleryScrollToIndex(this.gallery_next);
+
+  },
+  
   // Scroll to a specific gallery item
-  galleryScrollToIndex (
+  galleryScrollToIndex(
     index: number
   ) {
 
@@ -415,7 +414,7 @@ export const products = {
     let zoomSlider = formContainer.querySelector('.js-zoomSlider');
 
     // Go to slide
-    let currentSlide = slider.querySelector('[data-slide="' + index +'"]');
+    let currentSlide = slider.querySelector('[data-slide="' + index + '"]');
     if (currentSlide) {
       let currentSlidePosition = currentSlide.offsetLeft;
       slider.scrollTo({
@@ -426,27 +425,27 @@ export const products = {
     }
 
     // Go to slide on thumbnail
-    if (thumbnailSlider){
-      let currentThumb = thumbnailSlider.querySelector('[data-slide="' + index +'"]');
+    if (thumbnailSlider) {
+      let currentThumb = thumbnailSlider.querySelector('[data-slide="' + index + '"]');
       if (currentThumb) {
         let currentThumbPosition = currentThumb.offsetTop;
         thumbnailSlider.scrollTo({
-          top: currentThumbPosition-200,
+          top: currentThumbPosition - 200,
           left: 0,
           behavior: 'smooth'
         });
       }
     }
-    
+
     // Go to slide on fullscreen gallery
     setTimeout(() => {
       if (zoomSlider){
         let currentSlide = zoomSlider.querySelector('[data-slide="' + index +'"]');
-        let currentSlidePosition = currentSlide.offsetLeft;
+        let currentSlidePosition = currentSlide.offsetTop;
         if (currentSlide) {
           zoomSlider.scrollTo({
-            top: 0,
-            left: currentSlidePosition,
+            top: currentSlidePosition,
+            left: 0,
             behavior: 'smooth'
           });
         }
@@ -454,15 +453,15 @@ export const products = {
     }, 100);
 
     // Update index
-    this.gallery_index = index;
+    // this.gallery_index = index;
   },
 
   // Scroll to start of gallery slider
-  galleryScrollToStart () {
+  galleryScrollToStart() {
 
     // Unzoom the gallery
     this.galleryResetZoom();
-    
+
     // Get product form container
     let formContainer = this.$refs.formContainer;
 
@@ -478,32 +477,34 @@ export const products = {
     });
 
     // Go to slide on thumbnail
-    if (thumbnailSlider){
+    if (thumbnailSlider) {
       thumbnailSlider.scrollTo({
         top: 0,
         left: 0,
         behavior: 'smooth'
       });
     }
-    
+
     // Update index
     this.gallery_index = 0;
   },
 
   // Unzoom all images
-  galleryResetZoom () {
-    for(let i = 0; i < this.gallery_size; i++) {
+  galleryResetZoom() {
+    for (let i = 0; i < this.gallery_size; i++) {
       this['gallery_zoom_' + i] = false;
     }
   },
 
+  // Zoom in on gallery image
   galleryZoomIn() {
-    this['gallery_zoom_'+this.gallery_index] = true;
+    this['gallery_zoom_' + this.gallery_index] = true;
     this.zoomed = true;
   },
 
+  // Zoom out of gallery image
   galleryZoomOut() {
-    this['gallery_zoom_'+this.gallery_index] = false;
+    this['gallery_zoom_' + this.gallery_index] = false;
     this.zoomed = false;
   }
 
