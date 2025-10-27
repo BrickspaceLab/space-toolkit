@@ -2,7 +2,7 @@ import shopify from 'vite-plugin-shopify'
 
 export default {
   build: {
-    minify: false,
+    minify: false
   },
   plugins: [
     shopify({

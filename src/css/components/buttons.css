@@ -4,7 +4,7 @@
 @layer components {
   /* standard button */
   .btn {
-    @apply type__nav border__button--radius color__button-primary border__button animation-500 inline-flex w-auto cursor-pointer items-center justify-center overflow-hidden px-6 py-2 text-center animation-300 !no-underline;
+    @apply type__nav border__button--radius color__button-primary border__button animation-500 animation-300 inline-flex w-auto cursor-pointer items-center justify-center overflow-hidden px-6 py-2 text-center !no-underline;
     text-transform: var(--type__button-capiliziation) !important;
 
     * {
@@ -13,7 +13,7 @@
     }
 
     &__content {
-      @apply flex items-center type__nav;
+      @apply type__nav flex items-center;
     }
 
     /* states */
@@ -27,24 +27,24 @@
     }
     &--disabled,
     &:disabled {
-      @apply opacity-50 cursor-not-allowed;
+      @apply cursor-not-allowed opacity-50;
     }
 
     /* sizes */
     &--small {
-      @apply px-4 type--small;
+      @apply type--small px-4;
     }
     &--small > * {
       @apply type--small;
     }
     &--smaller {
-      @apply px-4 py-1 type--smaller;
+      @apply type--smaller px-4 py-1;
     }
     &--smaller > * {
       @apply type--smaller;
     }
     &--big {
-      @apply py-3 type--big px-9;
+      @apply type--big px-9 py-3;
     }
     &--big > * {
       @apply type--big;
@@ -69,7 +69,7 @@
     &--unshade {
       @apply color__button-unshade backdrop-blur-sm;
     }
-    &--diff{
+    &--diff {
       background-color: #fff;
       border-color: #fff;
       color: #000;
@@ -100,12 +100,12 @@
     &--minimal {
       background-color: transparent;
       color: var(--color__text-light);
-      @apply min-w-0 min-h-0 p-0 normal-case border-none rounded-none type__body;
+      @apply type__body min-h-0 min-w-0 rounded-none border-none p-0 normal-case;
       &:hover {
-        @apply shadow-none border--focus-simple;
+        @apply border--focus-simple shadow-none;
       }
       &:focus-visible {
-        @apply shadow-none border--focus-simple;
+        @apply border--focus;
       }
       * {
         color: var(--color__text-light);
@@ -115,12 +115,12 @@
     &--minimal-alt {
       background-color: transparent;
       color: var(--color__text-dark);
-      @apply min-w-0 min-h-0 p-0 normal-case border-none rounded-none type__body;
+      @apply type__body min-h-0 min-w-0 rounded-none border-none p-0 normal-case;
       &:hover {
-        @apply shadow-none border--focus-simple;
+        @apply border--focus-simple shadow-none;
       }
       &:focus-visible {
-        @apply shadow-none border--focus-simple;
+        @apply border--focus;
       }
       * {
         color: var(--color__text-dark);
@@ -137,9 +137,9 @@
     }
     /* - make sure spinner is spinner */
     &__spinner {
-      @apply absolute flex items-center justify-center invisible w-11/12 transform left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4 bg-inherit;
+      @apply invisible absolute left-2/4 top-2/4 flex w-11/12 -translate-x-2/4 -translate-y-2/4 transform items-center justify-center bg-inherit;
       svg {
-        @apply m-0 m-auto animate-spin-slow;
+        @apply animate-spin-slow m-0 m-auto;
       }
     }
     /* - when loading class used, hide content and show spinner */

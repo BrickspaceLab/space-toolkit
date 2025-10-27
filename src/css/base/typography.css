@@ -3,7 +3,6 @@
 /* ======= */
 
 @layer base {
-
   /* body */
   html,
   body,
@@ -72,23 +71,23 @@
     @apply type__body text-[16px];
   }
   label {
-    @apply cursor-pointer type__body type--small;
+    @apply type__body type--small cursor-pointer;
   }
 
   /* links  */
   a {
-    @apply underline animation-300;
+    @apply animation-300 underline;
 
     &:hover {
       @apply underline md:opacity-75;
     }
 
-    @media (max-width:1024px) {
+    @media (max-width: 1024px) {
       &:focus {
         @apply border--focus-simple;
       }
     }
-    @media (min-width:1024px) {
+    @media (min-width: 1024px) {
       &:focus-visible {
         @apply border--focus;
       }
@@ -96,7 +95,8 @@
   }
 
   /* spacing */
-  .rte, #product-description {
+  .rte,
+  #product-description {
     @apply space-y-4;
   }
   .rte {
@@ -105,10 +105,10 @@
     }
   }
   ul {
-    @apply pl-4 list-disc;
+    @apply list-disc pl-4;
   }
   ol {
-    @apply pl-4 list-decimal;
+    @apply list-decimal pl-4;
   }
 
   /* font weight */
@@ -121,5 +121,4 @@
     background: none;
     font-weight: bold;
   }
-  
 }

@@ -275,6 +275,7 @@ export const collections = {
   // Method to scroll to the top of pagination
   scrollToTopOfPagination() {
     const element = document.querySelector(".js-paginationTop");
+    this.enable_body_scrolling = true;
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }

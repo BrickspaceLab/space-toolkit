@@ -51,34 +51,33 @@
   }
 
   .height--smaller {
-    height: var(--spacing__font-smaller); 
+    height: var(--spacing__font-smaller);
   }
   .height--small {
-    height: var(--spacing__font-small); 
+    height: var(--spacing__font-small);
   }
   .height--base {
-    height: var(--spacing__font-base); 
+    height: var(--spacing__font-base);
   }
   .height--big {
-    height: var(--spacing__font-big); 
+    height: var(--spacing__font-big);
   }
   .height--bigger {
-    height: var(--spacing__font-bigger); 
+    height: var(--spacing__font-bigger);
   }
   .width--smaller {
-    width: var(--spacing__font-smaller); 
+    width: var(--spacing__font-smaller);
   }
   .width--small {
-    width: var(--spacing__font-small); 
+    width: var(--spacing__font-small);
   }
   .width--base {
-    width: var(--spacing__font-base); 
+    width: var(--spacing__font-base);
   }
   .width--big {
-    width: var(--spacing__font-big); 
+    width: var(--spacing__font-big);
   }
   .width--bigger {
-    width: var(--spacing__font-bigger); 
+    width: var(--spacing__font-bigger);
   }
-
 }

@@ -44,7 +44,7 @@
   .color__bg-shade-3 {
     background-color: var(--color__background-shade-3);
   }
-  
+
   /* - unshade 1 */
   .color__bg-unshade-1 {
     background-color: var(--color__background-unshade-1);
@@ -59,7 +59,7 @@
   .color__bg-unshade-3 {
     background-color: var(--color__background-unshade-3);
   }
-  
+
   /* - primary */
   .color__bg-primary {
     background-color: var(--color__background-primary);
@@ -129,7 +129,7 @@
       color: var(--color__text-link);
     }
   }
-  
+
   /* - primary */
   .color__primary {
     color: var(--color__foreground-primary);
@@ -184,7 +184,7 @@
       color: var(--inputs__text);
     }
   }
-  
+
   /* ======= */
   /* borders */
   /* - transparent */
@@ -255,7 +255,7 @@
   .color__border-dark {
     border-color: var(--color__text-light);
   }
-  
+
   /* - input */
   .color__border-input {
     border-color: var(--inputs__border);

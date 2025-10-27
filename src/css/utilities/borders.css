@@ -3,7 +3,6 @@
 /* ======= */
 
 @layer utilities {
-
   /* ======= */
   /* default borders */
   /* - default border width */
@@ -80,9 +79,16 @@
 
   /* - default focus borders */
   .border--focus {
-    @apply !no-underline;
+    @apply !underline;
     outline: 0px solid transparent;
-    box-shadow: var(--color__background-body) 0px 0px 0px 3px, var(--color__border-selected-2) 0px 0px 0px 4px;
+    box-shadow: none;
+
+    @media (min-width: 768px) {
+      @apply !no-underline;
+      box-shadow:
+        var(--color__background-body) 0px 0px 0px 3px,
+        var(--color__border-selected-2) 0px 0px 0px 4px;
+    }
   }
   .border--focus--inset {
     box-shadow: none;

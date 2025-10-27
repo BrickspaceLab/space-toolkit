@@ -1,9 +1,10 @@
 {
-  "name": "space-toolkit",
+  "name": "space",
+  "version": "2.2.0",
   "scripts": {
     "dev": "npm-run-all --parallel vite_dev shopify_dev",
-    "pull": "shopify theme pull --nodelete --store brickspacetestingstore.myshopify.com",
-    "shopify_dev": "shopify theme dev --store brickspacetestingstore.myshopify.com",
+    "pull": "shopify theme pull --nodelete --store high-variant-combined-testing-store.myshopify.com",
+    "shopify_dev": "shopify theme dev --store high-variant-combined-testing-store.myshopify.com",
     "vite_dev": "vite dev",
     "test": "vitest",
     "coverage": "vitest run --coverage",
@@ -17,30 +18,30 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@shopify/prettier-plugin-liquid": "^1.5.2",
+    "@shopify/prettier-plugin-liquid": "^1.6.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/forms": "^0.5.9",
     "autoprefixer": "^10.4.20",
-    "jsdom": "^21.1.1",
+    "jsdom": "^25.0.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.47",
-    "postcss-import": "^15.1.0",
-    "postcss-nested": "^6.0.1",
-    "prettier": "^3.1.0",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.13",
-    "vite": "^4.2.0",
-    "vite-plugin-shopify": "^2.0.2",
-    "vitest": "^0.29.7"
+    "postcss": "^8.4.49",
+    "postcss-import": "^16.1.0",
+    "postcss-nested": "^7.0.2",
+    "prettier": "^3.4.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.15",
+    "vite": "^5.4.11",
+    "vite-plugin-shopify": "^3.1.0",
+    "vitest": "^2.1.8"
   },
   "dependencies": {
-    "@alpinejs/focus": "^3.12.0",
-    "@alpinejs/intersect": "^3.12.0",
-    "@alpinejs/persist": "^3.12.0",
-    "alpinejs": "^3.12.0",
-    "instant.page": "5.1.1"
+    "@alpinejs/focus": "^3.14.6",
+    "@alpinejs/intersect": "^3.14.6",
+    "@alpinejs/persist": "^3.14.6",
+    "alpinejs": "^3.14.6",
+    "instant.page": "5.2.0"
   },
   "config": {
-    "store": "brickspacetestingstore.myshopify.com"
+    "store": "high-variant-combined-testing-store.myshopify.com"
   }
 }

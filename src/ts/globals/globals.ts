@@ -43,6 +43,7 @@ export const globals = {
   audio_overlay: app.audio_overlay, // {boolean} To toggle audio settings overlay
   discount_overlay: app.discount_overlay, // {boolean} To toggle the discount overlay
   quick_edit_handle: app.quick_edit_handle, // {string} The product handle of the product being edited
+  quick_add_initial_load: app.quick_add_initial_load, // {boolean} To check if the quick add is loaded for the first time
 
   // Alert
   error_alert: app.error_alert, // {boolean} To show the alert
@@ -56,8 +57,8 @@ export const globals = {
   pagination_section: app.pagination_section, // {string} Points to a {{ section.id }} to paginate
 
   // Product
-  product_loading: app.product_loading,                    // {boolean} To check if product is loading
-  recent_products: app.recent_products,                    // {array} Recently viewed products
+  product_loading: app.product_loading, // {boolean} To check if product is loading
+  recent_products: app.recent_products, // {array} Recently viewed products
 
   // Discount properties
   discount_text: app.discount_text, // {string} Text for the discount

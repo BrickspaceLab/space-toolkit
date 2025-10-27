@@ -25,6 +25,7 @@ export interface AppInterface {
   sticky_bar_height_left: number;
   sticky_bar_height_right: number;
   age_overlay: boolean;
+  quick_add_initial_load: boolean;
   filter_overlay: boolean;
   localization_overlay: boolean;
   audio_overlay: boolean;
@@ -356,10 +357,10 @@ export interface Params {
   title: string;
   variants: {
     [key: string]: string;
-    barcode: string,
-    sku: string,
-    title: string
-  },
+    barcode: string;
+    sku: string;
+    title: string;
+  };
   vendor: string;
 }
 

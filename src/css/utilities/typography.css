@@ -9,7 +9,7 @@
     font-family: var(--type__font-body-family);
     font-style: var(--type__font-body-style);
     font-weight: var(--type__font-body-weight);
-    @apply leading-relaxed tracking-normal normal-case underline-offset-2;
+    @apply normal-case leading-relaxed tracking-normal underline-offset-2;
   }
 
   /* ======= */
@@ -62,7 +62,8 @@
   .type--smaller {
     font-size: var(--type__font-100);
     font-size: var(--type__font-smaller);
-    *, &::placeholder {
+    *,
+    &::placeholder {
       font-size: var(--type__font-100);
       font-size: var(--type__font-smaller);
     }
@@ -70,7 +71,8 @@
   .type--small {
     font-size: var(--type__font-200);
     font-size: var(--type__font-small);
-    *, &::placeholder {
+    *,
+    &::placeholder {
       font-size: var(--type__font-200);
       font-size: var(--type__font-small);
     }
@@ -78,7 +80,8 @@
   .type--base {
     font-size: var(--type__font-300);
     font-size: var(--type__font-base);
-    *, &::placeholder {
+    *,
+    &::placeholder {
       font-size: var(--type__font-300);
       font-size: var(--type__font-base);
     }
@@ -86,7 +89,8 @@
   .type--big {
     font-size: var(--type__font-400);
     font-size: var(--type__font-big);
-    *, &::placeholder {
+    *,
+    &::placeholder {
       font-size: var(--type__font-400);
       font-size: var(--type__font-big);
     }
@@ -94,7 +98,8 @@
   .type--bigger {
     font-size: var(--type__font-500);
     font-size: var(--type__font-bigger);
-    *, &::placeholder {
+    *,
+    &::placeholder {
       font-size: var(--type__font-500);
       font-size: var(--type__font-bigger);
     }

@@ -70,7 +70,12 @@ input[type="range"]::-moz-range-thumb {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right bottom, transparent calc(50% - 2px), var(--color__text-light), transparent calc(50% + 2px));
+  background: linear-gradient(
+    to right bottom,
+    transparent calc(50% - 2px),
+    var(--color__text-light),
+    transparent calc(50% + 2px)
+  );
 }
 
 /* - reset line-height */
@@ -135,11 +140,11 @@ video::-webkit-media-controls-panel {
 /* - hide the tooltip content by default */
 [data-tooltip]:before,
 [data-tooltip]:after {
-  @apply invisible opacity-0 animation-300;
+  @apply animation-300 invisible opacity-0;
 }
 /* - position tooltip above the element */
 [data-tooltip]:before {
-  @apply absolute top-auto left-auto right-auto bottom-auto type--smaller color__bg-shade-1 px-2 py-1 flex items-center justify-center border__button--radius border-0 backdrop-blur-sm;
+  @apply type--smaller color__bg-shade-1 border__button--radius absolute bottom-auto left-auto right-auto top-auto flex items-center justify-center border-0 px-2 py-1 backdrop-blur-sm;
   content: attr(data-tooltip);
 }
 [data-tooltip]:hover:before,

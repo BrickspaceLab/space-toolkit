@@ -26,18 +26,18 @@
   .max--wide {
     @apply md:max-w-[96vw] lg:max-w-[92vw] xl:max-w-[88vw];
   }
-  
+
   /* scroll containers */
   .scrollwindow--narrow {
-    @apply scroll-px-4 px-4 m-auto md:scroll-px-[8vw] lg:scroll-px-[16vw] xl:scroll-px-[24vw] md:px-[8vw] lg:px-[16vw] xl:px-[24vw];
+    @apply m-auto scroll-px-4 px-4 md:scroll-px-[8vw] md:px-[8vw] lg:scroll-px-[16vw] lg:px-[16vw] xl:scroll-px-[24vw] xl:px-[24vw];
   }
   .scrollwindow {
-    @apply scroll-px-4 px-4 m-auto md:scroll-px-[4vw] lg:scroll-px-[8vw] xl:scroll-px-[12vw] md:px-[4vw] lg:px-[8vw] xl:px-[12vw];
+    @apply m-auto scroll-px-4 px-4 md:scroll-px-[4vw] md:px-[4vw] lg:scroll-px-[8vw] lg:px-[8vw] xl:scroll-px-[12vw] xl:px-[12vw];
   }
   .scrollwindow--wide {
-    @apply scroll-px-4 px-4 m-auto md:scroll-px-[2vw] lg:scroll-px-[4vw] xl:scroll-px-[6vw] md:px-[2vw] lg:px-[4vw] xl:px-[6vw];
+    @apply m-auto scroll-px-4 px-4 md:scroll-px-[2vw] md:px-[2vw] lg:scroll-px-[4vw] lg:px-[4vw] xl:scroll-px-[6vw] xl:px-[6vw];
   }
   .scrollwindow--full {
-    @apply scroll-px-4 px-4 m-auto;
+    @apply m-auto scroll-px-4 px-4;
   }
 }

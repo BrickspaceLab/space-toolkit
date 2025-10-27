@@ -3,7 +3,6 @@
 /* ======= */
 
 @layer utilities {
-  
   /* animation timing */
   /* - add classes to any element to enable animation at set duration */
   /* - add --all to transition all properties, using class without --all will only transition default css values */
@@ -64,7 +63,6 @@
   /* scroll animations */
   /* - will only work where animation-range supports a percentage */
   @supports (animation-range: 10%) {
-    
     /* blur and zoom in animation, used in banners */
     .scroll-blurinzoom-2-20 {
       filter: blur(8px);
@@ -106,9 +104,7 @@
       animation-timeline: view();
       animation-range: var(--offset-1) var(--offset-2);
     }
-
   }
-  
 }
 
 @keyframes spin {
@@ -122,13 +118,13 @@
 
 @keyframes hop {
   0% {
-   transform: 'translateY(0)'
+    transform: "translateY(0)";
   }
   50% {
-     transform: 'translateY(-50%)'
+    transform: "translateY(-50%)";
   }
   100% {
-    transform: 'translateY(0)'
+    transform: "translateY(0)";
   }
 }
 

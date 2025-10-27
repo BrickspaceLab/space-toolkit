@@ -7,7 +7,7 @@
     @apply relative;
   }
   img:after {
-    @apply items-center justify-center hidden md:type--smaller color__text md:absolute md:top-0 md:flex md:h-full md:w-full md:flex-col md:justify-center md:whitespace-normal md:p-4 md:text-center color__bg-overlay-1;
+    @apply md:type--smaller color__text color__bg-overlay-1 hidden items-center justify-center md:absolute md:top-0 md:flex md:h-full md:w-full md:flex-col md:justify-center md:whitespace-normal md:p-4 md:text-center;
     content: "" attr(alt) !important;
   }
 }
